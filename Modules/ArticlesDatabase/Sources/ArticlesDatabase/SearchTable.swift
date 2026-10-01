@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 import RSCore
 import RSDatabase
 import RSDatabaseObjC
@@ -137,15 +138,18 @@ final class SearchTable: DatabaseTable, @unchecked Sendable {
 
 		var previousBatch = Set<String>()
 		while true {
-			var batch = Set<String>()
+			// The DatabaseBlock is @Sendable, so the batch is passed out through
+			// a lock instead of a captured var.
+			let batchLock = OSAllocatedUnfairLock<Set<String>>(initialState: [])
 			queue.runInTransactionSync { database in
 				let articleIDs = self.fetchUnindexedArticleIDs(self.batchSize, database)
 				guard !articleIDs.isEmpty else {
 					return
 				}
 				self.ensureIndexedArticles(articleIDs, database)
-				batch = articleIDs
+				batchLock.withLock { $0 = articleIDs }
 			}
+			let batch = batchLock.withLock { $0 }
 			// Break when there is nothing left to index, or when a batch made no
 			// progress (the same articles would be fetched again forever).
 			if batch.isEmpty || batch == previousBatch {
