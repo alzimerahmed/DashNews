@@ -110,7 +110,6 @@ final class ImportOPMLWindowController: NSWindowController {
 
 	}
 
-
 	private static func presentImportResult(_ summary: OPMLImportSummary) {
 		let title = NSLocalizedString("Import Complete", comment: "OPML import success title")
 		let message: String
