@@ -1087,9 +1087,10 @@ private extension TimelineViewController {
 	// MARK: Mark Read on Scroll
 
 	func startObservingScrollViewForMarkReadOnScroll() {
-		guard !isObservingScrollViewClipView, let scrollView = tableView.enclosingScrollView, let clipView = scrollView.contentView else {
+		guard !isObservingScrollViewClipView, let scrollView = tableView.enclosingScrollView else {
 			return
 		}
+		let clipView = scrollView.contentView
 		clipView.postsBoundsChangedNotifications = true
 		isObservingScrollViewClipView = true
 		NotificationCenter.default.addObserver(self, selector: #selector(scrollViewClipViewBoundsDidChange(_:)), name: NSView.boundsDidChangeNotification, object: clipView)
