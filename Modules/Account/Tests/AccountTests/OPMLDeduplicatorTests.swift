@@ -9,7 +9,7 @@ import Testing
 import RSParser
 @testable import Account
 
-struct OPMLDeduplicatorTests {
+@MainActor struct OPMLDeduplicatorTests {
 
 	@Test func exactDuplicateFeedsInTheFileAreSkipped() throws {
 		let items = try opmlItems("""
