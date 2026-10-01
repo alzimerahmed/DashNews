@@ -449,17 +449,31 @@ extension SettingsViewController: UIDocumentPickerDelegate {
 
 	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 		for url in urls {
-			opmlAccount?.importOPML(url) { result in
+			opmlAccount?.importOPML(url) { [weak self] result in
 				switch result {
-				case .success:
-					break
+				case .success(let summary):
+					self?.presentOPMLImportResult(summary)
 				case .failure:
 					let title = NSLocalizedString("Import Failed", comment: "Import Failed")
 					let message = NSLocalizedString("We were unable to process the selected file.  Please ensure that it is a properly formatted OPML file.", comment: "Import Failed Message")
-					self.presentError(title: title, message: message)
+					self?.presentError(title: title, message: message)
 				}
 			}
 		}
+	}
+
+	private func presentOPMLImportResult(_ summary: OPMLImportSummary) {
+		let title = NSLocalizedString("Import Complete", comment: "OPML import success title")
+		let message: String
+		if summary.duplicatesSkipped > 0 {
+			message = String.localizedStringWithFormat(NSLocalizedString("Your subscriptions were imported. %ld duplicate feed(s) were skipped.", comment: "OPML import success with duplicates skipped"), summary.duplicatesSkipped)
+		} else {
+			message = NSLocalizedString("Your subscriptions were imported.", comment: "OPML import success message")
+		}
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let okTitle = NSLocalizedString("OK", comment: "OK button")
+		alert.addAction(UIAlertAction(title: okTitle, style: .default))
+		presentingParentController?.present(alert, animated: true)
 	}
 
 }

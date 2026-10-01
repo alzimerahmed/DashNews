@@ -99,8 +99,8 @@ final class ImportOPMLWindowController: NSWindowController {
 			if modalResult == NSApplication.ModalResponse.OK, let url = panel.url {
 				account.importOPML(url) { result in
 					switch result {
-					case .success:
-						break
+					case .success(let summary):
+						Self.presentImportResult(summary)
 					case .failure(let error):
 						NSApplication.shared.presentError(error)
 					}
@@ -110,4 +110,18 @@ final class ImportOPMLWindowController: NSWindowController {
 
 	}
 
+
+	private static func presentImportResult(_ summary: OPMLImportSummary) {
+		let title = NSLocalizedString("Import Complete", comment: "OPML import success title")
+		let message: String
+		if summary.duplicatesSkipped > 0 {
+			message = String.localizedStringWithFormat(NSLocalizedString("Your subscriptions were imported. %ld duplicate feed(s) were skipped.", comment: "OPML import success with duplicates skipped"), summary.duplicatesSkipped)
+		} else {
+			message = NSLocalizedString("Your subscriptions were imported.", comment: "OPML import success message")
+		}
+		let alert = NSAlert()
+		alert.messageText = title
+		alert.informativeText = message
+		alert.runModal()
+	}
 }
