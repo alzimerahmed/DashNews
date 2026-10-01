@@ -990,7 +990,7 @@ extension MainWindowController: NSToolbarDelegate {
 			toolbarItem.toolTip = title
 			toolbarItem.label = title
 			toolbarItem.paletteLabel = title
-			toolbarItem.image = NSImage(systemSymbolName: "bookmark", accessibilityDescription: title) ?? Assets.Images.searchFeed
+			toolbarItem.image = NSImage(systemSymbolName: "bookmark", accessibilityDescription: title) ?? Assets.Images.searchFeed.image
 			toolbarItem.action = #selector(saveSearch(_:))
 			return toolbarItem
 
