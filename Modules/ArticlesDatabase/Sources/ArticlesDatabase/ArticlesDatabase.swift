@@ -465,7 +465,7 @@ private extension ArticlesDatabase {
 	/// Statements for the FTS5 search index. Kept separate so the FTS4→FTS5
 	/// migration can re-run them after dropping the legacy table.
 	/// See <docs/research.md> ADR-003: search is on-device SQLite FTS.
-	static let fts5SearchTableStatements = """
+	nonisolated static let fts5SearchTableStatements = """
 	CREATE VIRTUAL TABLE if not EXISTS search using fts5(title, body);
 
 	CREATE TRIGGER if not EXISTS articles_after_delete_trigger_delete_search_text after delete on articles begin delete from search where rowid = OLD.searchRowID; end;
@@ -483,7 +483,7 @@ private extension ArticlesDatabase {
 	/// so drop the legacy index and rebuild it from the articles table.
 	/// The rebuild itself is asynchronous: articles get searchRowID = NULL and are
 	/// reindexed by `indexUnindexedArticles` (called just after init).
-	static func migrateSearchIndexToFTS5IfNeeded(_ database: FMDatabase) {
+	nonisolated static func migrateSearchIndexToFTS5IfNeeded(_ database: FMDatabase) {
 		guard searchTableUsesFTS4(database) else {
 			return
 		}
@@ -499,7 +499,7 @@ private extension ArticlesDatabase {
 	}
 
 	/// Returns true if the `search` table exists and is an FTS4 virtual table.
-	static func searchTableUsesFTS4(_ database: FMDatabase) -> Bool {
+	nonisolated static func searchTableUsesFTS4(_ database: FMDatabase) -> Bool {
 		guard let resultSet = database.executeQuery("select sql from sqlite_master where type = 'table' and name = 'search';", withArgumentsIn: []) else {
 			return false
 		}
