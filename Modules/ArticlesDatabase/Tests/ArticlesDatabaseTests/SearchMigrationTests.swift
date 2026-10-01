@@ -10,7 +10,7 @@ import Foundation
 import Testing
 import Articles
 import RSParser
-import RSDatabaseObjC
+import SQLite3
 import ArticlesDatabase
 
 /// Databases created before the FTS5 migration have an FTS4 virtual table named
@@ -73,13 +73,15 @@ private extension SearchMigrationTests {
 	/// markdown/authors columns, statuses, and an FTS4 `search` virtual table
 	/// with one indexed row linked via articles.searchRowID.
 	static func createLegacyDatabase(at path: String) {
-		let database = FMDatabase(path: path)
-		guard database.open() else {
+		var database: OpaquePointer?
+		let openResult = sqlite3_open_v2(path, &database, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, nil)
+		guard openResult == SQLITE_OK, let database else {
+			sqlite3_close_v2(database)
 			Issue.record("Could not open legacy fixture database at \(path)")
 			return
 		}
 		defer {
-			database.close()
+			sqlite3_close_v2(database)
 		}
 
 		let statements = """
@@ -91,10 +93,20 @@ private extension SearchMigrationTests {
 		INSERT INTO statuses (articleID, read, starred, dateArrived) VALUES ('legacy-1', 0, 0, 0);
 		INSERT INTO search (rowid, title, body) VALUES (1, 'legacy title', 'legacy body text');
 		"""
-		guard database.executeStatements(statements) else {
-			Issue.record("Could not create legacy fixture: \(database.lastErrorMessage())")
+		guard executeStatements(statements, database: database) else {
+			Issue.record("Could not create legacy fixture database at \(path)")
 			return
 		}
+	}
+
+	/// Executes a batch of semicolon-separated SQL statements, stopping at the
+	/// first error. Returns false if any statement failed.
+	private static func executeStatements(_ statements: String, database: OpaquePointer) -> Bool {
+		var errorMessage: UnsafeMutablePointer<CChar>?
+		defer {
+			sqlite3_free(errorMessage)
+		}
+		return sqlite3_exec(database, statements, nil, nil, &errorMessage) == SQLITE_OK
 	}
 
 	/// Indexing after the migration happens in batches on the DatabaseQueue serial queue;
