@@ -40,6 +40,11 @@ import Images
 		return delegate.smallIcon
 	}
 
+	/// Non-nil if this smart feed is a user-saved search.
+	var savedSearchID: UUID? {
+		(delegate as? SavedSearchFeedDelegate)?.savedSearchID
+	}
+
 	#if os(macOS)
 	var pasteboardWriter: NSPasteboardWriting {
 		return SmartFeedPasteboardWriter(smartFeed: self)

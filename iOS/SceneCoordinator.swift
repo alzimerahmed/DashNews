@@ -1237,6 +1237,14 @@ struct SidebarItemNode: Hashable, Sendable {
 
 	}
 
+	/// Saves the current global search string as a persistent smart feed in the sidebar.
+	func saveSearch() {
+		guard isSearching, !lastSearchString.isEmpty else {
+			return
+		}
+		SmartFeedsController.shared.addSavedSearch(name: lastSearchString, searchString: lastSearchString)
+	}
+
 	func findPrevArticle(_ article: Article) -> Article? {
 		guard let index = articles.firstIndex(of: article), index > 0 else {
 			return nil

@@ -93,7 +93,12 @@ extension SidebarViewController {
 
 	@objc func renameFromContextualMenu(_ sender: Any?) {
 
-		guard let window = view.window, let menuItem = sender as? NSMenuItem, let object = menuItem.representedObject as? DisplayNameProvider, object is Feed || object is Folder else {
+		guard let window = view.window, let menuItem = sender as? NSMenuItem, let object = menuItem.representedObject as? DisplayNameProvider else {
+			return
+		}
+
+		let isRenameable = object is Feed || object is Folder || (object as? SmartFeed)?.savedSearchID != nil
+		guard isRenameable else {
 			return
 		}
 
@@ -102,6 +107,15 @@ extension SidebarViewController {
 			return
 		}
 		window.beginSheet(renameSheet)
+	}
+
+	@objc func deleteSavedSearchFromContextualMenu(_ sender: Any?) {
+
+		guard let menuItem = sender as? NSMenuItem, let smartFeed = menuItem.representedObject as? SmartFeed, let savedSearchID = smartFeed.savedSearchID else {
+			return
+		}
+
+		SmartFeedsController.shared.deleteSavedSearch(id: savedSearchID)
 	}
 
 	@objc func toggleNotificationsFromContextMenu(_ sender: Any?) {
@@ -185,6 +199,8 @@ extension SidebarViewController: RenameWindowControllerDelegate {
 					NSApplication.shared.presentError(error)
 				}
 			}
+		} else if let smartFeed = object as? SmartFeed, let savedSearchID = smartFeed.savedSearchID {
+			SmartFeedsController.shared.renameSavedSearch(id: savedSearchID, to: name)
 		}
 	}
 }
@@ -269,6 +285,13 @@ private extension SidebarViewController {
 		if smartFeed.unreadCount > 0 {
 			menu.addItem(markAllReadMenuItem([smartFeed]))
 		}
+
+		if let feed = smartFeed as? SmartFeed, feed.savedSearchID != nil {
+			menu.addSeparatorIfNeeded()
+			menu.addItem(renameMenuItem(feed))
+			menu.addItem(menuItem(NSLocalizedString("Delete", comment: "Delete button"), #selector(deleteSavedSearchFromContextualMenu(_:)), smartFeed))
+		}
+
 		return menu.numberOfItems > 0 ? menu : nil
 	}
 

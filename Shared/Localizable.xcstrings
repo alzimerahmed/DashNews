@@ -933,6 +933,12 @@
     "Running" : {
       "comment" : "Running"
     },
+    "Save" : {
+      "comment" : "Save button"
+    },
+    "Save Search" : {
+      "comment" : "Save Search button"
+    },
     "Scan completed." : {
       "comment" : "Scan status text when completed"
     },

@@ -35,7 +35,9 @@ let package = Package(
 			dependencies: [
 				"ArticlesDatabase",
 				"Articles",
-				"RSParser"
+				"RSParser",
+				"RSDatabase",
+				"RSDatabaseObjC"
 			],
 			swiftSettings: [
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),

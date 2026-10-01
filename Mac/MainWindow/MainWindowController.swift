@@ -304,6 +304,10 @@ final class MainWindowController: NSWindowController, NSUserInterfaceValidations
 			return currentSearchField != nil
 		}
 
+		if item.action == #selector(saveSearch(_:)) {
+			return canSaveSearch()
+		}
+
 		if item.action == #selector(cleanUp(_:)) {
 			return validateCleanUp(item)
 		}
@@ -606,6 +610,21 @@ final class MainWindowController: NSWindowController, NSUserInterfaceValidations
 		window?.makeFirstResponder(searchField)
 	}
 
+	func canSaveSearch() -> Bool {
+		guard timelineSourceMode == .search else {
+			return false
+		}
+		return !(searchString ?? "").isEmpty
+	}
+
+	/// Saves the current search string as a persistent smart feed in the sidebar.
+	@objc func saveSearch(_ sender: Any?) {
+		guard let searchString, !searchString.isEmpty else {
+			return
+		}
+		SmartFeedsController.shared.addSavedSearch(name: searchString, searchString: searchString)
+	}
+
 	@IBAction func cleanUp(_ sender: Any?) {
 		timelineContainerViewController?.cleanUp()
 	}
@@ -868,6 +887,7 @@ extension NSToolbarItem.Identifier {
 	static let openInBrowser = NSToolbarItem.Identifier("openInBrowser")
 	static let share = NSToolbarItem.Identifier("share")
 	static let articleThemeMenu = NSToolbarItem.Identifier("articleThemeMenu")
+	static let saveSearch = NSToolbarItem.Identifier("saveSearch")
 	static let cleanUp = NSToolbarItem.Identifier("cleanUp")
 }
 
@@ -963,6 +983,17 @@ extension MainWindowController: NSToolbarDelegate {
 			toolbarItem.label = description
 			return toolbarItem
 
+		case .saveSearch:
+			let title = NSLocalizedString("Save Search", comment: "Save Search button")
+			let toolbarItem = RSToolbarItem(itemIdentifier: .saveSearch)
+			toolbarItem.autovalidates = true
+			toolbarItem.toolTip = title
+			toolbarItem.label = title
+			toolbarItem.paletteLabel = title
+			toolbarItem.image = NSImage(systemSymbolName: "bookmark", accessibilityDescription: title) ?? Assets.Images.searchFeed
+			toolbarItem.action = #selector(saveSearch(_:))
+			return toolbarItem
+
 		case .cleanUp:
 			let title = NSLocalizedString("Clean Up", comment: "Clean Up button")
 			return buildToolbarButton(.cleanUp, title, Assets.Images.cleanUp, "cleanUp:")
@@ -991,6 +1022,7 @@ extension MainWindowController: NSToolbarDelegate {
 			.openInBrowser,
 			.share,
 			.articleThemeMenu,
+			.saveSearch,
 			.search,
 			.cleanUp
 		]
@@ -1013,7 +1045,8 @@ extension MainWindowController: NSToolbarDelegate {
 			.share,
 			.openInBrowser,
 			.flexibleSpace,
-			.search
+			.search,
+			.saveSearch
 		]
 	}
 

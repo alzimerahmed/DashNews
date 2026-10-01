@@ -82,6 +82,7 @@ final class ArticleSearchInfo: Hashable, Sendable {
 final class SearchTable: DatabaseTable, @unchecked Sendable {
 	let name = "search"
 	private let queue: DatabaseQueue
+	private let batchSize = 500
 	weak var articlesTable: ArticlesTable?
 
 	init(queue: DatabaseQueue) {
@@ -122,6 +123,45 @@ final class SearchTable: DatabaseTable, @unchecked Sendable {
 	/// Index updated articles.
 	func indexUpdatedArticles(_ articles: Set<Article>, _ database: FMDatabase) {
 		ensureIndexedArticles(articles.articleIDs(), database)
+	}
+
+	/// Delete the entire index and reindex every article.
+	/// Runs its own transactions: one to clear the index, then one per batch of
+	/// articles, mirroring the `indexUnindexedArticles` batching pattern.
+	/// Used by the FTS4→FTS5 migration and by the manual rebuild path.
+	func rebuildIndex() {
+		queue.runInTransactionSync { database in
+			database.executeUpdate("delete from \(self.name)", withArgumentsIn: [])
+			database.executeUpdate("update articles set searchRowID = NULL", withArgumentsIn: [])
+		}
+
+		var previousBatch = Set<String>()
+		while true {
+			var batch = Set<String>()
+			queue.runInTransactionSync { database in
+				let articleIDs = self.fetchUnindexedArticleIDs(self.batchSize, database)
+				guard !articleIDs.isEmpty else {
+					return
+				}
+				self.ensureIndexedArticles(articleIDs, database)
+				batch = articleIDs
+			}
+			// Break when there is nothing left to index, or when a batch made no
+			// progress (the same articles would be fetched again forever).
+			if batch.isEmpty || batch == previousBatch {
+				break
+			}
+			previousBatch = batch
+		}
+	}
+
+	/// Fetch the articleIDs of articles that are not yet indexed, up to `limit`.
+	func fetchUnindexedArticleIDs(_ limit: Int, _ database: FMDatabase) -> Set<String> {
+		let sql = "select articleID from articles where searchRowID is null limit \(limit);"
+		guard let resultSet = database.executeQuery(sql, withArgumentsIn: nil) else {
+			return Set<String>()
+		}
+		return resultSet.mapToSet { $0.swiftString(forColumn: DatabaseKey.articleID) }
 	}
 }
 
