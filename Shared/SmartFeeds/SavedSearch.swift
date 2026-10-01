@@ -104,7 +104,7 @@ private extension SavedSearchStore {
 		do {
 			return try JSONDecoder().decode([SavedSearch].self, from: data)
 		} catch {
-			logger.error("SavedSearchStore: could not decode \(fileURL.path, privacy: .public) — \(error, privacy: .public)")
+			Self.logger.error("SavedSearchStore: could not decode \(fileURL.path, privacy: .public) — \(error, privacy: .public)")
 			assertionFailure("SavedSearchStore: could not decode \(fileURL.path) — \(error)")
 			return []
 		}
@@ -115,7 +115,7 @@ private extension SavedSearchStore {
 			let data = try Self.jsonEncoder.encode(savedSearches)
 			try data.write(to: fileURL, options: .atomic)
 		} catch {
-			logger.error("SavedSearchStore: could not save \(fileURL.path, privacy: .public) — \(error, privacy: .public)")
+			Self.logger.error("SavedSearchStore: could not save \(fileURL.path, privacy: .public) — \(error, privacy: .public)")
 			assertionFailure("SavedSearchStore: could not save \(fileURL.path) — \(error)")
 		}
 	}
