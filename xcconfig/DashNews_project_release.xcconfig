@@ -1,0 +1,12 @@
+#include "./DashNews_project.xcconfig"
+#include "./common/DashNews_release_identifiers.xcconfig"
+
+COPY_PHASE_STRIP = NO
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+ENABLE_HARDENED_RUNTIME = YES
+ENABLE_NS_ASSERTIONS = NO
+MTL_ENABLE_DEBUG_INFO = NO
+OTHER_SWIFT_FLAGS = -DRELEASE
+SWIFT_OPTIMIZATION_LEVEL = -Owholemodule
+VALIDATE_PRODUCT = YES
+DEAD_CODE_STRIPPING = YES

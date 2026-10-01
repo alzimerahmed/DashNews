@@ -22,7 +22,7 @@ Each account is an instance of the Account class. The Account class may not be s
 
 ## Where data is stored
 
-Except for app-level prefs and temporary caches, all NetNewsWire data is stored in `~/Library/Containers/com.ranchero.NetNewsWire-Evergreen/Data/Library/Application Support/NetNewsWire/Accounts`. (On the Mac, and in a similar location on iOS.) (The absurdly long path is due to sandboxing.)
+Except for app-level prefs and temporary caches, all NetNewsWire data is stored in `~/Library/Containers/com.dashnews.DashNews/Data/Library/Application Support/NetNewsWire/Accounts`. (On the Mac, and in a similar location on iOS.) (The absurdly long path is due to sandboxing.)
 
 The default local account has an OnMyMac folder. All other accounts use a UUID as their identifier, and the folder name uses that UUID. (Not pretty, but it works.)
 

@@ -1,4 +1,4 @@
--- This script grabs the current article in NetNewsWire and copies relevant information about it 
+-- This script grabs the current article in DashNews and copies relevant information about it 
 --    to a new outgoing message in Mail
 -- the intended use is that the user wants to send email about the current article, and 
 --    would fill in the recipient and then send the message
@@ -9,7 +9,7 @@
 -- if not, it looks for html contents, and converts those to plain text using a shell script that invokes textutil
 -- if it can't find either plain text or html, it returns "couldn't find article text"
 to getContentsOrHtml()
-	tell application "NetNewsWire"
+	tell application "DashNews"
 		set textContents to the contents of the current article
 		if textContents is not "" then
 			return textContents
@@ -64,8 +64,8 @@ end getAuthorStub
 
 -- Here's where the script starts
 
--- first, get some relevant info out for NetNewsWire
-tell application "NetNewsWire"
+-- first, get some relevant info out for DashNews
+tell application "DashNews"
 	set articleUrl to the url of the current article
 	set articleTitle to the title of the current article
 	set authorNames to name of authors of the current article
@@ -73,8 +73,8 @@ end tell
 
 
 -- then, prepare the message subject and message contents
-set messageSubject to "From NetNewsWire to you: " & articleTitle
-set myIntro to "Here's something" & getAuthorStub(authorNames) & "that I was reading on NetNewsWire: "
+set messageSubject to "From DashNews to you: " & articleTitle
+set myIntro to "Here's something" & getAuthorStub(authorNames) & "that I was reading on DashNews: "
 set messageContents to myIntro & return & return & articleUrl & return & return & getContentsOrHtml()
 
 

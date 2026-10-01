@@ -1,8 +1,8 @@
 # How To Do Mac Sparkle Release
 
-NetNewsWire_mac_target_common.xcconfig
+DashNews_mac_target_common.xcconfig
 	update MARKETING_VERSION
-NetNewsWire_version.xcconfig
+DashNews_version.xcconfig
 	 update CURRENT_PROJECT_VERSION if needed (might have just been done for iOS)
 
 Run buildscripts/quiet_build_and_test.sh
@@ -35,14 +35,14 @@ git tag mac-6.1.5b4
 Push:
 git push origin mac-6.1.5b4
 
-Find tag in GitHub - https://github.com/Ranchero-Software/NetNewsWire/tags
-Turn into release — NetNewsWire 6.1.5b4 for Mac
+Find tag in GitHub - https://github.com/alzimerahmed/DashNews/tags
+Turn into release — DashNews 6.1.5b4 for Mac
 Add change notes
-Zip app - NetNewsWire6.1.5b4.zip
+Zip app - DashNews6.1.5b4.zip
 
 ## Start with 7.2 beta
 Sign the zip with the EdDSA key (key is in the login Keychain):
-sign_update NetNewsWire6.1.5b4.zip
+sign_update DashNews6.1.5b4.zip
 (sign_update is in Sparkle’s bin folder — in the release distribution download, or in DerivedData under SourcePackages/artifacts/sparkle/Sparkle/bin)
 Copy the output — it has both sparkle:edSignature and length for the appcast enclosure
 
@@ -59,7 +59,7 @@ Update Appcast on main branch
 	Update sparkle:edSignature and length — from the sign_update output
 
 Run xmllint on appcast
-xmllint --noout ~/Projects/nnw/main/Appcasts/netnewswire-beta.xml
+xmllint --noout ~/Projects/nnw/main/Appcasts/dashnews-beta.xml
 
 Upload appcast
 Commit and push git change
@@ -71,6 +71,6 @@ Announce on Discourse
 Announce on blog
 
 If release build:
-	Update netnewswire-release.xml
+	Update dashnews-release.xml
 	Update download on netnewswire.com — via .htaccess redirect
 

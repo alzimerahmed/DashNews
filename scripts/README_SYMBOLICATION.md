@@ -50,28 +50,28 @@ For newer JSON-format crash logs (as seen in macOS 15 and later):
 
 ### Traditional Text Format
 ```
-Process:             NetNewsWire [12345]
-Path:                /Applications/NetNewsWire.app/Contents/MacOS/NetNewsWire
-Identifier:          com.ranchero.NetNewsWire-Evergreen
+Process:             DashNews [12345]
+Path:                /Applications/DashNews.app/Contents/MacOS/DashNews
+Identifier:          com.dashnews.DashNews
 Version:             6.2 (6200)
 Code Type:           ARM-64
 
 Binary Images:
-0x100000000 - 0x100ffffff +NetNewsWire arm64 <uuid> /path/to/app
+0x100000000 - 0x100ffffff +DashNews arm64 <uuid> /path/to/app
 ```
 
 ### Translated Report Format (macOS 15+)
 ```
-Process:               NetNewsWire [12345]
+Process:               DashNews [12345]
 Thread 0 Crashed::  Dispatch queue: com.apple.main-thread
 0   libsystem_kernel.dylib        	       0x1821a2388 __pthread_kill + 8
-3   NetNewsWire                   	       0x103017460 0x102ef0000 + 1209440
+3   DashNews                   	       0x103017460 0x102ef0000 + 1209440
 ```
 **Advantage**: System frameworks are already symbolicated, only your app code needs symbolication
 
 ### JSON Format (macOS 15+)
 ```json
-{"app_name":"NetNewsWire","timestamp":"2025-11-17 06:48:17.00 -0800",...}
+{"app_name":"DashNews","timestamp":"2025-11-17 06:48:17.00 -0800",...}
 {
   "uptime" : 2300000,
   "procRole" : "Foreground",
@@ -136,8 +136,8 @@ The scripts symbolicate your app's code:
 
 **Example:**
 ```
-Before: 0   NetNewsWire  0x00000001059feea0 0x1058d0000 + 1240736
-After:  0   NetNewsWire  0x00000001059feea0 closure #1 in ReaderAPICaller.retrieveEntries(articleIDs:completion:) (ReaderAPICaller.swift:527)
+Before: 0   DashNews  0x00000001059feea0 0x1058d0000 + 1240736
+After:  0   DashNews  0x00000001059feea0 closure #1 in ReaderAPICaller.retrieveEntries(articleIDs:completion:) (ReaderAPICaller.swift:527)
 ```
 
 ## Understanding the Output

@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CrashReportWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="CrashReportWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="dontSendButton" destination="o4V-7L-v6D" id="Sxa-iT-OTj"/>
                 <outlet property="sendCrashLogButton" destination="fcK-kG-dtY" id="T04-pD-qZq"/>

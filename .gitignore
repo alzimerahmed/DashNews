@@ -46,7 +46,7 @@ playground.xcworkspace
 # Resolved-dependency files for the local module packages. These are written
 # only when a module is resolved/built standalone (swift build inside the
 # module) and aren't used by the app build. The app's lock file at
-# NetNewsWire.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+# DashNews.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 # stays tracked, so dependency versions remain pinned for everyone and CI.
 Modules/*/Package.resolved
 

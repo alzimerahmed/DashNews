@@ -47,15 +47,15 @@ jobs:
         run: |
           set -euo pipefail
 
-          result_bundle="${RUNNER_TEMP}/NetNewsWire-macOS.xcresult"
-          build_log="${RUNNER_TEMP}/NetNewsWire-macOS-build.log"
+          result_bundle="${RUNNER_TEMP}/DashNews-macOS.xcresult"
+          build_log="${RUNNER_TEMP}/DashNews-macOS-build.log"
           rm -rf "$result_bundle"
 
           set -o pipefail
           xcodebuild \
-            -project NetNewsWire.xcodeproj \
-            -scheme NetNewsWire \
-            -testPlan NetNewsWire-CI \
+            -project DashNews.xcodeproj \
+            -scheme DashNews \
+            -testPlan DashNews-CI \
             -xcconfig .github/macos-ci-no-signing.xcconfig \
             -destination "platform=macOS,arch=arm64" \
             -resultBundlePath "$result_bundle" \
@@ -67,8 +67,8 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: netnewswire-macos-xcresult
-          path: ${{ runner.temp }}/NetNewsWire-macOS.xcresult
+          name: dashnews-macos-xcresult
+          path: ${{ runner.temp }}/DashNews-macOS.xcresult
           if-no-files-found: warn
           retention-days: 7
 
@@ -92,15 +92,15 @@ jobs:
         run: |
           set -euo pipefail
 
-          result_bundle="${RUNNER_TEMP}/NetNewsWire-iOS.xcresult"
-          build_log="${RUNNER_TEMP}/NetNewsWire-iOS-build.log"
+          result_bundle="${RUNNER_TEMP}/DashNews-iOS.xcresult"
+          build_log="${RUNNER_TEMP}/DashNews-iOS-build.log"
           rm -rf "$result_bundle"
 
           set -o pipefail
           xcodebuild \
-            -project NetNewsWire.xcodeproj \
-            -scheme NetNewsWire-iOS \
-            -testPlan NetNewsWire-iOS \
+            -project DashNews.xcodeproj \
+            -scheme DashNews-iOS \
+            -testPlan DashNews-iOS \
             -xcconfig .github/ios-ci-no-signing.xcconfig \
             -destination "platform=iOS Simulator,name=iPhone 17" \
             OTHER_SWIFT_FLAGS='$(inherited) -DDEBUG -DSKIP_APP_GROUP_ACCESS' \
@@ -113,7 +113,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: netnewswire-ios-xcresult
-          path: ${{ runner.temp }}/NetNewsWire-iOS.xcresult
+          name: dashnews-ios-xcresult
+          path: ${{ runner.temp }}/DashNews-iOS.xcresult
           if-no-files-found: warn
           retention-days: 7

@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ErrorLogWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="ErrorLogWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="copyButton" destination="TeH-NA-QRq" id="o8C-q3-FO7"/>
                 <outlet property="textView" destination="OtL-Sx-OU0" id="bff-Xp-YUM"/>

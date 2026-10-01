@@ -4,9 +4,9 @@ Be sure to have updated code and be *on correct branch*
 
 ## Edit Build Version
 
-NetNewsWire_ios_target_common.xcconfig
+DashNews_ios_target_common.xcconfig
 	Possibly bump MARKETING_VERSION
-NetNewsWire_version.xcconfig
+DashNews_version.xcconfig
 	 update CURRENT_PROJECT_VERSION if needed (might have just been done for Mac)
 
 Commit change.
@@ -41,7 +41,7 @@ Distribute to TestFlight
 
 ## Status
 
-Update NetNewsWire Status doc in Technotes
+Update DashNews Status doc in Technotes
 Commit
 
 ## Tag
@@ -65,10 +65,10 @@ Optionally blog about it
 
 Make new release from tag
 
-https://github.com/Ranchero-Software/NetNewsWire/tags
+https://github.com/alzimerahmed/DashNews/tags
 
 Example title:
-NetNewsWire 6.1.6 (6140) for iOS - TestFlight
+DashNews 6.1.6 (6140) for iOS - TestFlight
 
 ## Notes
 

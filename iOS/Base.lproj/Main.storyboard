@@ -15,12 +15,12 @@
         <!--Article-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController storyboardIdentifier="ArticleViewController" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEX-9P-axG" userLabel="Article" customClass="ArticleViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleViewController" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEX-9P-axG" userLabel="Article" customClass="ArticleViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-FS-jlg" customClass="ArticleSearchBar" customModule="NetNewsWire" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-FS-jlg" customClass="ArticleSearchBar" customModule="DashNews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="782" width="402" height="31"/>
                                 <color key="backgroundColor" name="barBackgroundColor"/>
                             </view>
@@ -113,7 +113,7 @@
         <!--Timeline-->
         <scene sceneID="zD6-2d-bd7">
             <objects>
-                <viewController title="Timeline" extendedLayoutIncludesOpaqueBars="YES" id="QJM-al-rDe" customClass="MainTimelineModernViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Timeline" extendedLayoutIncludesOpaqueBars="YES" id="QJM-al-rDe" customClass="MainTimelineModernViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NY8-Yd-8Av">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,7 +169,7 @@
         <!--Root Split View Controller-->
         <scene sceneID="FfI-oe-67h">
             <objects>
-                <splitViewController storyboardIdentifier="RootSplitViewController" extendedLayoutIncludesOpaqueBars="YES" allowDoubleColumnStyle="YES" preferredDisplayMode="beside" behavior="tile" primaryBackgroundStyle="sidebar" id="AJQ-jq-uMa" customClass="RootSplitViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="RootSplitViewController" extendedLayoutIncludesOpaqueBars="YES" allowDoubleColumnStyle="YES" preferredDisplayMode="beside" behavior="tile" primaryBackgroundStyle="sidebar" id="AJQ-jq-uMa" customClass="RootSplitViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="JEX-9P-axG" kind="relationship" relationship="detailViewController" id="JbU-kn-u7r"/>
                         <segue destination="6Bn-mF-MPS" kind="relationship" relationship="masterViewController" id="LrL-UL-SqT"/>
@@ -183,7 +183,7 @@
         <!--Feeds-->
         <scene sceneID="NDp-hg-obE">
             <objects>
-                <collectionViewController storyboardIdentifier="MainFeedCollectionViewController" title="Feeds" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="6Bn-mF-MPS" customClass="MainFeedCollectionViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="MainFeedCollectionViewController" title="Feeds" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="6Bn-mF-MPS" customClass="MainFeedCollectionViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" id="7gd-ro-2Jf">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +198,7 @@
                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedCell" id="5DS-WK-qAz" customClass="MainFeedCollectionViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedCell" id="5DS-WK-qAz" customClass="MainFeedCollectionViewCell" customModule="DashNews" customModuleProvider="target">
                                 <rect key="frame" x="2" y="60" width="398" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Frd-Hc-CpH">
@@ -220,7 +220,7 @@
                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea0-VT-Gvl" customClass="IconView" customModule="NetNewsWire" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea0-VT-Gvl" customClass="IconView" customModule="DashNews" customModuleProvider="target">
                                             <rect key="frame" x="222.66666666666666" y="18" width="24" height="24"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -249,7 +249,7 @@
                                     <outlet property="unreadCountLabel" destination="oRt-Cv-vvU" id="GZ1-nb-Tvo"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Folder" id="wZG-XA-czw" customClass="MainFeedCollectionViewFolderCell" customModule="NetNewsWire" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Folder" id="wZG-XA-czw" customClass="MainFeedCollectionViewFolderCell" customModule="DashNews" customModuleProvider="target">
                                 <rect key="frame" x="2" y="130" width="398" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Gne-oO-8wx">
@@ -262,7 +262,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAi-mv-o14" customClass="IconView" customModule="NetNewsWire" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAi-mv-o14" customClass="IconView" customModule="DashNews" customModuleProvider="target">
                                             <rect key="frame" x="16" y="18" width="24" height="24"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -320,7 +320,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Container" id="Rza-3g-Ty5" customClass="MainFeedCollectionHeaderReusableView" customModule="NetNewsWire" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Container" id="Rza-3g-Ty5" customClass="MainFeedCollectionHeaderReusableView" customModule="DashNews" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="402" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -407,12 +407,12 @@
         <!--Image View Controller-->
         <scene sceneID="TT4-oA-DBw">
             <objects>
-                <viewController storyboardIdentifier="ImageViewController" id="vO9-a3-Dnu" customClass="ImageViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageViewController" id="vO9-a3-Dnu" customClass="ImageViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w6Q-vH-063">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="msG-pz-EKk" customClass="ImageScrollView" customModule="NetNewsWire" customModuleProvider="target">
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="msG-pz-EKk" customClass="ImageScrollView" customModule="DashNews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="phv-DN-krZ"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="NNU-C8-Fsz"/>
@@ -464,7 +464,7 @@
         <!--Context Menu Preview View Controller-->
         <scene sceneID="Tc4-Ma-XSa">
             <objects>
-                <viewController storyboardIdentifier="ContextMenuPreviewViewController" id="CoM-D3-PNS" customClass="ContextMenuPreviewViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContextMenuPreviewViewController" id="CoM-D3-PNS" customClass="ContextMenuPreviewViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eH6-Fa-Tfi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

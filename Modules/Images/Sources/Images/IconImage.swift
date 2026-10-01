@@ -25,7 +25,7 @@ public final class IconImage: @unchecked Sendable {
 	public let preferredColor: RSColor?
 
 	private let cachedLuminanceType = OSAllocatedUnfairLock<ImageLuminanceType?>(initialState: nil)
-	private static let luminanceQueue = DispatchQueue(label: "com.ranchero.NetNewsWire.IconImage.luminance", qos: .utility, attributes: .concurrent)
+	private static let luminanceQueue = DispatchQueue(label: "com.dashnews.DashNews.IconImage.luminance", qos: .utility, attributes: .concurrent)
 
 	public var isDark: Bool {
 		luminanceType == .dark

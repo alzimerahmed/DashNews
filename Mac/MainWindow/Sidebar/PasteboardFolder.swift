@@ -92,7 +92,7 @@ extension Folder: @retroactive PasteboardWriterOwner {
 @MainActor @objc final class FolderPasteboardWriter: NSObject, @MainActor NSPasteboardWriting {
 
 	private let folder: Folder
-	static let folderUTIInternal = "com.ranchero.NetNewsWire-Evergreen.internal.folder"
+	static let folderUTIInternal = "com.dashnews.DashNews.internal.folder"
 	static let folderUTIInternalType = NSPasteboard.PasteboardType(rawValue: folderUTIInternal)
 
 	init(folder: Folder) {

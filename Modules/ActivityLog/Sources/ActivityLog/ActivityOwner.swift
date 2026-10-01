@@ -20,7 +20,7 @@ public enum ActivityOwner: Sendable, Hashable {
 	public var displayName: String {
 		switch self {
 		case .app:
-			return "NetNewsWire"
+			return "DashNews"
 		case .account(_, let displayName):
 			return displayName
 		case .feedFinder:

@@ -24,9 +24,9 @@ extension Article: @retroactive PasteboardWriterOwner {
 	private let feedNameForDisplay: String?
 	private let feedHomePageURL: String?
 
-	static let articleUTI = "com.ranchero.article"
+	static let articleUTI = "com.dashnews.article"
 	static let articleUTIType = NSPasteboard.PasteboardType(rawValue: articleUTI)
-	static let articleUTIInternal = "com.ranchero.NetNewsWire-Evergreen.internal.article"
+	static let articleUTIInternal = "com.dashnews.DashNews.internal.article"
 	static let articleUTIInternalType = NSPasteboard.PasteboardType(rawValue: articleUTIInternal)
 
 	@MainActor init(article: Article) {

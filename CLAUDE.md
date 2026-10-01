@@ -8,11 +8,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Full build and test**: `./buildscripts/build_and_test.sh` - Builds both macOS and iOS targets and runs all tests
 - **Quiet build and test**: `./buildscripts/quiet_build_and_test.sh` - Same as above with less verbose output
 - **Manual Xcode builds**:
-  - macOS: `xcodebuild -project NetNewsWire.xcodeproj -scheme NetNewsWire -destination "platform=macOS,arch=arm64" build`
-  - iOS: `xcodebuild -project NetNewsWire.xcodeproj -scheme NetNewsWire-iOS -destination "platform=iOS Simulator,name=iPhone 17" build`
+  - macOS: `xcodebuild -project DashNews.xcodeproj -scheme DashNews -destination "platform=macOS,arch=arm64" build`
+  - iOS: `xcodebuild -project DashNews.xcodeproj -scheme DashNews-iOS -destination "platform=iOS Simulator,name=iPhone 17" build`
 
 ### Testing
-- Run all tests: Use the `NetNewsWire.xctestplan` which includes tests from all modules
+- Run all tests: Use the `DashNews.xctestplan` which includes tests from all modules
 - Individual test runs follow same xcodebuild pattern with `test` action instead of `build`
 
 ### Setup
@@ -22,7 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Architecture
 
 ### High-Level Structure
-NetNewsWire is a multi-platform RSS reader with separate targets for macOS and iOS, organized as a modular architecture with shared business logic.
+DashNews is a multi-platform RSS reader with separate targets for macOS and iOS, organized as a modular architecture with shared business logic.
 
 ### Key Modules (in /Modules)
 - **RSCore**: Core utilities, extensions, and shared infrastructure

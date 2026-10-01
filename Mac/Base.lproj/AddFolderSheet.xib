@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AddFolderWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AddFolderWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="accountPopupButton" destination="8HL-br-Pw6" id="MiU-3T-yqH"/>
                 <outlet property="addFolderButton" destination="7gd-Tw-TDU" id="KrI-Wc-QDM"/>

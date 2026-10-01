@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="DinosaursWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="DinosaursWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="copyFeedURLButton" destination="0DH-mo-zWG" id="5fd-Ap-Kaq"/>
                 <outlet property="deleteButton" destination="va1-Kz-wY4" id="dl1-Bt-out"/>

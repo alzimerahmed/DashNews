@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AccountsAddLocalWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountsAddLocalWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="localAccountNameTextField" destination="80D-3X-rL2" id="B6t-AS-hDh"/>
                 <outlet property="nameTextField" destination="f9b-FM-i8Q" id="TJl-Uc-PNg"/>

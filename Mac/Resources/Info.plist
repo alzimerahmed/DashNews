@@ -35,10 +35,10 @@
 			<string>RSS Feed</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>netnewswire</string>
+				<string>dashnews</string>
 				<string>feed</string>
 				<string>feeds</string>
-				<string>x-netnewswire-feed</string>
+				<string>x-dashnews-feed</string>
 			</array>
 		</dict>
 	</array>
@@ -47,7 +47,7 @@
 	<key>DeveloperEntitlements</key>
 	<string>$(DEVELOPER_ENTITLEMENTS)</string>
 	<key>FeedURLForTestBuilds</key>
-	<string>https://ranchero.com/downloads/netnewswire-beta.xml</string>
+	<string>https://raw.githubusercontent.com/alzimerahmed/DashNews/main/Appcasts/dashnews-beta.xml</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.news</string>
 	<key>LSMinimumSystemVersion</key>
@@ -58,7 +58,7 @@
 		<true/>
 	</dict>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>NetNewsWire communicates with other apps on your Mac when you choose to share an article.</string>
+	<string>DashNews communicates with other apps on your Mac when you choose to share an article.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
@@ -72,17 +72,17 @@
 		<string>ReadArticle</string>
 	</array>
 	<key>OSAScriptingDefinition</key>
-	<string>NetNewsWire.sdef</string>
+	<string>DashNews.sdef</string>
 	<key>OrganizationIdentifier</key>
 	<string>$(ORGANIZATION_IDENTIFIER)</string>
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://ranchero.com/downloads/netnewswire-release.xml</string>
+	<string>https://raw.githubusercontent.com/alzimerahmed/DashNews/main/Appcasts/dashnews-release.xml</string>
 	<key>UserAgent</key>
-	<string>NetNewsWire (RSS Reader; https://netnewswire.com/)</string>
+	<string>DashNews (RSS Reader; https://netnewswire.com/)</string>
 	<key>UserAgentExtended</key>
-	<string>NetNewsWire (RSS Reader; https://netnewswire.com/; [platform]; [version] ([build]))</string>
+	<string>DashNews (RSS Reader; https://netnewswire.com/; [platform]; [version] ([build]))</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -91,12 +91,12 @@
 				<string>nnwtheme</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>NetNewsWire Theme</string>
+			<string>DashNews Theme</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.ranchero.netnewswire.theme</string>
+				<string>com.dashnews.theme</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
@@ -127,11 +127,11 @@
 				<string>com.apple.package</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>NetNewsWire Theme</string>
+			<string>DashNews Theme</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>com.ranchero.netnewswire.theme</string>
+			<string>com.dashnews.theme</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

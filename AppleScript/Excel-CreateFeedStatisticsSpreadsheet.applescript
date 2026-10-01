@@ -1,4 +1,4 @@
--- This script creates an Excel spreadsheet with statistics about all the feeds in your NetNewsWire
+-- This script creates an Excel spreadsheet with statistics about all the feeds in your DashNews
 
 -- the exportToExcel() function creates a single line of data in a spreadsheet
 
@@ -33,7 +33,7 @@ end tell
 -- then, we send off the information to Excel
 
 set totalFeeds to 0
-tell application "NetNewsWire"
+tell application "DashNews"
 	set allActiveAccounts to every account where active is true
 	repeat with nthAccount in allActiveAccounts
 		set userFeeds to allFeeds of nthAccount

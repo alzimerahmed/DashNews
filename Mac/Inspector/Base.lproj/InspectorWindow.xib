@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="InspectorWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="InspectorWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="window" destination="bma-LM-jVu" id="Qn3-wA-7kD"/>
             </connections>

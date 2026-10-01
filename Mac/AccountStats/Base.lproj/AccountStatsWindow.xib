@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AccountStatsWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountStatsWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="JP4-Kx-0oU" id="fO-02-tvw"/>
                 <outlet property="vacuumButton" destination="Vpw-Lo-UEL" id="sw6-gL-F5L"/>

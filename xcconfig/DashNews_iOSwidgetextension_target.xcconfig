@@ -1,0 +1,6 @@
+#include "./common/DashNews_iOSextension_common.xcconfig"
+CODE_SIGN_ENTITLEMENTS = Widget/DashNews_iOS_WidgetExtension.entitlements
+INFOPLIST_FILE = Widget/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = $(ORGANIZATION_IDENTIFIER).DashNews.iOS$(BUNDLE_ID_SUFFIX).SpringboardWidgets
+
+IPHONEOS_DEPLOYMENT_TARGET = 17.0
