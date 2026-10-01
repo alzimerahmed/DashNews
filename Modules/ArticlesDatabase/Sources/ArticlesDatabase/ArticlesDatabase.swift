@@ -10,6 +10,7 @@ import Foundation
 import os
 import RSCore
 import RSDatabase
+import RSDatabaseObjC
 import RSParser
 import Articles
 
