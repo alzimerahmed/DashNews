@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import NetNewsWire
+@testable import DashNews
 
 final class SmartFeedLaunchSelectionTests: XCTestCase {
 

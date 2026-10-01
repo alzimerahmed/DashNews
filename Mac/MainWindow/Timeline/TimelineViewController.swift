@@ -187,6 +187,7 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 	private var markReadOnScrollHandledIDs = Set<String>()
 	private var markReadOnScrollFeedIdentifier: String?
 	private var isObservingScrollViewClipView = false
+	private var didRegisterForNotifications = false
 	static let fetchAndMergeArticlesQueue = CoalescingQueue(name: "Fetch and Merge Articles", interval: 0.5, maxInterval: 2.0)
 
 	// Owned by the window’s TimelineContainerViewController.
@@ -281,6 +282,7 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 
 	override func viewDidAppear() {
 		sharingServiceDelegate = SharingServiceDelegate(self.view.window)
+		startObservingScrollViewForMarkReadOnScroll()
 	}
 
 	// MARK: - API
@@ -1085,9 +1087,10 @@ private extension TimelineViewController {
 	// MARK: Mark Read on Scroll
 
 	func startObservingScrollViewForMarkReadOnScroll() {
-		guard !isObservingScrollViewClipView, let clipView = tableView.enclosingScrollView?.contentView else {
+		guard !isObservingScrollViewClipView, let scrollView = tableView.enclosingScrollView, let clipView = scrollView.contentView else {
 			return
 		}
+		clipView.postsBoundsChangedNotifications = true
 		isObservingScrollViewClipView = true
 		NotificationCenter.default.addObserver(self, selector: #selector(scrollViewClipViewBoundsDidChange(_:)), name: NSView.boundsDidChangeNotification, object: clipView)
 	}
@@ -1107,20 +1110,23 @@ private extension TimelineViewController {
 			markReadOnScrollHandledIDs.removeAll()
 		}
 
+		// Mark only rows that have scrolled past the top edge — never the
+		// rows still visible, so opening a feed or resizing the window
+		// cannot mark unread articles read.
 		let visibleRowRange = tableView.rows(in: tableView.visibleRect)
-		guard visibleRowRange.length > 0 else {
+		guard visibleRowRange.location > 0 else {
 			return
 		}
 
-		var visibleArticles = [Article]()
-		for row in Int(visibleRowRange.location)..<Int(visibleRowRange.max()) {
-			guard row >= 0, row < articles.count else {
+		var scrolledPastArticles = [Article]()
+		for row in 0..<Int(visibleRowRange.location) {
+			guard row < articles.count else {
 				continue
 			}
-			visibleArticles.append(articles[row])
+			scrolledPastArticles.append(articles[row])
 		}
 
-		let articlesToMark = MarkReadOnScroll.articlesToMark(in: visibleArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: scrolledPastArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
 		guard !articlesToMark.isEmpty else {
 			return
 		}

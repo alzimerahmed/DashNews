@@ -688,11 +688,22 @@ private extension MainTimelineModernViewController {
 			markReadOnScrollHandledIDs.removeAll()
 		}
 
-		let visibleArticles = collectionView.indexPathsForVisibleItems
-			.sorted()
-			.compactMap { dataSource?.itemIdentifier(for: $0) }
+		// Mark only rows that have scrolled past the top edge — never the
+		// rows still visible, so opening a feed or resizing cannot mark
+		// unread articles read without a real user scroll.
+		let visibleIndexPaths = collectionView.indexPathsForVisibleItems.sorted()
+		guard let firstVisible = visibleIndexPaths.first, firstVisible.item > 0 else {
+			return
+		}
 
-		let articlesToMark = MarkReadOnScroll.articlesToMark(in: visibleArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		var scrolledPastArticles = [Article]()
+		for row in 0..<firstVisible.item {
+			if let article = dataSource?.itemIdentifier(for: IndexPath(item: row, section: firstVisible.section)), row < articles.count {
+				scrolledPastArticles.append(article)
+			}
+		}
+
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: scrolledPastArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
 		guard !articlesToMark.isEmpty else {
 			return
 		}

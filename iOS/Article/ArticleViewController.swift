@@ -154,8 +154,12 @@ final class ArticleViewController: UIViewController {
 		let articleExtractorBarButtonItem = UIBarButtonItem(customView: articleExtractorButton)
 
 		if #available(iOS 26, *) {
-			toolbarItems?.insert(articleExtractorBarButtonItem, at: 5)
-			toolbarItems?.insert(displayBarButtonItem, at: 6)
+			if var items = toolbarItems {
+				let extractorIndex = min(5, items.count)
+				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
+				items.insert(displayBarButtonItem, at: min(6, items.count))
+				toolbarItems = items
+			}
 		} else {
 			let flex = { UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) }
 			toolbarItems = [

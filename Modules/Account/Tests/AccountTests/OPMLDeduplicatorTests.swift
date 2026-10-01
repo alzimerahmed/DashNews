@@ -79,6 +79,36 @@ struct OPMLDeduplicatorTests {
 		#expect(account.lastOPMLImportDuplicatesSkipped == 1)
 	}
 
+	@Test func duplicatesAcrossFoldersAreSkipped() throws {
+		let items = try opmlItems("""
+		<outline text="Folder A" title="Folder A">
+			<outline text="Feed One" title="Feed One" type="rss" version="RSS" htmlUrl="https://example.com/" xmlUrl="https://example.com/feed.xml"/>
+		</outline>
+		<outline text="Folder B" title="Folder B">
+			<outline text="Feed One Again" title="Feed One Again" type="rss" version="RSS" htmlUrl="https://example.com/" xmlUrl="https://example.com/feed.xml"/>
+		</outline>
+		""")
+
+		let result = OPMLDeduplicator.deduplicate(items, existingFeedURLs: [])
+
+		#expect(result.items.count == 2)
+		#expect(result.items.first?.children?.count == 1)
+		#expect(result.items.last?.children?.isEmpty == true)
+		#expect(result.duplicatesSkipped == 1)
+	}
+
+	@Test func outlinesWithoutAFeedURLAreKept() throws {
+		let items = try opmlItems("""
+		<outline text="Just a folder" title="Just a folder"/>
+		<outline text="Feed One" title="Feed One" type="rss" version="RSS" htmlUrl="https://example.com/" xmlUrl="https://example.com/feed.xml"/>
+		""")
+
+		let result = OPMLDeduplicator.deduplicate(items, existingFeedURLs: [])
+
+		#expect(result.items.count == 2)
+		#expect(result.duplicatesSkipped == 0)
+	}
+
 	// MARK: - Helpers
 
 	private let accountManager = TestAccountManager()

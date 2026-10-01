@@ -8,7 +8,7 @@
 
 import XCTest
 import Articles
-@testable import NetNewsWire
+@testable import DashNews
 
 @MainActor final class MarkReadOnScrollTests: XCTestCase {
 

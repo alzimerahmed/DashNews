@@ -9,31 +9,27 @@
 import Foundation
 import RSParser
 
-/// Result of deduplicating an OPML document before import.
-public struct OPMLDeduplicationResult {
-
-	public let items: [OPMLItem]
-	public let duplicatesSkipped: Int
-}
-
 /// Removes duplicate feeds from an OPML document before import, matching by
 /// feed URL. Exact duplicates — both feeds already in the account and repeats
-/// within the file itself — are skipped and counted.
+/// within the file itself, across folder boundaries — are skipped and counted.
 enum OPMLDeduplicator {
 
 	static func deduplicate(_ items: [OPMLItem], existingFeedURLs: Set<String>) -> (items: [OPMLItem], duplicatesSkipped: Int) {
 		var duplicatesSkipped = 0
-		let items = deduplicate(items, existingFeedURLs: existingFeedURLs, duplicatesSkipped: &duplicatesSkipped)
+		var seenFeedURLs = Set<String>()
+		let items = deduplicate(items, existingFeedURLs: existingFeedURLs, seenFeedURLs: &seenFeedURLs, duplicatesSkipped: &duplicatesSkipped)
 		return (items, duplicatesSkipped)
 	}
 
-	private static func deduplicate(_ items: [OPMLItem], existingFeedURLs: Set<String>, duplicatesSkipped: inout Int) -> [OPMLItem] {
-		var seenFeedURLs = Set<String>()
+	private static func deduplicate(_ items: [OPMLItem], existingFeedURLs: Set<String>, seenFeedURLs: inout Set<String>, duplicatesSkipped: inout Int) -> [OPMLItem] {
 		var deduplicatedItems = [OPMLItem]()
 
 		for item in items {
 			if item.feedSpecifier != nil {
 				guard let feedURL = item.feedSpecifier?.feedURL else {
+					// Not a usable feed reference — keep it and let the
+					// import layer decide, rather than silently dropping it.
+					deduplicatedItems.append(item)
 					continue
 				}
 				if existingFeedURLs.contains(feedURL) {
@@ -50,7 +46,7 @@ enum OPMLDeduplicator {
 
 			if let children = item.children {
 				let folder = OPMLItem(attributes: item.attributes)
-				for child in deduplicate(children, existingFeedURLs: existingFeedURLs, duplicatesSkipped: &duplicatesSkipped) {
+				for child in deduplicate(children, existingFeedURLs: existingFeedURLs, seenFeedURLs: &seenFeedURLs, duplicatesSkipped: &duplicatesSkipped) {
 					folder.addChild(child)
 				}
 				deduplicatedItems.append(folder)
