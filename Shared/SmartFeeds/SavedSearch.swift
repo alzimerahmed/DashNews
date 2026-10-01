@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 import RSCore
 
 /// A user-saved search query that appears as a smart feed in the sidebar.

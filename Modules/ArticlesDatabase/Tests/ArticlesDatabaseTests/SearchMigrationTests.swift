@@ -66,7 +66,7 @@ import ArticlesDatabase
 private extension SearchMigrationTests {
 
 	static func makeTemporaryDatabasePath() -> String {
-		NSTemporaryDirectory().appendingPathComponent("legacy-search-\(UUID().uuidString).db")
+		URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("legacy-search-\(UUID().uuidString).db").path
 	}
 
 	/// Creates a database with the pre-FTS5 schema: articles without the

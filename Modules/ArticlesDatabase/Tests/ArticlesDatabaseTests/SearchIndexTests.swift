@@ -25,25 +25,25 @@ import ArticlesDatabase
 	}
 
 	@Test func searchFindsArticleByTitleWord() async {
-		await seedArticle(uniqueID: "s1", title: "Quantum Computing Advances", contentHTML: "<p>Unrelated body text.</p>")
+		_ = await seedArticle(uniqueID: "s1", title: "Quantum Computing Advances", contentHTML: "<p>Unrelated body text.</p>")
 		let articles = await database.fetchArticlesMatchingAsync(searchString: "quantum", feedIDs: [feedID])
 		#expect(articles.count == 1)
 	}
 
 	@Test func searchFindsArticleByBodyWord() async {
-		await seedArticle(uniqueID: "s2", title: "Daily Report", contentHTML: "<p>The mesoglea is remarkably thick today.</p>")
+		_ = await seedArticle(uniqueID: "s2", title: "Daily Report", contentHTML: "<p>The mesoglea is remarkably thick today.</p>")
 		let articles = await database.fetchArticlesMatchingAsync(searchString: "mesoglea", feedIDs: [feedID])
 		#expect(articles.count == 1)
 	}
 
 	@Test func searchFindsNothingForUnknownWord() async {
-		await seedArticle(uniqueID: "s3", title: "Known Title", contentHTML: "<p>Known body.</p>")
+		_ = await seedArticle(uniqueID: "s3", title: "Known Title", contentHTML: "<p>Known body.</p>")
 		let articles = await database.fetchArticlesMatchingAsync(searchString: "xyzzyq", feedIDs: [feedID])
 		#expect(articles.isEmpty)
 	}
 
 	@Test func searchDoesNotMatchOtherFeeds() async {
-		await seedArticle(uniqueID: "s4", title: "Ferrous Wheel", contentHTML: "<p>Body.</p>")
+		_ = await seedArticle(uniqueID: "s4", title: "Ferrous Wheel", contentHTML: "<p>Body.</p>")
 		let articles = await database.fetchArticlesMatchingAsync(searchString: "ferrous", feedIDs: ["otherFeed"])
 		#expect(articles.isEmpty)
 	}
@@ -56,7 +56,7 @@ import ArticlesDatabase
 			Issue.record("Expected a seeded article")
 			return
 		}
-		let updatedItem = ParsedItem(syncServiceID: nil, uniqueID: article.uniqueID, feedURL: feedID, url: article.url, externalURL: nil, title: "Update Me", language: nil, contentHTML: "<p>Replaced verdigris text.</p>", contentText: nil, markdown: nil, summary: nil, imageURL: nil, bannerImageURL: nil, datePublished: article.datePublished, dateModified: Date(), authors: nil, tags: nil, attachments: nil)
+		let updatedItem = ParsedItem(syncServiceID: nil, uniqueID: article.uniqueID, feedURL: feedID, url: article.rawLink, externalURL: nil, title: "Update Me", language: nil, contentHTML: "<p>Replaced verdigris text.</p>", contentText: nil, markdown: nil, summary: nil, imageURL: nil, bannerImageURL: nil, datePublished: article.datePublished, dateModified: Date(), authors: nil, tags: nil, attachments: nil)
 		_ = await database.updateAsync(parsedItems: [updatedItem], feedID: feedID, deleteOlder: false)
 
 		#expect(await database.fetchArticlesMatchingAsync(searchString: "verdigris", feedIDs: [feedID]).count == 1)
@@ -64,7 +64,7 @@ import ArticlesDatabase
 	}
 
 	@Test func rebuildIndexRestoresSearchResults() async {
-		await seedArticle(uniqueID: "s6", title: "Rebuild Target", contentHTML: "<p>Cormorant nesting habits.</p>")
+		_ = await seedArticle(uniqueID: "s6", title: "Rebuild Target", contentHTML: "<p>Cormorant nesting habits.</p>")
 		#expect(await database.fetchArticlesMatchingAsync(searchString: "cormorant", feedIDs: [feedID]).count == 1)
 
 		await database.rebuildSearchIndexAsync()
