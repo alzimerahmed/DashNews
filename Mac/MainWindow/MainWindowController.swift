@@ -1797,6 +1797,28 @@ private extension MainWindowController {
 			articleThemeMenu.addItem(themeItem)
 		}
 
+		articleThemeMenu.addItem(NSMenuItem.separator())
+
+		let textSizeSubmenu = NSMenu(title: NSLocalizedString("Text Size", comment: "Article text size menu"))
+		for size in ArticleTextSize.allCases {
+			let sizeItem = NSMenuItem()
+			sizeItem.title = size.description()
+			sizeItem.action = #selector(selectArticleTextSize(_:))
+			sizeItem.state = size == AppDefaults.shared.articleTextSize ? .on : .off
+			sizeItem.representedObject = size
+			textSizeSubmenu.addItem(sizeItem)
+		}
+		let textSizeItem = NSMenuItem(title: NSLocalizedString("Text Size", comment: "Article text size menu"), action: nil, keyEquivalent: "")
+		textSizeItem.submenu = textSizeSubmenu
+		articleThemeMenu.addItem(textSizeItem)
+
 		return articleThemeMenu
+	}
+
+	@objc func selectArticleTextSize(_ menuItem: NSMenuItem) {
+		guard let size = menuItem.representedObject as? ArticleTextSize else {
+			return
+		}
+		AppDefaults.shared.articleTextSize = size
 	}
 }

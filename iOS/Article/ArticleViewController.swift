@@ -32,6 +32,16 @@ final class ArticleViewController: UIViewController {
 	@IBOutlet private var searchBarBottomConstraint: NSLayoutConstraint!
 	private var defaultControls: [UIBarButtonItem]?
 
+	/// Quick article display switcher: theme + text size, right in the reader view toolbar.
+	private lazy var displayBarButtonItem: UIBarButtonItem = {
+		let item = UIBarButtonItem(image: UIImage(systemName: "textformat"), menu: nil)
+		item.menu = UIMenu(children: [UIDeferredMenuElement.uncached { [weak self] completion in
+			completion(self?.displayMenuItems() ?? [])
+		}])
+		item.accessibilityLabel = NSLocalizedString("Article Display", comment: "Article theme and text size quick switch")
+		return item
+	}()
+
 	private var pageViewController: UIPageViewController!
 	private var isPageTransitionInProgress = false
 	private var pendingSetViewController: WebViewController?
@@ -145,6 +155,7 @@ final class ArticleViewController: UIViewController {
 
 		if #available(iOS 26, *) {
 			toolbarItems?.insert(articleExtractorBarButtonItem, at: 5)
+			toolbarItems?.insert(displayBarButtonItem, at: 6)
 		} else {
 			let flex = { UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) }
 			toolbarItems = [
@@ -155,6 +166,8 @@ final class ArticleViewController: UIViewController {
 				nextUnreadBarButtonItem,
 				flex(),
 				articleExtractorBarButtonItem,
+				flex(),
+				displayBarButtonItem,
 				flex(),
 				actionBarButtonItem
 			]
@@ -607,6 +620,36 @@ private extension ArticleViewController {
 			return
 		}
 		gestureRecognizer.delegate = originalPopGestureRecognizerDelegate
+	}
+
+	// MARK: Article Display Quick Switch
+
+	func displayMenuItems() -> [UIMenuElement] {
+		let textSizeItems = ArticleTextSize.allCases.map { size in
+			UIAction(title: size.description(), state: size == AppDefaults.shared.articleTextSize ? .on : .off) { [weak self] _ in
+				self?.selectArticleTextSize(size)
+			}
+		}
+
+		var themeTitles = [ArticleTheme.defaultTheme.name]
+		themeTitles.append(contentsOf: ArticleThemesManager.shared.themeNames)
+		let themeItems = themeTitles.map { themeName in
+			UIAction(title: themeName, state: themeName == ArticleThemesManager.shared.currentThemeName ? .on : .off) { [weak self] _ in
+				self?.selectArticleTheme(themeName)
+			}
+		}
+
+		let textSizeMenu = UIMenu(title: NSLocalizedString("Text Size", comment: "Article text size menu"), options: .displayInline, children: textSizeItems)
+		let themeMenu = UIMenu(title: NSLocalizedString("Theme", comment: "Article theme menu title"), options: .displayInline, children: themeItems)
+		return [textSizeMenu, themeMenu]
+	}
+
+	func selectArticleTextSize(_ size: ArticleTextSize) {
+		AppDefaults.shared.articleTextSize = size
+	}
+
+	func selectArticleTheme(_ themeName: String) {
+		ArticleThemesManager.shared.currentThemeName = themeName
 	}
 
 }

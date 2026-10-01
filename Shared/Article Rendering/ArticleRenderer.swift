@@ -224,9 +224,7 @@ private extension ArticleRenderer {
 
 		d["body"] = body
 
-		#if os(macOS)
 		d["text_size_class"] = AppDefaults.shared.articleTextSize.cssClass
-		#endif
 
 		var components = URLComponents()
 		components.scheme = Self.imageIconScheme

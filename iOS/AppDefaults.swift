@@ -67,6 +67,7 @@ final class AppDefaults: Sendable {
 		static let addFolderAccountID = "addFolderAccountID"
 		static let useSystemBrowser = "useSystemBrowser"
 		static let currentThemeName = "currentThemeName"
+		static let articleTextSize = "articleTextSize"
 		static let articleContentJavascriptEnabled = "articleContentJavascriptEnabled"
 		static let hideReadFeeds = "hideReadFeeds"
 		static let isShowingExtractedArticle = "isShowingExtractedArticle"
@@ -299,6 +300,16 @@ final class AppDefaults: Sendable {
 		}
 	}
 
+	var articleTextSize: ArticleTextSize {
+		get {
+			let rawValue = AppDefaults.store.integer(forKey: Key.articleTextSize)
+			return ArticleTextSize(rawValue: rawValue) ?? ArticleTextSize.large
+		}
+		set {
+			AppDefaults.store.set(newValue.rawValue, forKey: Key.articleTextSize)
+		}
+	}
+
 	var hideReadFeeds: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: Key.hideReadFeeds)
@@ -431,6 +442,7 @@ final class AppDefaults: Sendable {
 										Key.confirmMarkAllAsRead: true,
 										Key.articleContentJavascriptEnabled: true,
 										Key.currentThemeName: Self.defaultThemeName,
+										Key.articleTextSize: ArticleTextSize.large.rawValue,
 									   Key.splitViewPreferredDisplayMode: UISplitViewController.DisplayMode.oneBesideSecondary.rawValue]
 		AppDefaults.store.register(defaults: defaults)
 	}
