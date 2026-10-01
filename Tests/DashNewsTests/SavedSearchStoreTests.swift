@@ -11,7 +11,9 @@ import XCTest
 
 @MainActor final class SavedSearchStoreTests: XCTestCase {
 
-	private var fileURL: URL!
+	// XCTest calls setUp/tearDown from a nonisolated context; all access is
+	// still on the main thread, so the unsafe annotation is sound here.
+	@nonisolated(unsafe) private var fileURL: URL!
 
 	override func setUp() {
 		super.setUp()
