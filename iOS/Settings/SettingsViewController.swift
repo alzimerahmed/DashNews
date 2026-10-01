@@ -47,7 +47,8 @@ final class SettingsViewController: UITableViewController {
 		case groupByFeed = 1
 		case refreshClearsReadArticles = 2
 		case confirmMarkAllAsRead = 3
-		case timelineLayout = 4
+		case markReadOnScroll = 4
+		case timelineLayout = 5
 	}
 
 	private enum ArticlesRow: Int, CaseIterable {

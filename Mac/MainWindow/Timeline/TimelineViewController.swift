@@ -1101,7 +1101,7 @@ private extension TimelineViewController {
 			return
 		}
 
-		let feedIdentifier = representedObjects?.first?.sidebarItemID?.description
+		let feedIdentifier = (representedObjects?.first as? SidebarItem)?.sidebarItemID?.description
 		if feedIdentifier != markReadOnScrollFeedIdentifier {
 			markReadOnScrollFeedIdentifier = feedIdentifier
 			markReadOnScrollHandledIDs.removeAll()
