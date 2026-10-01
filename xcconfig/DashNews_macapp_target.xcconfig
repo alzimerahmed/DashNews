@@ -1,0 +1,7 @@
+#include "./common/DashNews_codesigning_common.xcconfig"
+#include "./common/DashNews_macapp_target_common.xcconfig"
+
+CODE_SIGN_ENTITLEMENTS = Mac/Resources/DashNews$(DEVELOPER_ENTITLEMENTS).entitlements
+PRODUCT_BUNDLE_IDENTIFIER = $(ORGANIZATION_IDENTIFIER).DashNews$(BUNDLE_ID_SUFFIX)
+PRODUCT_NAME = DashNews
+PRODUCT_MODULE_NAME = DashNews

@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AccountsReaderAPIWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountsReaderAPIWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="9mz-D9-krh" id="ozu-6Q-9Lb"/>
                 <outlet property="apiURLTextField" destination="d7d-ZV-CcZ" id="Af4-uM-Dgd"/>

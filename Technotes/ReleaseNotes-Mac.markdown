@@ -888,7 +888,7 @@ Added Copy Article URL and Copy External URL commands to the Edit menu.
 Fixed a bug where using cmd-Q wouldn’t always quit the app as quickly as one might prefer.
 Disallow creation of iCloud account in the app if iCloud and iCloud Drive aren’t both enabled.
 Fixed bug showing quote tweets that only included an image.
-Added a hidden pref to suppress downloading/syncing on start: `defaults write com.ranchero.NetNewsWire-Evergreen DevroeSuppressSyncOnLaunch -bool true`
+Added a hidden pref to suppress downloading/syncing on start: `defaults write com.dashnews.DashNews DevroeSuppressSyncOnLaunch -bool true`
 Video autoplay is now disallowed.
 Article view now supports RTL layout.
 
@@ -978,7 +978,7 @@ Debug menu: allow Test Crash Log Sender to work in production
 Performance boost: use compression with content synced in CloudKit
 Fixed bug where detail view title bar could be overlapped by toolbar when in full screen
 Fixed bug where add-feed window could block when syncing CloudKit statuses
-Added hidden pref to mark all as read in a feed when double-clicking on it in the sidebar and opening its home page (defaults write com.ranchero.NetNewsWire-Evergreen GruberFeedDoubleClickMarkAsRead -bool true)
+Added hidden pref to mark all as read in a feed when double-clicking on it in the sidebar and opening its home page (defaults write com.dashnews.DashNews GruberFeedDoubleClickMarkAsRead -bool true)
 Switched the crash log catcher URL to our brand-new crash log catcher server
 
 ### 6.0a4 build 6009 - 22 Feb 2021

@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ExportOPMLWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="ExportOPMLWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="accountPopUpButton" destination="bbC-2g-e3k" id="sK9-0j-WyF"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Z1E-pd-3QE"/>

@@ -199,7 +199,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				return
 			}
 
-			// Handle theme URLs: netnewswire://theme/add?url={url}
+			// Handle theme URLs: dashnews://theme/add?url={url}
 			guard let comps = URLComponents(url: context.url, resolvingAgainstBaseURL: false),
 				  comps.scheme?.lowercased() == "netnewswire",
 				  "theme" == comps.host,
@@ -219,11 +219,11 @@ private extension SceneDelegate {
 
 	func handleShortcutItem(_ shortcutItem: UIApplicationShortcutItem) {
 		switch shortcutItem.type {
-		case "com.ranchero.NetNewsWire.FirstUnread":
+		case "com.dashnews.DashNews.FirstUnread":
 			coordinator.selectFirstUnreadInAllUnread()
-		case "com.ranchero.NetNewsWire.ShowSearch":
+		case "com.dashnews.DashNews.ShowSearch":
 			coordinator.showSearch()
-		case "com.ranchero.NetNewsWire.ShowAdd":
+		case "com.dashnews.DashNews.ShowAdd":
 			coordinator.showAddFeed()
 		default:
 			break

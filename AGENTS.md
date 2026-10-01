@@ -21,10 +21,10 @@ DashNews = free and open-source feed reader for macOS and iOS (codebase forked f
 
 ### Language & Tooling
 - **Language**: Swift (Xcode 26.3 toolchain on CI), SwiftUI for new UI, AppKit where the Mac app already uses it. No UIKit/SwiftUI rewrites of working screens without a decision record.
-- **Project**: single `NetNewsWire.xcodeproj` (target/scheme rename to DashNews is planned — see `docs/plan.md`; until then use existing scheme names). Targets: macOS app, iOS app, iOS widget, iOS share extension, Mac share extension, Mac Safari extension.
+- **Project**: single `DashNews.xcodeproj` (renamed from NetNewsWire.xcodeproj in Phase 3). Targets: macOS app, iOS app, iOS widget, iOS share extension, Mac share extension, Mac Safari extension.
 - **Modules**: `Modules/` are local Swift packages (RSCore, RSDatabase, RSParser, RSWeb, RSTree, Account, Articles, ArticlesDatabase, CloudKitSync, FeedFinder, HTMLMetadata, Images, NewsBlur, Secrets, SyncDatabase, ActivityLog, ErrorLog). Keep module boundaries — app code imports modules, modules never import the app.
 - **Lint**: SwiftLint, run with `--strict` in CI (`.swiftlint.yml`). Zero-warning policy (`buildscripts/fail_on_warnings.sh`).
-- **Tests**: XCTest via test plans — `NetNewsWire-CI.xctestplan` (macOS), `NetNewsWire-iOS.xctestplan` (iOS). Pure-logic tests live in module `Tests/` dirs.
+- **Tests**: XCTest via test plans — `DashNews-CI.xctestplan` (macOS), `DashNews-iOS.xctestplan` (iOS). Pure-logic tests live in module `Tests/` dirs.
 
 ### Architecture & Conventions
 - **Folders**: `iOS/` (iOS app), `Mac/` (Mac app), `Shared/` (cross-platform app code), `Modules/` (packages), `Widget/`, `Resources/` (themes, article styles), `Technotes/` (internal engineering docs — read them, they are the real docs).
@@ -37,8 +37,8 @@ DashNews = free and open-source feed reader for macOS and iOS (codebase forked f
 ```bash
 # CI (GitHub Actions, .github/workflows/ci.yml — push/PR to main):
 #   1. SwiftLint --strict
-#   2. macOS tests:  xcodebuild -project NetNewsWire.xcodeproj -scheme NetNewsWire -testPlan NetNewsWire-CI -destination "platform=macOS,arch=arm64"
-#   3. iOS tests:    xcodebuild -project NetNewsWire.xcodeproj -scheme NetNewsWire-iOS -testPlan NetNewsWire-iOS -destination "platform=iOS Simulator,name=iPhone 17"
+#   2. macOS tests:  xcodebuild -project DashNews.xcodeproj -scheme DashNews -testPlan DashNews-CI -destination "platform=macOS,arch=arm64"
+#   3. iOS tests:    xcodebuild -project DashNews.xcodeproj -scheme DashNews-iOS -testPlan DashNews-iOS -destination "platform=iOS Simulator,name=iPhone 17"
 ```
 
 **Remote-first verification (mandatory):** we do NOT build or test locally — this workspace is Windows and all builds/tests run in GitHub Actions (macOS runners). Local work is edit-only: static review while iterating. Push a branch and let CI verify; a CI green check counts as the gate.

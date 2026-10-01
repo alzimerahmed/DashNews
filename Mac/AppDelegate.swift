@@ -23,7 +23,7 @@ import Sparkle
 import Images
 import HTMLMetadata
 
-let appName = "NetNewsWire"
+let appName = "DashNews"
 
 @MainActor var appDelegate: AppDelegate!
 

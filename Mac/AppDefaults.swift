@@ -35,6 +35,7 @@ final class AppDefaults: Sendable {
 		static let openInBrowserInBackground = "openInBrowserInBackground"
 		static let subscribeToFeedsInDefaultBrowser = "subscribeToFeedsInDefaultBrowser"
 		static let articleTextSize = "articleTextSize"
+		static let isMarkReadOnScrollEnabled = "markReadOnScroll"
 		static let refreshInterval = "refreshInterval"
 		static let addFeedAccountID = "addFeedAccountID"
 		static let addFeedFolderName = "addFeedFolderName"
@@ -290,6 +291,15 @@ final class AppDefaults: Sendable {
 		return AppDefaults.bool(for: Key.timelineShowsSeparators)
 	}
 
+	var isMarkReadOnScrollEnabled: Bool {
+		get {
+			return AppDefaults.bool(for: Key.isMarkReadOnScrollEnabled)
+		}
+		set {
+			AppDefaults.setBool(for: Key.isMarkReadOnScrollEnabled, newValue)
+		}
+	}
+
 	var articleTextSize: ArticleTextSize {
 		get {
 			let rawValue = UserDefaults.standard.integer(forKey: Key.articleTextSize)
@@ -348,7 +358,8 @@ final class AppDefaults: Sendable {
 			Key.refreshInterval: RefreshInterval.every2Hours.rawValue,
 			Key.showDebugMenu: showDebugMenu,
 			Key.currentThemeName: Self.defaultThemeName,
-			Key.articleContentJavascriptEnabled: true
+			Key.articleContentJavascriptEnabled: true,
+			Key.isMarkReadOnScrollEnabled: false
 		]
 
 		UserDefaults.standard.register(defaults: defaults)

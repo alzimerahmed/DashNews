@@ -1,0 +1,16 @@
+#include? "../../SharedXcodeSettings/ProjectSettings.xcconfig"
+#include "./common/DashNews_codesigning_common.xcconfig"
+#include "./common/DashNews_ios_target_common.xcconfig"
+
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks
+INFOPLIST_FILE = iOS/Resources/Info.plist
+CODE_SIGN_ENTITLEMENTS = iOS/Resources/DashNews$(DEVELOPER_ENTITLEMENTS).entitlements
+PRODUCT_BUNDLE_IDENTIFIER = $(ORGANIZATION_IDENTIFIER).DashNews.iOS$(BUNDLE_ID_SUFFIX)
+PRODUCT_NAME = DashNews
+PRODUCT_MODULE_NAME = DashNews
+CLANG_ENABLE_MODULES = YES
+SWIFT_OBJC_BRIDGING_HEADER = iOS/DashNews-iOS-Bridging-Header.h
+SUPPORTED_PLATFORMS = iphoneos iphonesimulator
+SUPPORTS_MACCATALYST = NO
+SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO
+SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO

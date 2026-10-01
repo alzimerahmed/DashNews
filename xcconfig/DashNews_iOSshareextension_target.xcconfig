@@ -1,0 +1,4 @@
+#include "./common/DashNews_iOSextension_common.xcconfig"
+CODE_SIGN_ENTITLEMENTS = iOS/ShareExtension/DashNews_iOS_ShareExtension.entitlements
+INFOPLIST_FILE = iOS/ShareExtension/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = $(ORGANIZATION_IDENTIFIER).DashNews.iOS$(BUNDLE_ID_SUFFIX).Share-Extension

@@ -1,14 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-# Build a universal (arm64 + x86_64) debug build of NetNewsWire
+# Build a universal (arm64 + x86_64) debug build of DashNews
 # and copy it to the Desktop for testing on local machines.
 
-PROJECT_PATH="NetNewsWire.xcodeproj"
-SCHEME="NetNewsWire"
+PROJECT_PATH="DashNews.xcodeproj"
+SCHEME="DashNews"
 DESTINATION="platform=macOS"
 DESKTOP="$HOME/Desktop"
-APP_NAME="NetNewsWire.app"
+APP_NAME="DashNews.app"
 
 echo "Building universal binary..."
 xcodebuild \
@@ -35,7 +35,7 @@ if [ ! -d "$BUILT_APP" ]; then
 fi
 
 # Verify it's actually universal.
-ARCHS=$(lipo -archs "$BUILT_APP/Contents/MacOS/NetNewsWire")
+ARCHS=$(lipo -archs "$BUILT_APP/Contents/MacOS/DashNews")
 echo "Architectures: $ARCHS"
 
 if [[ "$ARCHS" != *"x86_64"* ]] || [[ "$ARCHS" != *"arm64"* ]]; then

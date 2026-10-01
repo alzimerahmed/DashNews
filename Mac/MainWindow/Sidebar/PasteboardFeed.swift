@@ -161,9 +161,9 @@ extension Feed: @retroactive PasteboardWriterOwner {
 @objc final class FeedPasteboardWriter: NSObject, @MainActor NSPasteboardWriting {
 
 	private let feed: Feed
-	static let feedUTI = "com.ranchero.feed"
+	static let feedUTI = "com.dashnews.feed"
 	static let feedUTIType = NSPasteboard.PasteboardType(rawValue: feedUTI)
-	static let feedUTIInternal = "com.ranchero.NetNewsWire-Evergreen.internal.feed"
+	static let feedUTIInternal = "com.dashnews.DashNews.internal.feed"
 	static let feedUTIInternalType = NSPasteboard.PasteboardType(rawValue: feedUTIInternal)
 
 	var containerID: ContainerIdentifier?

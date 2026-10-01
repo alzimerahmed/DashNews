@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Clean preferences and data for NetNewsWire (macOS)
+# Clean preferences and data for DashNews (macOS)
 # Usage: cleanPrefsAndData [--debug | --release | --all]
 # Default: --debug (cleans debug build data only)
 
@@ -30,12 +30,12 @@ case "${1:---debug}" in
 esac
 
 # Bundle identifiers
-DEBUG_BUNDLE_ID="com.ranchero.NetNewsWire-Evergreen-DEBUG"
-RELEASE_BUNDLE_ID="com.ranchero.NetNewsWire-Evergreen"
+DEBUG_BUNDLE_ID="com.dashnews.DashNews-DEBUG"
+RELEASE_BUNDLE_ID="com.dashnews.DashNews"
 
 # App group identifiers
-DEBUG_APP_GROUP="group.com.ranchero.NetNewsWire-Evergreen-DEBUG"
-RELEASE_APP_GROUP="group.com.ranchero.NetNewsWire-Evergreen"
+DEBUG_APP_GROUP="group.com.dashnews.DashNews-DEBUG"
+RELEASE_APP_GROUP="group.com.dashnews.DashNews"
 
 clean_build() {
     local bundle_id="$1"

@@ -27,7 +27,7 @@ public final class TestingURLProtocol: URLProtocol {
 	@TaskLocal public static var currentTestID: String?
 
 	/// Carries `currentTestID` from the session's configuration to `startLoading`.
-	public static let testIDHeaderField = "X-NetNewsWire-Testing-ID"
+	public static let testIDHeaderField = "X-DashNews-Testing-ID"
 
 	/// What a registered response answers: a URL substring, and optionally one HTTP method.
 	private struct ResponseKey: Hashable {

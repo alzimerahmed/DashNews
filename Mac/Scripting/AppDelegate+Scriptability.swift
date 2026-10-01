@@ -53,7 +53,7 @@ extension AppDelegate: AppDelegateAppleEvents {
         }
 
 		// Handle themes
-		if urlString.hasPrefix("netnewswire://theme/") {
+		if urlString.hasPrefix("dashnews://theme/") {
 			guard let comps = URLComponents(string: urlString),
 				  let queryItems = comps.queryItems,
 				  let themeURLString = queryItems.first(where: { $0.name == "url" })?.value else {
@@ -66,9 +66,9 @@ extension AppDelegate: AppDelegateAppleEvents {
 			return
 		}
 
-		// Special case URL with specific scheme handler x-netnewswire-feed: intended to ensure we open
+		// Special case URL with specific scheme handler x-dashnews-feed: intended to ensure we open
 		// it regardless of which news reader may be set as the default
-		let nnwScheme = "x-netnewswire-feed:"
+		let nnwScheme = "x-dashnews-feed:"
 		if urlString.hasPrefix(nnwScheme) {
 			urlString = urlString.replacingOccurrences(of: nnwScheme, with: "feed:")
 		}

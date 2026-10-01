@@ -84,9 +84,9 @@ private extension SafariExtensionHandler {
 
 		if openInDefaultBrowser == false {
 			if feedURLString.hasPrefix("feeds:") {
-				feedURLString = "x-netnewswire-feed:" + feedURLString.dropFirst("feeds:".count)
+				feedURLString = "x-dashnews-feed:" + feedURLString.dropFirst("feeds:".count)
 			} else if feedURLString.hasPrefix("feed:") {
-				feedURLString = "x-netnewswire-feed:" + feedURLString.dropFirst("feed:".count)
+				feedURLString = "x-dashnews-feed:" + feedURLString.dropFirst("feed:".count)
 			}
 		}
 

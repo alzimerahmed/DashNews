@@ -444,7 +444,7 @@ struct SidebarItemNode: Hashable, Sendable {
 
 	private func restoreSelectedSidebarItemAndArticle(_ stateInfo: StateRestorationInfo) {
 		guard let selectedSidebarItem = stateInfo.selectedSidebarItem else {
-			isRestoringState = false
+			selectDefaultSmartFeedOnFirstLaunch()
 			return
 		}
 
@@ -456,6 +456,19 @@ struct SidebarItemNode: Hashable, Sendable {
 		selectSidebarItem(indexPath: indexPath, animations: []) {
 			self.restoreSelectedArticle(stateInfo)
 		}
+	}
+
+	/// On the very first launch, select the All Unread smart inbox instead of
+	/// leaving the sidebar with nothing selected.
+	private func selectDefaultSmartFeedOnFirstLaunch() {
+		defer {
+			isRestoringState = false
+		}
+
+		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun, hasSavedSelection: false) != nil else {
+			return
+		}
+		selectAllUnreadFeed()
 	}
 
 	private func restoreSelectedArticle(_ stateInfo: StateRestorationInfo) {

@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AccountsFeedbinWindowController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountsFeedbinWindowController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="9mz-D9-krh" id="ozu-6Q-9Lb"/>
                 <outlet property="createNewAccountButton" destination="MlB-jN-Ybe" id="w6v-BW-0yQ"/>

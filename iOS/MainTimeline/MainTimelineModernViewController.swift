@@ -63,6 +63,9 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 		}
 	}
 
+	private var markReadOnScrollHandledIDs = Set<String>()
+	private var markReadOnScrollFeedIdentifier: String?
+
 	private var timelineIconImage: IconImage? {
 		assert(coordinator != nil)
 		return coordinator?.timelineIconImage
@@ -520,6 +523,10 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 // MARK: - UICollectionViewDelegate
 
 extension MainTimelineModernViewController: UICollectionViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		markVisibleArticlesAsReadIfNeeded()
+	}
+
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		becomeFirstResponder()
 		if let dataSource {
@@ -664,6 +671,45 @@ extension MainTimelineModernViewController {
 
 // MARK: Private API
 private extension MainTimelineModernViewController {
+
+	// MARK: Mark Read on Scroll
+
+	func markVisibleArticlesAsReadIfNeeded() {
+		guard AppDefaults.shared.isMarkReadOnScrollEnabled else {
+			return
+		}
+		guard let collectionView, let articles else {
+			return
+		}
+
+		let feedIdentifier = timelineFeed?.sidebarItemID?.description
+		if feedIdentifier != markReadOnScrollFeedIdentifier {
+			markReadOnScrollFeedIdentifier = feedIdentifier
+			markReadOnScrollHandledIDs.removeAll()
+		}
+
+		// Mark only rows that have scrolled past the top edge — never the
+		// rows still visible, so opening a feed or resizing cannot mark
+		// unread articles read without a real user scroll.
+		let visibleIndexPaths = collectionView.indexPathsForVisibleItems.sorted()
+		guard let firstVisible = visibleIndexPaths.first, firstVisible.item > 0 else {
+			return
+		}
+
+		var scrolledPastArticles = [Article]()
+		for row in 0..<firstVisible.item {
+			if let article = dataSource?.itemIdentifier(for: IndexPath(item: row, section: firstVisible.section)), row < articles.count {
+				scrolledPastArticles.append(article)
+			}
+		}
+
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: scrolledPastArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		guard !articlesToMark.isEmpty else {
+			return
+		}
+
+		markArticles(Set(articlesToMark), statusKey: .read, flag: true)
+	}
 
 	func addNotificationObservers() {
 		NotificationCenter.default.addObserver(self, selector: #selector(unreadCountDidChange(_:)), name: .UnreadCountDidChange, object: nil)

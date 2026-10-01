@@ -27,7 +27,7 @@ This provides a starting point for editing the style of the page.
 ## Add Themes Directly to NetNewsWire with URL Scheme
 On iOS and macOS, themes can be opened directly in NetNewsWire using the below URL scheme:
 
-`netnewswire://theme/add?url={url}`
+`dashnews://theme/add?url={url}`
 
 When using this URL scheme the theme being shared must be zipped.
 

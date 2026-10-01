@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TimelineContainerViewController" customModule="NetNewsWire" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="TimelineContainerViewController" customModule="DashNews" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="Zpk-pq-9nW" id="Kye-yX-Wyn"/>
                 <outlet property="containerViewTopToHeaderConstraint" destination="KCa-8b-a6y" id="hdr-cn-st1"/>
@@ -96,7 +96,7 @@
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7p6-pA-iw6">
                     <rect key="frame" x="0.0" y="195" width="375" height="5"/>
                 </box>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-pq-9nW" customClass="TimelineContainerView" customModule="NetNewsWire" customModuleProvider="target">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-pq-9nW" customClass="TimelineContainerView" customModule="DashNews" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="197"/>
                 </customView>
             </subviews>

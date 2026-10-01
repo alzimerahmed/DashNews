@@ -184,6 +184,9 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 	private var showIcons = false
 	private var currentRowHeight: CGFloat = 0.0
 
+	private var markReadOnScrollHandledIDs = Set<String>()
+	private var markReadOnScrollFeedIdentifier: String?
+	private var isObservingScrollViewClipView = false
 	private var didRegisterForNotifications = false
 	static let fetchAndMergeArticlesQueue = CoalescingQueue(name: "Fetch and Merge Articles", interval: 0.5, maxInterval: 2.0)
 
@@ -272,11 +275,14 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 			didRegisterForNotifications = true
 		}
 
+		startObservingScrollViewForMarkReadOnScroll()
+
 		sharingServicePickerDelegate = SharingServicePickerDelegate(self.view.window)
 	}
 
 	override func viewDidAppear() {
 		sharingServiceDelegate = SharingServiceDelegate(self.view.window)
+		startObservingScrollViewForMarkReadOnScroll()
 	}
 
 	// MARK: - API
@@ -1077,6 +1083,57 @@ extension TimelineViewController: NSTableViewDelegate {
 // MARK: - Private
 
 private extension TimelineViewController {
+
+	// MARK: Mark Read on Scroll
+
+	func startObservingScrollViewForMarkReadOnScroll() {
+		guard !isObservingScrollViewClipView, let scrollView = tableView.enclosingScrollView else {
+			return
+		}
+		let clipView = scrollView.contentView
+		clipView.postsBoundsChangedNotifications = true
+		isObservingScrollViewClipView = true
+		NotificationCenter.default.addObserver(self, selector: #selector(scrollViewClipViewBoundsDidChange(_:)), name: NSView.boundsDidChangeNotification, object: clipView)
+	}
+
+	@objc func scrollViewClipViewBoundsDidChange(_ note: Notification) {
+		markVisibleArticlesAsReadIfNeeded()
+	}
+
+	func markVisibleArticlesAsReadIfNeeded() {
+		guard AppDefaults.shared.isMarkReadOnScrollEnabled else {
+			return
+		}
+
+		let feedIdentifier = (representedObjects?.first as? SidebarItem)?.sidebarItemID?.description
+		if feedIdentifier != markReadOnScrollFeedIdentifier {
+			markReadOnScrollFeedIdentifier = feedIdentifier
+			markReadOnScrollHandledIDs.removeAll()
+		}
+
+		// Mark only rows that have scrolled past the top edge — never the
+		// rows still visible, so opening a feed or resizing the window
+		// cannot mark unread articles read.
+		let visibleRowRange = tableView.rows(in: tableView.visibleRect)
+		guard visibleRowRange.location > 0 else {
+			return
+		}
+
+		var scrolledPastArticles = [Article]()
+		for row in 0..<Int(visibleRowRange.location) {
+			guard row < articles.count else {
+				continue
+			}
+			scrolledPastArticles.append(articles[row])
+		}
+
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: scrolledPastArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		guard !articlesToMark.isEmpty else {
+			return
+		}
+
+		markArticles(Set(articlesToMark), statusKey: .read, flag: true)
+	}
 
 	func fetchAndReplacePreservingSelection() {
 		if let article = oneSelectedArticle, let account = article.account {

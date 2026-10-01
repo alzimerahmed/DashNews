@@ -514,7 +514,11 @@ public enum FetchType {
 
 	// MARK: - OPML
 
-	public func importOPML(_ opmlFile: URL, completion: @escaping (Result<Void, Error>) -> Void) {
+	/// Number of feeds skipped as exact duplicates during the most recent
+	/// manual OPML import into this account.
+	public private(set) var lastOPMLImportDuplicatesSkipped = 0
+
+	public func importOPML(_ opmlFile: URL, completion: @escaping (Result<OPMLImportSummary, Error>) -> Void) {
 		guard !delegate.isOPMLImportInProgress else {
 			completion(.failure(AccountError.opmlImportInProgress))
 			return
@@ -526,7 +530,9 @@ public enum FetchType {
 				// Reset the last fetch date to get the article history for the added feeds.
 				lastArticleFetchStartTime = nil
 				try? await delegate.refreshAll()
-				completion(.success(()))
+				let summary = OPMLImportSummary(duplicatesSkipped: lastOPMLImportDuplicatesSkipped)
+				lastOPMLImportDuplicatesSkipped = 0
+				completion(.success(summary))
 			} catch {
 				completion(.failure(error))
 			}
@@ -589,8 +595,19 @@ public enum FetchType {
 	}
 
 	/// Pass `isManualImport: true` for a file the user chose to import, `false` when restoring our own file.
+	/// Manual imports are deduplicated by feed URL: feeds the account already
+	/// subscribes to, and repeats within the file, are skipped and counted.
 	func loadOPMLItems(_ items: [OPMLItem], isManualImport: Bool) {
-		addOPMLItems(OPMLNormalizer.normalize(items), isManualImport: isManualImport)
+		let normalizedItems = OPMLNormalizer.normalize(items)
+
+		guard isManualImport else {
+			addOPMLItems(normalizedItems, isManualImport: false)
+			return
+		}
+
+		let deduplicationResult = OPMLDeduplicator.deduplicate(normalizedItems, existingFeedURLs: flattenedFeedURLs)
+		lastOPMLImportDuplicatesSkipped = deduplicationResult.duplicatesSkipped
+		addOPMLItems(deduplicationResult.items, isManualImport: true)
 	}
 
 	public func markArticles(articleIDs: Set<String>, statusKey: ArticleStatus.Key, flag: Bool) async throws {

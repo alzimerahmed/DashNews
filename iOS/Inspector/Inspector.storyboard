@@ -11,7 +11,7 @@
         <!--Account Inspector View Controller-->
         <scene sceneID="nCF-Ns-xpY">
             <objects>
-                <tableViewController storyboardIdentifier="AccountInspectorViewController" id="1m3-fZ-n7g" customClass="AccountInspectorViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AccountInspectorViewController" id="1m3-fZ-n7g" customClass="AccountInspectorViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="xcc-i3-tPS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +38,7 @@
                         <sections>
                             <tableViewSection id="vec-ab-Ylg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4Ue-UW-e0l" customClass="VibrantTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4Ue-UW-e0l" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="18" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ue-UW-e0l" id="9E1-ww-kYn">
@@ -63,7 +63,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zQY-gY-BOY" customClass="VibrantTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zQY-gY-BOY" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="69" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQY-gY-BOY" id="dBp-J5-ZsY">
@@ -93,14 +93,14 @@
                             </tableViewSection>
                             <tableViewSection id="9UW-s0-NPI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FsT-vH-rTo" customClass="VibrantTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="FsT-vH-rTo" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="156" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FsT-vH-rTo" id="rJW-6J-9DM">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYD-py-8IF" customClass="VibrantButton" customModule="NetNewsWire" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYD-py-8IF" customClass="VibrantButton" customModule="DashNews" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="3.5" width="374" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="WmU-wG-RLQ"/>
@@ -125,14 +125,14 @@
                             </tableViewSection>
                             <tableViewSection id="mgY-wW-xiO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lgY-im-vCo" customClass="VibrantTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lgY-im-vCo" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="243" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lgY-im-vCo" id="fIH-xP-nza">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obv-a5-Pl6" customClass="VibrantButton" customModule="NetNewsWire" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obv-a5-Pl6" customClass="VibrantButton" customModule="DashNews" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="3.5" width="374" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="WtN-fp-Ldt"/>
@@ -165,7 +165,7 @@
                             </tableViewSection>
                             <tableViewSection id="syncContent-section-id">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="syncContent-cell-id" customClass="VibrantTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="syncContent-cell-id" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="330" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="syncContent-cell-id" id="syncContent-content-id">
@@ -220,7 +220,7 @@
         <!--Feed Inspector View Controller-->
         <scene sceneID="jnI-2I-AcU">
             <objects>
-                <tableViewController storyboardIdentifier="FeedInspectorViewControllelr" id="lEH-bG-pQW" customClass="FeedInspectorViewController" customModule="NetNewsWire" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FeedInspectorViewControllelr" id="lEH-bG-pQW" customClass="FeedInspectorViewController" customModule="DashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="26V-ZC-Q2R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,7 +311,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Home Page" id="dTd-6q-SZd">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0zc-o6-Sjh" customClass="VibrantBasicTableViewCell" customModule="NetNewsWire" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0zc-o6-Sjh" customClass="VibrantBasicTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="227" width="374" height="31"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0zc-o6-Sjh" id="vJs-XK-ebf">

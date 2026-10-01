@@ -1,6 +1,72 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Article Display" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Article Display"
+          }
+        }
+      }
+    },
+    "Text Size" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Size"
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
+          }
+        }
+      }
+    },
+    "Import Complete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import Complete"
+          }
+        }
+      }
+    },
+    "Your subscriptions were imported." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your subscriptions were imported."
+          }
+        }
+      }
+    },
+    "Your subscriptions were imported. %ld duplicate feed(s) were skipped." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your subscriptions were imported. %ld duplicate feed(s) were skipped."
+          }
+        }
+      }
+    },
     "" : {
 
     },

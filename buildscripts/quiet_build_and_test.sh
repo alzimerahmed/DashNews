@@ -5,9 +5,9 @@ set -euo pipefail
 # Note: depends on xcbeautify: <https://github.com/cpisciotta/xcbeautify>
 
 # === CONFIGURABLE VARIABLES ===
-PROJECT_PATH="NetNewsWire.xcodeproj"
-SCHEME_MAC="NetNewsWire"
-SCHEME_IOS="NetNewsWire-iOS"
+PROJECT_PATH="DashNews.xcodeproj"
+SCHEME_MAC="DashNews"
+SCHEME_IOS="DashNews-iOS"
 DESTINATION_MAC="platform=macOS,arch=arm64"
 DESTINATION_IOS="platform=iOS Simulator,name=iPhone 17"
 

@@ -85,6 +85,7 @@ final class WebViewController: UIViewController {
 	}
 	private var restoreWindowScrollY: Int?
 	private var isArticleContentJavascriptEnabled = AppDefaults.shared.isArticleContentJavascriptEnabled
+	private var articleTextSize = AppDefaults.shared.articleTextSize
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -152,6 +153,10 @@ final class WebViewController: UIViewController {
 	}
 
 	private func userDefaultsDidChange() {
+		if articleTextSize != AppDefaults.shared.articleTextSize {
+			articleTextSize = AppDefaults.shared.articleTextSize
+			loadWebView()
+		}
 		guard isArticleContentJavascriptEnabled != AppDefaults.shared.isArticleContentJavascriptEnabled else {
 			return
 		}

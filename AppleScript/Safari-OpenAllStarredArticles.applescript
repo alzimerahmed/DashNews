@@ -1,4 +1,4 @@
--- This script creates a new Safari window with all the starred articles in a NetNewsWire instance, each in its own tab
+-- This script creates a new Safari window with all the starred articles in a DashNews instance, each in its own tab
 
 -- declare the safariWindow property here so we can use is throughout the whole script
 
@@ -35,7 +35,7 @@ set safariWindow to missing value
 -- for each feed, we find all the starred articles
 -- for each one of those, open a new tab in Safari
 
-tell application "NetNewsWire"
+tell application "DashNews"
 	set allAccounts to every account
 	repeat with nthAccount in allAccounts
 		set userFeeds to allFeeds of nthAccount
