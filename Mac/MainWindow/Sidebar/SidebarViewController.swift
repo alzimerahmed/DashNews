@@ -120,7 +120,10 @@ extension Notification.Name {
 	// MARK: State Restoration
 
 	func restoreState(from state: SidebarWindowState?) {
-		guard let state else { return }
+		guard let state else {
+			selectDefaultSmartFeedOnFirstLaunch()
+			return
+		}
 
 		let containerIdentifiers = state.expandedContainers.compactMap( { ContainerIdentifier(userInfo: $0) })
 		expandedTable = Set(containerIdentifiers)
@@ -150,6 +153,14 @@ extension Notification.Name {
 		focus()
 
 		isReadFiltered = state.isReadFiltered
+	}
+
+	/// On the very first launch, select the All Unread smart inbox.
+	func selectDefaultSmartFeedOnFirstLaunch() {
+		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun, hasSavedSelection: false) != nil else {
+			return
+		}
+		selectFeed(SmartFeedsController.shared.unreadFeed)
 	}
 
 	/// Restore state using legacy state restoration data.
