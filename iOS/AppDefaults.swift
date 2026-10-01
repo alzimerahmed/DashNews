@@ -68,6 +68,7 @@ final class AppDefaults: Sendable {
 		static let useSystemBrowser = "useSystemBrowser"
 		static let currentThemeName = "currentThemeName"
 		static let articleTextSize = "articleTextSize"
+		static let isMarkReadOnScrollEnabled = "markReadOnScroll"
 		static let articleContentJavascriptEnabled = "articleContentJavascriptEnabled"
 		static let hideReadFeeds = "hideReadFeeds"
 		static let isShowingExtractedArticle = "isShowingExtractedArticle"
@@ -300,6 +301,15 @@ final class AppDefaults: Sendable {
 		}
 	}
 
+	var isMarkReadOnScrollEnabled: Bool {
+		get {
+			return AppDefaults.bool(for: Key.isMarkReadOnScrollEnabled)
+		}
+		set {
+			AppDefaults.setBool(for: Key.isMarkReadOnScrollEnabled, newValue)
+		}
+	}
+
 	var articleTextSize: ArticleTextSize {
 		get {
 			let rawValue = AppDefaults.store.integer(forKey: Key.articleTextSize)
@@ -443,6 +453,7 @@ final class AppDefaults: Sendable {
 										Key.articleContentJavascriptEnabled: true,
 										Key.currentThemeName: Self.defaultThemeName,
 										Key.articleTextSize: ArticleTextSize.large.rawValue,
+										Key.isMarkReadOnScrollEnabled: false,
 									   Key.splitViewPreferredDisplayMode: UISplitViewController.DisplayMode.oneBesideSecondary.rawValue]
 		AppDefaults.store.register(defaults: defaults)
 	}

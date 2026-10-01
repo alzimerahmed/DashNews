@@ -184,7 +184,9 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 	private var showIcons = false
 	private var currentRowHeight: CGFloat = 0.0
 
-	private var didRegisterForNotifications = false
+	private var markReadOnScrollHandledIDs = Set<String>()
+	private var markReadOnScrollFeedIdentifier: String?
+	private var isObservingScrollViewClipView = false
 	static let fetchAndMergeArticlesQueue = CoalescingQueue(name: "Fetch and Merge Articles", interval: 0.5, maxInterval: 2.0)
 
 	// Owned by the window’s TimelineContainerViewController.
@@ -271,6 +273,8 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 			}
 			didRegisterForNotifications = true
 		}
+
+		startObservingScrollViewForMarkReadOnScroll()
 
 		sharingServicePickerDelegate = SharingServicePickerDelegate(self.view.window)
 	}
@@ -1077,6 +1081,52 @@ extension TimelineViewController: NSTableViewDelegate {
 // MARK: - Private
 
 private extension TimelineViewController {
+
+	// MARK: Mark Read on Scroll
+
+	func startObservingScrollViewForMarkReadOnScroll() {
+		guard !isObservingScrollViewClipView, let clipView = tableView.enclosingScrollView?.contentView else {
+			return
+		}
+		isObservingScrollViewClipView = true
+		NotificationCenter.default.addObserver(self, selector: #selector(scrollViewClipViewBoundsDidChange(_:)), name: NSView.boundsDidChangeNotification, object: clipView)
+	}
+
+	@objc func scrollViewClipViewBoundsDidChange(_ note: Notification) {
+		markVisibleArticlesAsReadIfNeeded()
+	}
+
+	func markVisibleArticlesAsReadIfNeeded() {
+		guard AppDefaults.shared.isMarkReadOnScrollEnabled else {
+			return
+		}
+
+		let feedIdentifier = representedObjects?.first?.sidebarItemID?.description
+		if feedIdentifier != markReadOnScrollFeedIdentifier {
+			markReadOnScrollFeedIdentifier = feedIdentifier
+			markReadOnScrollHandledIDs.removeAll()
+		}
+
+		let visibleRowRange = tableView.rows(in: tableView.visibleRect)
+		guard visibleRowRange.length > 0 else {
+			return
+		}
+
+		var visibleArticles = [Article]()
+		for row in Int(visibleRowRange.location)..<Int(visibleRowRange.max()) {
+			guard row >= 0, row < articles.count else {
+				continue
+			}
+			visibleArticles.append(articles[row])
+		}
+
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: visibleArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		guard !articlesToMark.isEmpty else {
+			return
+		}
+
+		markArticles(Set(articlesToMark), statusKey: .read, flag: true)
+	}
 
 	func fetchAndReplacePreservingSelection() {
 		if let article = oneSelectedArticle, let account = article.account {

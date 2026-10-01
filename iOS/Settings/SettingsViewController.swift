@@ -72,6 +72,7 @@ final class SettingsViewController: UITableViewController {
 	@IBOutlet var refreshClearsReadArticlesSwitch: UISwitch!
 	@IBOutlet var articleThemeDetailLabel: UILabel!
 	@IBOutlet var confirmMarkAllAsReadSwitch: UISwitch!
+	@IBOutlet var markReadOnScrollSwitch: UISwitch!
 	@IBOutlet var showFullscreenArticlesSwitch: UISwitch!
 	@IBOutlet var colorPaletteDetailLabel: UILabel!
 	@IBOutlet var openLinksInNetNewsWire: UISwitch!
@@ -123,6 +124,12 @@ final class SettingsViewController: UITableViewController {
 			confirmMarkAllAsReadSwitch.isOn = true
 		} else {
 			confirmMarkAllAsReadSwitch.isOn = false
+		}
+
+		if AppDefaults.shared.isMarkReadOnScrollEnabled {
+			markReadOnScrollSwitch.isOn = true
+		} else {
+			markReadOnScrollSwitch.isOn = false
 		}
 
 		if AppDefaults.shared.articleFullscreenAvailable {
@@ -385,6 +392,14 @@ final class SettingsViewController: UITableViewController {
 			AppDefaults.shared.confirmMarkAllAsRead = true
 		} else {
 			AppDefaults.shared.confirmMarkAllAsRead = false
+		}
+	}
+
+	@IBAction func switchMarkReadOnScroll(_ sender: Any) {
+		if markReadOnScrollSwitch.isOn {
+			AppDefaults.shared.isMarkReadOnScrollEnabled = true
+		} else {
+			AppDefaults.shared.isMarkReadOnScrollEnabled = false
 		}
 	}
 

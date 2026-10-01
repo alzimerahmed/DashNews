@@ -249,6 +249,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="MkR-ScRoLl-01" customClass="VibrantTableViewCell" customModule="DashNews" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="684.5" width="374" height="51.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MkR-ScRoLl-01" id="MkR-ScRoLl-02">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Mark Read on Scroll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkR-ScRoLl-04">
+                                                    <rect key="frame" x="20" y="15" width="191.5" height="21.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MkR-ScRoLl-03">
+                                                    <rect key="frame" x="293" y="12" width="63" height="28"/>
+                                                    <color key="onTintColor" name="primaryAccentColor"/>
+                                                    <connections>
+                                                        <action selector="switchMarkReadOnScroll:" destination="a0p-rk-skQ" eventType="valueChanged" id="MkR-ScRoLl-05"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MkR-ScRoLl-04" firstAttribute="top" secondItem="MkR-ScRoLl-02" secondAttribute="topMargin" id="MkR-ScRoLl-20"/>
+                                                <constraint firstItem="MkR-ScRoLl-03" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MkR-ScRoLl-04" secondAttribute="trailing" constant="8" id="MkR-ScRoLl-21"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MkR-ScRoLl-03" secondAttribute="bottom" constant="6" id="MkR-ScRoLl-22"/>
+                                                <constraint firstItem="MkR-ScRoLl-03" firstAttribute="centerY" secondItem="MkR-ScRoLl-02" secondAttribute="centerY" id="MkR-ScRoLl-23"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MkR-ScRoLl-04" secondAttribute="bottom" id="MkR-ScRoLl-24"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MkR-ScRoLl-03" secondAttribute="trailing" id="MkR-ScRoLl-26"/>
+                                                <constraint firstItem="MkR-ScRoLl-03" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MkR-ScRoLl-02" secondAttribute="top" constant="6" id="MkR-ScRoLl-25"/>
+                                                <constraint firstItem="MkR-ScRoLl-04" firstAttribute="leading" secondItem="MkR-ScRoLl-02" secondAttribute="leadingMargin" id="MkR-ScRoLl-27"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="8Gj-qz-NMY" customClass="VibrantBasicTableViewCell" customModule="DashNews" customModuleProvider="target">
                                         <rect key="frame" x="20" y="684.5" width="374" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -658,6 +691,7 @@
                         <outlet property="articleThemeDetailLabel" destination="DUf-DZ-3Nm" id="QHN-Le-zyw"/>
                         <outlet property="colorPaletteDetailLabel" destination="16m-Ns-Y8V" id="zdj-Ag-ZUw"/>
                         <outlet property="confirmMarkAllAsReadSwitch" destination="UOo-9z-IuL" id="yLZ-Kf-wDt"/>
+                        <outlet property="markReadOnScrollSwitch" destination="MkR-ScRoLl-03" id="MkR-ScRoLl-06"/>
                         <outlet property="enableJavaScriptSwitch" destination="Djo-HE-LWS" id="muL-I5-eDE"/>
                         <outlet property="groupByFeedSwitch" destination="JNi-Wz-RbU" id="TwH-Kd-o6N"/>
                         <outlet property="openLinksInNetNewsWire" destination="dhR-L2-PX3" id="z1b-pX-bwG"/>

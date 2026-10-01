@@ -63,6 +63,9 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 		}
 	}
 
+	private var markReadOnScrollHandledIDs = Set<String>()
+	private var markReadOnScrollFeedIdentifier: String?
+
 	private var timelineIconImage: IconImage? {
 		assert(coordinator != nil)
 		return coordinator?.timelineIconImage
@@ -520,6 +523,10 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 // MARK: - UICollectionViewDelegate
 
 extension MainTimelineModernViewController: UICollectionViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		markVisibleArticlesAsReadIfNeeded()
+	}
+
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		becomeFirstResponder()
 		if let dataSource {
@@ -664,6 +671,34 @@ extension MainTimelineModernViewController {
 
 // MARK: Private API
 private extension MainTimelineModernViewController {
+
+	// MARK: Mark Read on Scroll
+
+	func markVisibleArticlesAsReadIfNeeded() {
+		guard AppDefaults.shared.isMarkReadOnScrollEnabled else {
+			return
+		}
+		guard let collectionView, let articles else {
+			return
+		}
+
+		let feedIdentifier = timelineFeed?.sidebarItemID?.description
+		if feedIdentifier != markReadOnScrollFeedIdentifier {
+			markReadOnScrollFeedIdentifier = feedIdentifier
+			markReadOnScrollHandledIDs.removeAll()
+		}
+
+		let visibleArticles = collectionView.indexPathsForVisibleItems
+			.sorted()
+			.compactMap { dataSource?.itemIdentifier(for: $0) }
+
+		let articlesToMark = MarkReadOnScroll.articlesToMark(in: visibleArticles, handledArticleIDs: &markReadOnScrollHandledIDs)
+		guard !articlesToMark.isEmpty else {
+			return
+		}
+
+		markArticles(Set(articlesToMark), statusKey: .read, flag: true)
+	}
 
 	func addNotificationObservers() {
 		NotificationCenter.default.addObserver(self, selector: #selector(unreadCountDidChange(_:)), name: .UnreadCountDidChange, object: nil)
