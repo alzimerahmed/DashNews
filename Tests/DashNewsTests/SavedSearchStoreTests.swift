@@ -13,7 +13,7 @@ import XCTest
 
 	// XCTest calls setUp/tearDown from a nonisolated context; all access is
 	// still on the main thread, so the unsafe annotation is sound here.
-	@nonisolated(unsafe) private var fileURL: URL!
+	nonisolated(unsafe) private var fileURL: URL!
 
 	override func setUp() {
 		super.setUp()
