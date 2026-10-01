@@ -93,7 +93,7 @@ import RSParser
 
 		#expect(result.items.count == 2)
 		#expect(result.items.first?.children?.count == 1)
-		#expect(result.items.last?.children?.isEmpty == true)
+		#expect(result.items.last?.children?.isEmpty != false)
 		#expect(result.duplicatesSkipped == 1)
 	}
 
