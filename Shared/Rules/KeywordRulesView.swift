@@ -39,9 +39,12 @@ import Articles
 						.deleteDisabled(false)
 					}
 					.onDelete { indexSet in
-						for index in indexSet {
-							let rule = store.rules(forFeedID: feed.feedID)[index]
-							store.remove(id: rule.id)
+						let feedRules = store.rules(forFeedID: feed.feedID)
+						let idsToRemove = indexSet.compactMap { index in
+							feedRules.indices.contains(index) ? feedRules[index].id : nil
+						}
+						for id in idsToRemove {
+							store.remove(id: id)
 						}
 					}
 					if store.rules(forFeedID: feed.feedID).isEmpty {
