@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import SwiftUI
 import RSCore
 import Articles
 import Account
@@ -113,6 +114,82 @@ extension TimelineViewController {
 		}
 		sharingCommandInfo.perform()
 	}
+
+	@objc func sendToInstapaperFromContextualMenu(_ sender: Any?) {
+		guard let menuItem = sender as? NSMenuItem, let urlString = menuItem.representedObject as? String, let url = URL(string: urlString) else {
+			return
+		}
+
+		let send: () -> Void = {
+			Task { @MainActor in
+				do {
+					try await InstapaperService.send(url: url, title: nil)
+				} catch {
+					NSApplication.shared.presentError(error)
+				}
+			}
+		}
+
+		guard InstapaperService.isConfigured else {
+			presentInstapaperCredentialsPrompt(completion: send)
+			return
+		}
+		send()
+	}
+
+	@objc func translateArticleFromContextualMenu(_ sender: Any?) {
+		guard let menuItem = sender as? NSMenuItem,
+			  let article = menuItem.representedObject as? Article,
+			  let window = view.window else {
+			return
+		}
+		guard #available(iOS 17.4, macOS 14.4, *) else {
+			return
+		}
+		let text = KeywordRuleMatcher.searchableText(of: article)
+		guard !text.isEmpty else {
+			return
+		}
+		let hostingController = NSHostingController(rootView: ArticleTranslationView(sourceText: text))
+		let translationWindow = NSWindow(contentViewController: hostingController)
+		translationWindow.styleMask = [.titled, .closable, .resizable]
+		translationWindow.setContentSize(NSSize(width: 520, height: 560))
+		window.beginSheet(translationWindow)
+	}
+
+	func presentInstapaperCredentialsPrompt(completion: @escaping () -> Void) {
+		let alert = NSAlert()
+		alert.messageText = NSLocalizedString("Instapaper Account", comment: "Instapaper account setup title")
+		alert.informativeText = NSLocalizedString("Enter your Instapaper username and password to save articles for later.", comment: "Instapaper account setup message")
+		alert.addButton(withTitle: NSLocalizedString("Save", comment: "Save button"))
+		alert.addButton(withTitle: NSLocalizedString("Cancel", comment: "Cancel button"))
+
+		let usernameField = NSTextField(frame: NSRect(x: 0, y: 0, width: 240, height: 22))
+		usernameField.placeholderString = NSLocalizedString("Username", comment: "Username")
+		let passwordField = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 240, height: 22))
+		passwordField.placeholderString = NSLocalizedString("Password", comment: "Password")
+		let stack = NSStackView(views: [NSTextField(labelWithString: NSLocalizedString("Username", comment: "Username")), usernameField, NSTextField(labelWithString: NSLocalizedString("Password", comment: "Password")), passwordField])
+		stack.orientation = .vertical
+		stack.alignment = .leading
+		stack.spacing = 6.0
+		stack.frame = NSRect(x: 0, y: 0, width: 240, height: 110)
+		alert.window.accessoryView = stack
+
+		guard let window = view.window else {
+			return
+		}
+		alert.beginSheetModal(for: window) { response in
+			guard response == .alertFirstButtonReturn else {
+				return
+			}
+			do {
+				try InstapaperService.saveCredentials(username: usernameField.stringValue, password: passwordField.stringValue)
+				completion()
+			} catch {
+				NSApplication.shared.presentError(error)
+			}
+		}
+	}
 }
 
 private extension TimelineViewController {
@@ -183,12 +260,18 @@ private extension TimelineViewController {
 		if articles.count == 1, let link = articles.first!.preferredLink {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
+			menu.addItem(menuItem(NSLocalizedString("Send to Instapaper", comment: "Command"), #selector(sendToInstapaperFromContextualMenu(_:)), link))
 			menu.addSeparatorIfNeeded()
 			menu.addItem(copyArticleURLMenuItem(link))
 
 			if let externalLink = articles.first?.externalLink, externalLink != link {
 				menu.addItem(copyExternalURLMenuItem(externalLink))
 			}
+		}
+
+		if articles.count == 1, let singleArticle = articles.first {
+			menu.addSeparatorIfNeeded()
+			menu.addItem(menuItem(NSLocalizedString("Translate Article", comment: "Command"), #selector(translateArticleFromContextualMenu(_:)), singleArticle))
 		}
 
 		menu.addSeparatorIfNeeded()

@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Articles
 import Account
 import RSCore
@@ -156,6 +157,19 @@ extension SidebarViewController {
 		NotificationCenter.default.post(Notification(name: .DidUpdateFeedPreferencesFromContextMenu))
 	}
 
+	@objc func editKeywordRulesFromContextualMenu(_ sender: Any?) {
+		guard let item = sender as? NSMenuItem,
+			  let feed = item.representedObject as? Feed,
+			  let window = view.window else {
+			return
+		}
+		let hostingController = NSHostingController(rootView: KeywordRulesView(feed: feed))
+		let rulesWindow = NSWindow(contentViewController: hostingController)
+		rulesWindow.styleMask = [.titled, .closable, .resizable]
+		rulesWindow.setContentSize(NSSize(width: 460, height: 480))
+		window.beginSheet(rulesWindow)
+	}
+
 	nonisolated func showNotificationsNotEnabledAlert() {
 		DispatchQueue.main.async {
 			let alert = NSAlert()
@@ -254,6 +268,8 @@ private extension SidebarViewController {
 
 		articleExtractorMenuItem.state = feed.readerViewAlwaysEnabled ? .on : .off
 		menu.addItem(articleExtractorMenuItem)
+
+		menu.addItem(menuItem(NSLocalizedString("Edit Keyword Rules", comment: "Command"), #selector(editKeywordRulesFromContextualMenu(_:)), feed))
 
 		menu.addItem(NSMenuItem.separator())
 

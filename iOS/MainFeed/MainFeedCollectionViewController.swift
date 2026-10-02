@@ -9,6 +9,7 @@
 import UIKit
 import os
 import SafariServices
+import SwiftUI
 import UniformTypeIdentifiers
 import WebKit
 import RSCore
@@ -1099,6 +1100,10 @@ extension MainFeedCollectionViewController {
 				menuElements.append(UIMenu(title: "", options: .displayInline, children: [inspectorAction]))
 			}
 
+			if let rulesAction = self.editKeywordRulesAction(indexPath: indexPath) {
+				menuElements.append(UIMenu(title: "", options: .displayInline, children: [rulesAction]))
+			}
+
 			if let homePageAction = self.homePageAction(indexPath: indexPath) {
 				menuElements.append(UIMenu(title: "", options: .displayInline, children: [homePageAction]))
 			}
@@ -1355,6 +1360,25 @@ extension MainFeedCollectionViewController {
 			self?.coordinator.showFeedInspector(for: feed)
 		}
 		return action
+	}
+
+	func editKeywordRulesAction(indexPath: IndexPath) -> UIAction? {
+		guard let feed = dataSource.itemIdentifier(for: indexPath)?.node.representedObject as? Feed else {
+			return nil
+		}
+
+		let title = NSLocalizedString("Edit Keyword Rules", comment: "Command")
+		let action = UIAction(title: title, image: UIImage(systemName: "highlighter")) { [weak self] _ in
+			self?.showKeywordRules(for: feed)
+		}
+		return action
+	}
+
+	func showKeywordRules(for feed: Feed) {
+		let rulesController = UIHostingController(rootView: KeywordRulesView(feed: feed))
+		let navigationController = UINavigationController(rootViewController: rulesController)
+		navigationController.modalPresentationStyle = .formSheet
+		present(navigationController, animated: true)
 	}
 
 	func getAccountInfoAction(account: Account) -> UIAction {

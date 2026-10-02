@@ -1363,7 +1363,7 @@ private extension TimelineViewController {
 				fetchedArticles.formUnion(articles)
 			}
 		}
-		return fetchedArticles
+		return FetchRequestOperation.filterHiddenArticles(fetchedArticles)
 	}
 
 	func fetchUnsortedArticlesAsync(for representedObjects: [Any], completion: @escaping ArticleSetBlock) {

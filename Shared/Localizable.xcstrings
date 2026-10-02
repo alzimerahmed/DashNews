@@ -1,6 +1,222 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Send to Instapaper" : {
+      "comment" : "Command",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send to Instapaper"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "comment" : "Username field label",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        }
+      }
+    },
+    "Edit Keyword Rules" : {
+      "comment" : "Command",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Keyword Rules"
+          }
+        }
+      }
+    },
+    "Translate Article" : {
+      "comment" : "Translate article command",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Translate Article"
+          }
+        }
+      }
+    },
+    "Translate" : {
+      "comment" : "Translation screen title",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Translate"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "comment" : "Translation language picker button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        }
+      }
+    },
+    "Highlight" : {
+      "comment" : "Keyword rule action",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highlight"
+          }
+        }
+      }
+    },
+    "Add Rule" : {
+      "comment" : "Add keyword rule button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Rule"
+          }
+        }
+      }
+    },
+    "Rules" : {
+      "comment" : "Keyword rules section header",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rules"
+          }
+        }
+      }
+    },
+    "Keyword" : {
+      "comment" : "Keyword text field placeholder",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyword"
+          }
+        }
+      }
+    },
+    "Action" : {
+      "comment" : "Keyword rule action picker label",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
+          }
+        }
+      }
+    },
+    "Instapaper Account" : {
+      "comment" : "Instapaper account setup title",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instapaper Account"
+          }
+        }
+      }
+    },
+    "Instapaper Error" : {
+      "comment" : "Instapaper error title",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instapaper Error"
+          }
+        }
+      }
+    },
+    "Saved to Instapaper" : {
+      "comment" : "Instapaper success message",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved to Instapaper"
+          }
+        }
+      }
+    },
+    "Translation Unavailable" : {
+      "comment" : "Translation failure title",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Translation Unavailable"
+          }
+        }
+      }
+    },
+    "Enter your Instapaper username and password to save articles for later." : {
+      "comment" : "Instapaper account setup message",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your Instapaper username and password to save articles for later."
+          }
+        }
+      }
+    },
+    "The article could not be translated." : {
+      "comment" : "Translation failure message",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The article could not be translated."
+          }
+        }
+      }
+    },
+    "No rules for this feed. Articles matching a hide rule are removed from the timeline; matches in a highlight rule are marked in the article text." : {
+      "comment" : "Keyword rules empty state",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rules for this feed. Articles matching a hide rule are removed from the timeline; matches in a highlight rule are marked in the article text."
+          }
+        }
+      }
+    },
     "Article Display" : {
       "extractionState" : "manual",
       "localizations" : {
