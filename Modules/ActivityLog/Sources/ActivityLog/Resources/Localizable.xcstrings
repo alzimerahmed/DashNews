@@ -46,16 +46,48 @@
       }
     },
     "Downloading avatar %@" : {
-      "comment" : "Activity kind — downloading an author avatar — %@ is the URL"
+      "comment" : "Activity kind — downloading an author avatar — %@ is the URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando avatar %@"
+          }
+        }
+      }
     },
     "Downloading favicon %@" : {
-      "comment" : "Activity kind — downloading a favicon — %@ is the URL"
+      "comment" : "Activity kind — downloading a favicon — %@ is the URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando favicon %@"
+          }
+        }
+      }
     },
     "Downloading image %@" : {
-      "comment" : "Activity kind — downloading a feed image — %@ is the URL"
+      "comment" : "Activity kind — downloading a feed image — %@ is the URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando imagen %@"
+          }
+        }
+      }
     },
     "Downloading metadata %@" : {
-      "comment" : "Activity kind — downloading HTML metadata — %@ is the URL"
+      "comment" : "Activity kind — downloading HTML metadata — %@ is the URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando metadatos %@"
+          }
+        }
+      }
     },
     "Exporting OPML" : {
       "comment" : "Activity kind",
@@ -102,13 +134,37 @@
       }
     },
     "Feed redirect" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redirección de fuente"
+          }
+        }
+      }
     },
     "Fetching %@" : {
-      "comment" : "Activity kind — fetching a candidate URL during feed finding"
+      "comment" : "Activity kind — fetching a candidate URL during feed finding",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obteniendo %@"
+          }
+        }
+      }
     },
     "Fetching article IDs" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obteniendo ID de artículos"
+          }
+        }
+      }
     },
     "Fetching iCloud stats" : {
       "comment" : "Activity kind",
@@ -122,7 +178,15 @@
       }
     },
     "Finding feed %@" : {
-      "comment" : "Activity kind — finding a feed at %@ URL"
+      "comment" : "Activity kind — finding a feed at %@ URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscando fuente %@"
+          }
+        }
+      }
     },
     "HTML Metadata" : {
       "comment" : "Activity owner name",
@@ -158,7 +222,15 @@
       }
     },
     "Receiving sync notification" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibiendo notificación de sincronización"
+          }
+        }
+      }
     },
     "Refresh all" : {
       "comment" : "Activity kind",
@@ -172,7 +244,15 @@
       }
     },
     "Refreshing articles" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizando artículos"
+          }
+        }
+      }
     },
     "Refreshing feed list" : {
       "comment" : "Activity kind",
@@ -186,7 +266,15 @@
       }
     },
     "Refreshing feed: %@" : {
-      "comment" : "Activity kind — refreshing a feed — %@ is the feed name or URL"
+      "comment" : "Activity kind — refreshing a feed — %@ is the feed name or URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizando fuente: %@"
+          }
+        }
+      }
     },
     "Refreshing missing articles" : {
       "comment" : "Activity kind",
@@ -255,7 +343,15 @@
       }
     },
     "Restoring feed" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurando fuente"
+          }
+        }
+      }
     },
     "Restoring folder" : {
       "comment" : "Activity kind",
@@ -269,10 +365,26 @@
       }
     },
     "Scanning iCloud article records" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analizando registros de artículos de iCloud"
+          }
+        }
+      }
     },
     "Scanning iCloud status records" : {
-      "comment" : "Activity kind"
+      "comment" : "Activity kind",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analizando registros de estado de iCloud"
+          }
+        }
+      }
     },
     "Sending statuses" : {
       "comment" : "Activity kind",

@@ -10,6 +10,12 @@
             "state" : "translated",
             "value" : "Send to Instapaper"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar a Instapaper"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Username"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de usuario"
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "translated",
             "value" : "Edit Keyword Rules"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar reglas de palabras clave"
+          }
         }
       }
     },
@@ -45,6 +63,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Translate Article"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traducir artículo"
           }
         }
       }
@@ -58,6 +82,12 @@
             "state" : "translated",
             "value" : "Translate"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traducir"
+          }
         }
       }
     },
@@ -69,6 +99,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Language"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma"
           }
         }
       }
@@ -82,6 +118,12 @@
             "state" : "translated",
             "value" : "Highlight"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resaltar"
+          }
         }
       }
     },
@@ -93,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add Rule"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir regla"
           }
         }
       }
@@ -106,6 +154,12 @@
             "state" : "translated",
             "value" : "Rules"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglas"
+          }
         }
       }
     },
@@ -117,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keyword"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palabra clave"
           }
         }
       }
@@ -130,6 +190,12 @@
             "state" : "translated",
             "value" : "Action"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acción"
+          }
         }
       }
     },
@@ -141,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instapaper Account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta de Instapaper"
           }
         }
       }
@@ -154,6 +226,12 @@
             "state" : "translated",
             "value" : "Instapaper Error"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de Instapaper"
+          }
         }
       }
     },
@@ -165,6 +243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saved to Instapaper"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardado en Instapaper"
           }
         }
       }
@@ -178,6 +262,12 @@
             "state" : "translated",
             "value" : "Translation Unavailable"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traducción no disponible"
+          }
         }
       }
     },
@@ -189,6 +279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter your Instapaper username and password to save articles for later."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce tu nombre de usuario y contraseña de Instapaper para guardar artículos para leer más tarde."
           }
         }
       }
@@ -202,6 +298,12 @@
             "state" : "translated",
             "value" : "The article could not be translated."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo traducir el artículo."
+          }
         }
       }
     },
@@ -214,6 +316,12 @@
             "state" : "translated",
             "value" : "No rules for this feed. Articles matching a hide rule are removed from the timeline; matches in a highlight rule are marked in the article text."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay reglas para esta fuente. Los artículos que coinciden con una regla de ocultación se eliminan de la cronología; las coincidencias de una regla de resaltado se marcan en el texto del artículo."
+          }
         }
       }
     },
@@ -224,6 +332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Article Display"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presentación del artículo"
           }
         }
       }
@@ -236,6 +350,12 @@
             "state" : "translated",
             "value" : "Text Size"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño del texto"
+          }
         }
       }
     },
@@ -246,6 +366,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Theme"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
           }
         }
       }
@@ -258,6 +384,12 @@
             "state" : "translated",
             "value" : "Import Complete"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importación completada"
+          }
         }
       }
     },
@@ -268,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your subscriptions were imported."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se importaron tus suscripciones."
           }
         }
       }
@@ -280,6 +418,12 @@
             "state" : "translated",
             "value" : "Your subscriptions were imported. %ld duplicate feed(s) were skipped."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se importaron tus suscripciones. Se omitieron %ld fuentes duplicadas."
+          }
         }
       }
     },
@@ -287,14 +431,38 @@
       
     },
     "(last downloaded %@)" : {
-      "comment" : "Activity log — when HTML metadata for a URL was last downloaded — %@ is a date"
+      "comment" : "Activity log — when HTML metadata for a URL was last downloaded — %@ is a date",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(última descarga: %@)"
+          }
+        }
+      }
     },
     "(No Text)" : {
-      "comment" : "No Text"
+      "comment" : "No Text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Sin texto)"
+          }
+        }
+      }
     },
     "[netnewswire.com](https://netnewswire.com/)" : {
       "comment" : "A link to the NetNewsWire website.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[netnewswire.com](https://netnewswire.com/)"
+          }
+        }
+      }
     },
     "%@ of %@" : {
       "comment" : "Status bar progress",
@@ -303,6 +471,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ of %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ de %2$@"
           }
         }
       }
@@ -315,544 +489,1961 @@
             "state" : "new",
             "value" : "%1$d of %2$d"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d de %2$d"
+          }
         }
       }
     },
     "%d unread" : {
-      "comment" : "Unread"
+      "comment" : "Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d no leídos"
+          }
+        }
+      }
     },
     "%i Unread" : {
-      "comment" : "14 Unread"
+      "comment" : "14 Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%i no leídos"
+          }
+        }
+      }
     },
     "%lld months" : {
-      "comment" : "Dinosaur staleness threshold in months"
+      "comment" : "Dinosaur staleness threshold in months",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld meses"
+          }
+        }
+      }
     },
     "🦖 Dinosaurs" : {
       "comment" : "The title of the Dinosaurs screen.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🦖 Dinosaurios"
+          }
+        }
+      }
     },
     "A to Z" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De la A a la Z"
+          }
+        }
+      }
     },
     "A web browser will open the Feedly login for you to authorize access." : {
-      "comment" : "Alert informative text when adding a Feedly account and waiting for authorization from the user."
+      "comment" : "Alert informative text when adding a Feedly account and waiting for authorization from the user.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se abrirá un navegador web con el inicio de sesión de Feedly para que autorices el acceso."
+          }
+        }
+      }
     },
     "Account" : {
-      "comment" : "Account"
+      "comment" : "Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta"
+          }
+        }
+      }
     },
     "Account Error" : {
-      "comment" : "Account Error"
+      "comment" : "Account Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de cuenta"
+          }
+        }
+      }
     },
     "Account Stats" : {
-      "comment" : "Account Stats screen title"
+      "comment" : "Account Stats screen title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadísticas de cuenta"
+          }
+        }
+      }
     },
     "Account Stats Help" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda de Estadísticas de cuenta"
+          }
+        }
+      }
     },
     "Accounts" : {
-      "comment" : "Preferences"
+      "comment" : "Preferences",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuentas"
+          }
+        }
+      }
     },
     "Active" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activo"
+          }
+        }
+      }
     },
     "Activity Log" : {
-      "comment" : "Activity Log screen title"
+      "comment" : "Activity Log screen title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro de actividad"
+          }
+        }
+      }
     },
     "Activity Log Help" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda del Registro de actividad"
+          }
+        }
+      }
     },
     "Activity may contain feed URLs and other information you may not want to share publicly." : {
-      "comment" : "Activity log privacy warning"
+      "comment" : "Activity log privacy warning",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La actividad puede contener URL de fuentes y otra información que quizá no quieras compartir públicamente."
+          }
+        }
+      }
     },
     "Add" : {
-      "comment" : "Add button"
+      "comment" : "Add button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir"
+          }
+        }
+      }
     },
     "Add ${url} to ${accountName}" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir ${url} a ${accountName}"
+          }
+        }
+      }
     },
     "Add Account" : {
-      "comment" : "Add Account"
+      "comment" : "Add Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir cuenta"
+          }
+        }
+      }
     },
     "Add an account by clicking the + button." : {
-      "comment" : "Add Account Explainer"
+      "comment" : "Add Account Explainer",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade una cuenta pulsando el botón +."
+          }
+        }
+      }
     },
     "Add Feed" : {
-      "comment" : "Add Feed"
+      "comment" : "Add Feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir fuente"
+          }
+        }
+      }
     },
     "Add Folder" : {
-      "comment" : "Add Folder"
+      "comment" : "Add Folder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir carpeta"
+          }
+        }
+      }
     },
     "Add Item" : {
-      "comment" : "Add Item"
+      "comment" : "Add Item",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir elemento"
+          }
+        }
+      }
     },
     "Adding %@ to NetNewsWire." : {
       "comment" : "A description of an action that adds a feed to a folder.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadiendo %@ a NetNewsWire."
+          }
+        }
+      }
     },
     "Adds a feed to NetNewsWire." : {
       "comment" : "Intent description for the \"Add Feed\" app intent.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade una fuente a NetNewsWire."
+          }
+        }
+      }
     },
     "Advanced" : {
-      "comment" : "Preferences"
+      "comment" : "Preferences",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avanzado"
+          }
+        }
+      }
     },
     "All Articles" : {
-      "comment" : "All Articles"
+      "comment" : "All Articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos los artículos"
+          }
+        }
+      }
     },
     "All Unread" : {
-      "comment" : "All Unread pseudo-feed title"
+      "comment" : "All Unread pseudo-feed title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos los no leídos"
+          }
+        }
+      }
     },
     "Already added" : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya añadida"
+          }
+        }
+      }
     },
     "Always Use Reader View" : {
-      "comment" : "Always Use Reader View"
+      "comment" : "Always Use Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar siempre la vista de lector"
+          }
+        }
+      }
     },
     "API URL: https://fresh.rss.net/api/greader.php" : {
-      "comment" : "FreshRSS API Helper"
+      "comment" : "FreshRSS API Helper",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL de la API: https://fresh.rss.net/api/greader.php"
+          }
+        }
+      }
     },
     "Are you sure you want to delete %d feeds?" : {
-      "comment" : "Delete feeds alert message"
+      "comment" : "Delete feeds alert message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar %d fuentes?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the “%@” feed?" : {
-      "comment" : "Feed delete text"
+      "comment" : "Feed delete text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar la fuente «%@»?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the “%@” folder?" : {
-      "comment" : "Folder delete text"
+      "comment" : "Folder delete text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar la carpeta «%@»?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the %d selected items?" : {
-      "comment" : "Items delete text"
+      "comment" : "Items delete text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar los %d elementos seleccionados?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the feed “%@”?" : {
-      "comment" : "Delete feed alert message"
+      "comment" : "Delete feed alert message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar la fuente «%@»?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the feed ”%@”?" : {
-      "comment" : "Delete feed confirmation text."
+      "comment" : "Delete feed confirmation text.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar la fuente «%@»?"
+          }
+        }
+      }
     },
     "Are you sure you want to delete the theme “%@”?." : {
-      "comment" : "Delete Theme Message"
+      "comment" : "Delete Theme Message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar el tema «%@»?"
+          }
+        }
+      }
     },
     "Are you sure you want to remove this account? NetNewsWire will no longer be able to access articles and feeds unless the account is added again." : {
-      "comment" : "Log Out and Remove Account"
+      "comment" : "Log Out and Remove Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar esta cuenta? NetNewsWire no podrá acceder a los artículos y las fuentes a menos que vuelvas a añadir la cuenta."
+          }
+        }
+      }
     },
     "Are you sure you want to remove this account? This cannot be undone." : {
-      "comment" : "Remove Account"
+      "comment" : "Remove Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar esta cuenta? Esta acción no se puede deshacer."
+          }
+        }
+      }
     },
     "Article" : {
-      "comment" : "Article"
+      "comment" : "Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo"
+          }
+        }
+      }
     },
     "Article Content Records" : {
-      "comment" : "Article content records header"
+      "comment" : "Article content records header",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros de contenido de artículos"
+          }
+        }
+      }
     },
     "Article Search" : {
-      "comment" : "Article Search"
+      "comment" : "Article Search",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar artículos"
+          }
+        }
+      }
     },
     "Article Theme" : {
-      "comment" : "Article Theme"
+      "comment" : "Article Theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema del artículo"
+          }
+        }
+      }
     },
     "Articles" : {
-      "comment" : "Articles"
+      "comment" : "Articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículos"
+          }
+        }
+      }
     },
     "Ascending" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo más antiguo arriba"
+          }
+        }
+      }
     },
     "Author‘s website:" : {
-      "comment" : "Author's Website"
+      "comment" : "Author's Website",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitio web del autor:"
+          }
+        }
+      }
     },
     "Author’s website:\n%@" : {
-      "comment" : "Authors website"
+      "comment" : "Authors website",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitio web del autor:\n%@"
+          }
+        }
+      }
     },
     "Automatic" : {
-      "comment" : "Automatic"
+      "comment" : "Automatic",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automático"
+          }
+        }
+      }
     },
     "Can’t add a feed because no feed was found." : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir una fuente porque no se encontró ninguna."
+          }
+        }
+      }
     },
     "Can’t Add iCloud Account" : {
-      "comment" : "CloudKit account setup failure description — iCloud Drive not enabled."
+      "comment" : "CloudKit account setup failure description — iCloud Drive not enabled.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir la cuenta de iCloud"
+          }
+        }
+      }
     },
     "Can’t add this feed because of a download error: “%@”" : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir esta fuente por un error de descarga: «%@»"
+          }
+        }
+      }
     },
     "Can’t add this feed because you’ve already added it in %@." : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir esta fuente porque ya la añadiste en %@."
+          }
+        }
+      }
     },
     "Can’t add this feed because you’ve already added it." : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir esta fuente porque ya la añadiste."
+          }
+        }
+      }
     },
     "Cancel" : {
-      "comment" : "Cancel button"
+      "comment" : "Cancel button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
     },
     "Canceled." : {
-      "comment" : "Scan status text when canceled"
+      "comment" : "Scan status text when canceled",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelado."
+          }
+        }
+      }
     },
     "Choose a location for the exported OPML file." : {
-      "comment" : "Export OPML"
+      "comment" : "Export OPML",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una ubicación para el archivo OPML exportado."
+          }
+        }
+      }
     },
     "Choose a Subscriptions.plist file:" : {
-      "comment" : "NNW3 Import"
+      "comment" : "NNW3 Import",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige un archivo Subscriptions.plist:"
+          }
+        }
+      }
     },
     "Choose an account to receive the imported feeds and folders" : {
-      "comment" : "Import Account"
+      "comment" : "Import Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una cuenta que recibirá las fuentes y carpetas importadas"
+          }
+        }
+      }
     },
     "Choose an account type to add…" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige un tipo de cuenta para añadir…"
+          }
+        }
+      }
     },
     "Choose an account with the subscriptions to export" : {
-      "comment" : "Export Account"
+      "comment" : "Export Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una cuenta con las suscripciones que exportar"
+          }
+        }
+      }
     },
     "Choose Folder" : {
-      "comment" : "Choose Folder"
+      "comment" : "Choose Folder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elegir carpeta"
+          }
+        }
+      }
     },
     "Clean Up" : {
-      "comment" : "Clean Up button"
+      "comment" : "Clean Up button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpiar"
+          }
+        }
+      }
     },
     "Clean Up iCloud Records" : {
-      "comment" : "Clean up alert title"
+      "comment" : "Clean up alert title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpiar registros de iCloud"
+          }
+        }
+      }
     },
     "Clean Up…" : {
-      "comment" : "Clean up button"
+      "comment" : "Clean up button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpiar…"
+          }
+        }
+      }
     },
     "Cleanup canceled." : {
-      "comment" : "Cleanup status text when canceled"
+      "comment" : "Cleanup status text when canceled",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpieza cancelada."
+          }
+        }
+      }
     },
     "Cleanup failed to complete, but you may be able to clean up more if you wait a few minutes and try again." : {
-      "comment" : "Cleanup error message"
+      "comment" : "Cleanup error message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La limpieza no pudo completarse, pero quizá puedas limpiar más si esperas unos minutos y lo intentas de nuevo."
+          }
+        }
+      }
     },
     "Cleanup failed to complete, but you may be able to clean up more if you wait a few minutes and try again.\n\nClick Refresh to see your updated stats." : {
-      "comment" : "Cleanup error message"
+      "comment" : "Cleanup error message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La limpieza no pudo completarse, pero quizá puedas limpiar más si esperas unos minutos y lo intentas de nuevo.\n\nPulsa Actualizar para ver tus estadísticas actualizadas."
+          }
+        }
+      }
     },
     "Cleanup progress" : {
-      "comment" : "Progress bar accessibility label"
+      "comment" : "Progress bar accessibility label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progreso de la limpieza"
+          }
+        }
+      }
     },
     "Close" : {
-      "comment" : "Close"
+      "comment" : "Close",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        }
+      }
     },
     "Close Image" : {
-      "comment" : "Close Image"
+      "comment" : "Close Image",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar imagen"
+          }
+        }
+      }
     },
     "Collapse" : {
-      "comment" : "Collapse"
+      "comment" : "Collapse",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraer"
+          }
+        }
+      }
     },
     "Collapsed" : {
-      "comment" : "Collapsed"
+      "comment" : "Collapsed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraído"
+          }
+        }
+      }
     },
     "Completed" : {
-      "comment" : "Completed"
+      "comment" : "Completed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completado"
+          }
+        }
+      }
     },
     "Continue" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
+          }
+        }
+      }
     },
     "Copy Article URL" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar URL del artículo"
+          }
+        }
+      }
     },
     "Copy Contents" : {
-      "comment" : "Copy Contents button"
+      "comment" : "Copy Contents button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar contenido"
+          }
+        }
+      }
     },
     "Copy External URL" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar URL externa"
+          }
+        }
+      }
     },
     "Copy Feed URL" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar URL de la fuente"
+          }
+        }
+      }
     },
     "Copy Home Page URL" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar URL de la página de inicio"
+          }
+        }
+      }
     },
     "Couldn’t complete the iCloud scan because of an error:" : {
-      "comment" : "Scan error alert title"
+      "comment" : "Scan error alert title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo completar el análisis de iCloud por un error:"
+          }
+        }
+      }
     },
     "Couldn’t find a place to add the feed." : {
       "comment" : "Error message when the app can’t find a suitable folder to add the feed to.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se encontró un lugar donde añadir la fuente."
+          }
+        }
+      }
     },
     "Create" : {
-      "comment" : "Create"
+      "comment" : "Create",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear"
+          }
+        }
+      }
     },
     "Create a local account on your Mac." : {
-      "comment" : "Account Local"
+      "comment" : "Account Local",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea una cuenta local en tu Mac."
+          }
+        }
+      }
     },
     "Credentials" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credenciales"
+          }
+        }
+      }
     },
     "Current Activity" : {
-      "comment" : "Current Activity"
+      "comment" : "Current Activity",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actividad actual"
+          }
+        }
+      }
     },
     "Current Activity Help" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda de Actividad actual"
+          }
+        }
+      }
     },
     "Dark" : {
-      "comment" : "Dark"
+      "comment" : "Dark",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscuro"
+          }
+        }
+      }
     },
     "Databases" : {
-      "comment" : "Database size row label"
+      "comment" : "Database size row label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bases de datos"
+          }
+        }
+      }
     },
     "Date" : {
-      "comment" : "Timeline column header"
+      "comment" : "Timeline column header",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
+          }
+        }
+      }
     },
     "Deactivate" : {
-      "comment" : "Deactivate"
+      "comment" : "Deactivate",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactivar"
+          }
+        }
+      }
     },
     "Default" : {
-      "comment" : "Default"
+      "comment" : "Default",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predeterminado"
+          }
+        }
+      }
     },
     "Delete" : {
-      "comment" : "Delete button"
+      "comment" : "Delete button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        }
+      }
     },
     "Delete Feed" : {
-      "comment" : "Delete Feed"
+      "comment" : "Delete Feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar fuente"
+          }
+        }
+      }
     },
     "Delete Feeds" : {
-      "comment" : "Delete Feeds"
+      "comment" : "Delete Feeds",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar fuentes"
+          }
+        }
+      }
     },
     "Delete Feeds and Folders" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar fuentes y carpetas"
+          }
+        }
+      }
     },
     "Delete Folder" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar carpeta"
+          }
+        }
+      }
     },
     "Delete Folders" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar carpetas"
+          }
+        }
+      }
     },
     "Delete Items" : {
-      "comment" : "Delete Items"
+      "comment" : "Delete Items",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar elementos"
+          }
+        }
+      }
     },
     "Delete Theme?" : {
-      "comment" : "Delete Theme"
+      "comment" : "Delete Theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar tema?"
+          }
+        }
+      }
     },
     "Deleting read content records…" : {
-      "comment" : "Cleanup phase text"
+      "comment" : "Cleanup phase text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminando registros de contenido leído…"
+          }
+        }
+      }
     },
     "Deleting unread content records…" : {
-      "comment" : "Cleanup phase text"
+      "comment" : "Cleanup phase text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminando registros de contenido no leído…"
+          }
+        }
+      }
     },
     "Descending" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo más reciente arriba"
+          }
+        }
+      }
     },
     "Dinosaurs Help" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda de Dinosaurios"
+          }
+        }
+      }
     },
     "Dismiss" : {
-      "comment" : "Dismiss"
+      "comment" : "Dismiss",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descartar"
+          }
+        }
+      }
     },
     "Don’t have a BazQux account?" : {
-      "comment" : "No BazQux"
+      "comment" : "No BazQux",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿No tienes una cuenta de BazQux?"
+          }
+        }
+      }
     },
     "Don’t have a FreshRSS instance?" : {
-      "comment" : "No FreshRSS"
+      "comment" : "No FreshRSS",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿No tienes una instancia de FreshRSS?"
+          }
+        }
+      }
     },
     "Don’t have a The Old Reader account?" : {
-      "comment" : "No OldReader"
+      "comment" : "No OldReader",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿No tienes una cuenta de The Old Reader?"
+          }
+        }
+      }
     },
     "Don’t have an Inoreader account?" : {
-      "comment" : "No Inoreader"
+      "comment" : "No Inoreader",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿No tienes una cuenta de Inoreader?"
+          }
+        }
+      }
     },
     "Done" : {
-      "comment" : "Done"
+      "comment" : "Done",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "Download Error" : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de descarga"
+          }
+        }
+      }
     },
     "Downloading avatar" : {
-      "comment" : "Downloading avatar"
+      "comment" : "Downloading avatar",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando avatar"
+          }
+        }
+      }
     },
     "Downloading favicon" : {
-      "comment" : "Downloading favicon"
+      "comment" : "Downloading favicon",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando favicon"
+          }
+        }
+      }
     },
     "Downloading image" : {
-      "comment" : "Downloading image"
+      "comment" : "Downloading image",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando imagen"
+          }
+        }
+      }
     },
     "Downloading metadata" : {
-      "comment" : "Downloading metadata"
+      "comment" : "Downloading metadata",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando metadatos"
+          }
+        }
+      }
     },
     "Duplicate Theme" : {
-      "comment" : "Duplicate Theme"
+      "comment" : "Duplicate Theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplicar tema"
+          }
+        }
+      }
     },
     "Email" : {
-      "comment" : "Email field placeholder"
+      "comment" : "Email field placeholder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correo electrónico"
+          }
+        }
+      }
     },
     "Enable Notifications" : {
-      "comment" : "Notifications"
+      "comment" : "Notifications",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar notificaciones"
+          }
+        }
+      }
     },
     "Enable Notifications in Settings" : {
-      "comment" : "Enable Notifications in Settings"
+      "comment" : "Enable Notifications in Settings",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar notificaciones en Ajustes"
+          }
+        }
+      }
     },
     "Error" : {
-      "comment" : "Error"
+      "comment" : "Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
     },
     "Error - Reader View" : {
-      "comment" : "Error - Reader View"
+      "comment" : "Error - Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error - Vista de lector"
+          }
+        }
+      }
     },
     "Error Log" : {
-      "comment" : "Error Log window title"
+      "comment" : "Error Log window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro de errores"
+          }
+        }
+      }
     },
     "Error Log Help" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda del Registro de errores"
+          }
+        }
+      }
     },
     "Errors may contain feed URLs and other information you may not want to share publicly." : {
-      "comment" : "Error log privacy warning"
+      "comment" : "Error log privacy warning",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los errores pueden contener URL de fuentes y otra información que quizá no quieras compartir públicamente."
+          }
+        }
+      }
     },
     "Every 2 Hours" : {
-      "comment" : "Every 2 Hours"
+      "comment" : "Every 2 Hours",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada 2 horas"
+          }
+        }
+      }
     },
     "Every 4 Hours" : {
-      "comment" : "Every 4 Hours"
+      "comment" : "Every 4 Hours",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada 4 horas"
+          }
+        }
+      }
     },
     "Every 8 Hours" : {
-      "comment" : "Every 8 Hours"
+      "comment" : "Every 8 Hours",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada 8 horas"
+          }
+        }
+      }
     },
     "Every 30 Minutes" : {
-      "comment" : "Every 30 Minutes"
+      "comment" : "Every 30 Minutes",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada 30 minutos"
+          }
+        }
+      }
     },
     "Every Hour" : {
-      "comment" : "Every Hour"
+      "comment" : "Every Hour",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cada hora"
+          }
+        }
+      }
     },
     "Expand" : {
-      "comment" : "Expand"
+      "comment" : "Expand",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expandir"
+          }
+        }
+      }
     },
     "Expanded" : {
-      "comment" : "Expanded"
+      "comment" : "Expanded",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expandido"
+          }
+        }
+      }
     },
     "Export OPML" : {
-      "comment" : "Export OPML"
+      "comment" : "Export OPML",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar OPML"
+          }
+        }
+      }
     },
     "Export to:" : {
-      "comment" : "Export OPML"
+      "comment" : "Export OPML",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar a:"
+          }
+        }
+      }
     },
     "Extra Extra Large" : {
-      "comment" : "XX-Large"
+      "comment" : "XX-Large",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extragrande"
+          }
+        }
+      }
     },
     "Extra Large" : {
-      "comment" : "X-Large"
+      "comment" : "X-Large",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muy grande"
+          }
+        }
+      }
     },
     "Failed" : {
-      "comment" : "Failed"
+      "comment" : "Failed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falló"
+          }
+        }
+      }
     },
     "Favicons" : {
-      "comment" : "Activity owner name"
+      "comment" : "Activity owner name",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favicons"
+          }
+        }
+      }
     },
     "Feed" : {
-      "comment" : "Timeline column header"
+      "comment" : "Timeline column header",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente"
+          }
+        }
+      }
     },
     "Feed Inspector" : {
-      "comment" : "Feed Inspector window title"
+      "comment" : "Feed Inspector window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspector de fuente"
+          }
+        }
+      }
     },
     "Feeds" : {
-      "comment" : "Feeds"
+      "comment" : "Feeds",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuentes"
+          }
+        }
+      }
     },
     "Fetching" : {
-      "comment" : "Fetching"
+      "comment" : "Fetching",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obteniendo"
+          }
+        }
+      }
     },
     "Filter Read Articles" : {
-      "comment" : "Filter Read Articles"
+      "comment" : "Filter Read Articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar artículos leídos"
+          }
+        }
+      }
     },
     "Filter Read Feeds" : {
-      "comment" : "Filter Read Feeds"
+      "comment" : "Filter Read Feeds",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrar fuentes leídas"
+          }
+        }
+      }
     },
     "Find in Article" : {
-      "comment" : "Find in Article"
+      "comment" : "Find in Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar en el artículo"
+          }
+        }
+      }
     },
     "Find out more" : {
-      "comment" : "No FreshRSS Button"
+      "comment" : "No FreshRSS Button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más información"
+          }
+        }
+      }
     },
     "Find Out More" : {
-      "comment" : "Find Out More"
+      "comment" : "Find Out More",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más información"
+          }
+        }
+      }
     },
     "Finding feed" : {
-      "comment" : "Finding feed"
+      "comment" : "Finding feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscando fuente"
+          }
+        }
+      }
     },
     "Finding feed…" : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscando fuente…"
+          }
+        }
+      }
     },
     "First Unread" : {
-      "comment" : "First Unread"
+      "comment" : "First Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primero no leído"
+          }
+        }
+      }
     },
     "Folder" : {
       "comment" : "Label for a parameter that lets the user choose a folder.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta"
+          }
+        }
+      }
     },
     "Folder Inspector" : {
-      "comment" : "Folder Inspector window title"
+      "comment" : "Folder Inspector window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspector de carpeta"
+          }
+        }
+      }
     },
     "Folders" : {
-      "comment" : "Folders"
+      "comment" : "Folders",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpetas"
+          }
+        }
+      }
     },
     "from cache" : {
-      "comment" : "Activity log — appended when a download was served from cache instead of the network"
+      "comment" : "Activity log — appended when a download was served from cache instead of the network",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de la caché"
+          }
+        }
+      }
     },
     "General" : {
-      "comment" : "Preferences"
+      "comment" : "Preferences",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        }
+      }
     },
     "Get Feed Info" : {
-      "comment" : "Get Feed Info"
+      "comment" : "Get Feed Info",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtener información de la fuente"
+          }
+        }
+      }
     },
     "Get Info" : {
-      "comment" : "Get Info"
+      "comment" : "Get Info",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtener información"
+          }
+        }
+      }
     },
     "Go To All Unread" : {
-      "comment" : "Go To All Unread"
+      "comment" : "Go To All Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a Todos los no leídos"
+          }
+        }
+      }
     },
     "Go to Feed" : {
-      "comment" : "Go to Feed"
+      "comment" : "Go to Feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a la fuente"
+          }
+        }
+      }
     },
     "Go To Settings" : {
-      "comment" : "Go To Settings"
+      "comment" : "Go To Settings",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a Ajustes"
+          }
+        }
+      }
     },
     "Go To Starred" : {
-      "comment" : "Go To Starred"
+      "comment" : "Go To Starred",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a Destacados"
+          }
+        }
+      }
     },
     "Go To Today" : {
-      "comment" : "Go To Today"
+      "comment" : "Go To Today",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a Hoy"
+          }
+        }
+      }
     },
     "Help" : {
-      "comment" : "Help"
+      "comment" : "Help",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda"
+          }
+        }
+      }
     },
     "Help — opens in browser" : {
-      "comment" : "Help button accessibility label"
+      "comment" : "Help button accessibility label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda — se abre en el navegador"
+          }
+        }
+      }
     },
     "Here" : {
-      "comment" : "Here"
+      "comment" : "Here",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aquí"
+          }
+        }
+      }
     },
     "Hide" : {
-      "comment" : "Hide password button"
+      "comment" : "Hide password button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar"
+          }
+        }
+      }
     },
     "Hide Read Articles" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar artículos leídos"
+          }
+        }
+      }
     },
     "Hide Read Feeds" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar fuentes leídas"
+          }
+        }
+      }
     },
     "How to Optimize iCloud Syncing" : {
-      "comment" : "Help link"
+      "comment" : "Help link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cómo optimizar la sincronización con iCloud"
+          }
+        }
+      }
     },
     "https://fresh.rss.net/api/greader.php" : {
-      "comment" : "FreshRSS API Helper"
+      "comment" : "FreshRSS API Helper",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://fresh.rss.net/api/greader.php"
+          }
+        }
+      }
     },
     "iCloud" : {
-      "comment" : "iCloud Account"
+      "comment" : "iCloud Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud"
+          }
+        }
+      }
     },
     "iCloud storage cleanup completed." : {
-      "comment" : "Cleanup phase text when completed"
+      "comment" : "Cleanup phase text when completed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpieza del almacenamiento de iCloud completada."
+          }
+        }
+      }
     },
     "iCloud Storage Stats" : {
-      "comment" : "iCloud Storage Stats window title"
+      "comment" : "iCloud Storage Stats window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadísticas de almacenamiento de iCloud"
+          }
+        }
+      }
     },
     "Icon Preview" : {
-      "comment" : "Icon Preview"
+      "comment" : "Icon Preview",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista previa del icono"
+          }
+        }
+      }
     },
     "Icon Size" : {
-      "comment" : "Icon Size"
+      "comment" : "Icon Size",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño del icono"
+          }
+        }
+      }
     },
     "Import Failed" : {
-      "comment" : "Import Failed"
+      "comment" : "Import Failed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importación fallida"
+          }
+        }
+      }
     },
     "Import Theme" : {
-      "comment" : "Import Theme"
+      "comment" : "Import Theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar tema"
+          }
+        }
+      }
     },
     "Inspector" : {
-      "comment" : "Inspector window title"
+      "comment" : "Inspector window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspector"
+          }
+        }
+      }
     },
     "Install Theme" : {
-      "comment" : "Install Theme"
+      "comment" : "Install Theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar tema"
+          }
+        }
+      }
     },
     "Install theme “%@” by %@?" : {
       "comment" : "Theme message text",
@@ -862,700 +2453,2532 @@
             "state" : "new",
             "value" : "Install theme “%1$@” by %2$@?"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Instalar el tema «%1$@» de %2$@?"
+          }
         }
       }
     },
     "Invalid API URL." : {
-      "comment" : "Invalid API URL"
+      "comment" : "Invalid API URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL de la API no válida."
+          }
+        }
+      }
     },
     "Invalid email/password combination." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combinación de correo electrónico y contraseña no válida."
+          }
+        }
+      }
     },
     "Invalid username/password combination." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combinación de nombre de usuario y contraseña no válida."
+          }
+        }
+      }
     },
     "Keyboard Shortcuts" : {
-      "comment" : "window title"
+      "comment" : "window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funciones rápidas de teclado"
+          }
+        }
+      }
     },
     "Keychain error while storing credentials." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error del Llavero al guardar las credenciales."
+          }
+        }
+      }
     },
     "Large" : {
-      "comment" : "Large"
+      "comment" : "Large",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grande"
+          }
+        }
+      }
     },
     "Last Article" : {
-      "comment" : "Last Article Date"
+      "comment" : "Last Article Date",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último artículo"
+          }
+        }
+      }
     },
     "Last Response" : {
-      "comment" : "Last HTTP Response"
+      "comment" : "Last HTTP Response",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última respuesta"
+          }
+        }
+      }
     },
     "Light" : {
-      "comment" : "Light"
+      "comment" : "Light",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
     },
     "Link:" : {
-      "comment" : "Link"
+      "comment" : "Link",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace:"
+          }
+        }
+      }
     },
     "Local" : {
-      "comment" : "Local Account"
+      "comment" : "Local Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local"
+          }
+        }
+      }
     },
     "Local accounts do not sync feeds across devices" : {
-      "comment" : "Local Account"
+      "comment" : "Local Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas locales no sincronizan las fuentes entre dispositivos"
+          }
+        }
+      }
     },
     "Local accounts do not sync your feeds across devices." : {
-      "comment" : "Local"
+      "comment" : "Local",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas locales no sincronizan tus fuentes entre dispositivos."
+          }
+        }
+      }
     },
     "Manually" : {
-      "comment" : "Manually"
+      "comment" : "Manually",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manualmente"
+          }
+        }
+      }
     },
     "Mark Above as Read" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar los de arriba como leídos"
+          }
+        }
+      }
     },
     "Mark All as Read" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar todos como leídos"
+          }
+        }
+      }
     },
     "Mark All as Read in “%@”" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar todos como leídos en «%@»"
+          }
+        }
+      }
     },
     "Mark Article Unread" : {
-      "comment" : "Mark Article Unread"
+      "comment" : "Mark Article Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar artículo como no leído"
+          }
+        }
+      }
     },
     "Mark as Read" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como leído"
+          }
+        }
+      }
     },
     "Mark As Read" : {
-      "comment" : "Mark As Read"
+      "comment" : "Mark As Read",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como leído"
+          }
+        }
+      }
     },
     "Mark as Starred" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como destacado"
+          }
+        }
+      }
     },
     "Mark as Unread" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como no leído"
+          }
+        }
+      }
     },
     "Mark as Unstarred" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar destacado"
+          }
+        }
+      }
     },
     "Mark Below as Read" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar los de abajo como leídos"
+          }
+        }
+      }
     },
     "Mark Read" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como leído"
+          }
+        }
+      }
     },
     "Mark Starred" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como destacado"
+          }
+        }
+      }
     },
     "Mark Unread" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como no leído"
+          }
+        }
+      }
     },
     "Mark Unstarred" : {
-      "comment" : "command"
+      "comment" : "command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar destacado"
+          }
+        }
+      }
     },
     "Marked as Read" : {
-      "comment" : "Accessibility announcement"
+      "comment" : "Accessibility announcement",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcado como leído"
+          }
+        }
+      }
     },
     "Marked as Unread" : {
-      "comment" : "Accessibility announcement"
+      "comment" : "Accessibility announcement",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcado como no leído"
+          }
+        }
+      }
     },
     "Medium" : {
-      "comment" : "Medium"
+      "comment" : "Medium",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediano"
+          }
+        }
+      }
     },
     "Menu: Go to Feed, Open Home Page, Copy Feed URL" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú: Ir a la fuente, Abrir página de inicio, Copiar URL de la fuente"
+          }
+        }
+      }
     },
     "More" : {
-      "comment" : "More"
+      "comment" : "More",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más"
+          }
+        }
+      }
     },
     "Multiple" : {
-      "comment" : "Multiple"
+      "comment" : "Multiple",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varios"
+          }
+        }
+      }
     },
     "Name" : {
-      "comment" : "Name field placeholder"
+      "comment" : "Name field placeholder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
     },
     "Name:" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre:"
+          }
+        }
+      }
     },
     "NetNewsWire 7 is dedicated to everyone working to save democracy in the United States and around the world." : {
       "comment" : "A dedication to those working to save democracy.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NetNewsWire 7 está dedicado a todas las personas que trabajan para salvar la democracia en Estados Unidos y en el resto del mundo."
+          }
+        }
+      }
     },
     "NetNewsWire News" : {
-      "comment" : "NetNewsWire News"
+      "comment" : "NetNewsWire News",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noticias de NetNewsWire"
+          }
+        }
+      }
     },
     "NetNewsWire will use your iCloud account to sync your subscriptions across your Mac and iOS devices." : {
-      "comment" : "iCloud"
+      "comment" : "iCloud",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NetNewsWire usará tu cuenta de iCloud para sincronizar tus suscripciones entre tus dispositivos Mac y iOS."
+          }
+        }
+      }
     },
     "Network error. Try again later." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de red. Inténtalo de nuevo más tarde."
+          }
+        }
+      }
     },
     "New Article Notifications" : {
-      "comment" : "New Article Notifications"
+      "comment" : "New Article Notifications",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones de artículos nuevos"
+          }
+        }
+      }
     },
     "New Feed" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva fuente"
+          }
+        }
+      }
     },
     "New Feed…" : {
-      "comment" : "New Feed"
+      "comment" : "New Feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva fuente…"
+          }
+        }
+      }
     },
     "New Folder" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva carpeta"
+          }
+        }
+      }
     },
     "New Folder…" : {
-      "comment" : "New Folder"
+      "comment" : "New Folder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva carpeta…"
+          }
+        }
+      }
     },
     "Newest Article on Top" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo más reciente arriba"
+          }
+        }
+      }
     },
     "Next Article" : {
-      "comment" : "Next Article"
+      "comment" : "Next Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo siguiente"
+          }
+        }
+      }
     },
     "Next Unread" : {
-      "comment" : "Next Unread"
+      "comment" : "Next Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente no leído"
+          }
+        }
+      }
     },
     "Next Unread Article" : {
-      "comment" : "Next Unread Article"
+      "comment" : "Next Unread Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente artículo no leído"
+          }
+        }
+      }
     },
     "No Activity Logged" : {
-      "comment" : "Activity log empty state"
+      "comment" : "Activity log empty state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay actividad registrada"
+          }
+        }
+      }
     },
     "No current activity." : {
-      "comment" : "Current Activity empty state"
+      "comment" : "Current Activity empty state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay actividad en curso."
+          }
+        }
+      }
     },
     "No dinosaurs" : {
-      "comment" : "No dinosaurs footer text."
+      "comment" : "No dinosaurs footer text.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay dinosaurios"
+          }
+        }
+      }
     },
     "No Errors Logged" : {
-      "comment" : "Error log empty state"
+      "comment" : "Error log empty state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay errores registrados"
+          }
+        }
+      }
     },
     "No Icon Preview" : {
-      "comment" : "No Icon Preview"
+      "comment" : "No Icon Preview",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin vista previa del icono"
+          }
+        }
+      }
     },
     "No results" : {
-      "comment" : "No results"
+      "comment" : "No results",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin resultados"
+          }
+        }
+      }
     },
     "Notifications" : {
-      "comment" : "Notifications"
+      "comment" : "Notifications",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones"
+          }
+        }
+      }
     },
     "Notifications are not enabled" : {
-      "comment" : "Notifications are not enabled."
+      "comment" : "Notifications are not enabled.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las notificaciones no están activadas"
+          }
+        }
+      }
     },
     "Notifications Disabled" : {
       "comment" : "A title for a view that displays a message that notifications are disabled.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones desactivadas"
+          }
+        }
+      }
     },
     "Notifications need to be enabled in the Settings app." : {
-      "comment" : "Notifications need to be enabled in the Settings app."
+      "comment" : "Notifications need to be enabled in the Settings app.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las notificaciones deben activarse en la app Ajustes."
+          }
+        }
+      }
     },
     "Number of Lines" : {
-      "comment" : "Number of Lines"
+      "comment" : "Number of Lines",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de líneas"
+          }
+        }
+      }
     },
     "OK" : {
-      "comment" : "OK button"
+      "comment" : "OK button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aceptar"
+          }
+        }
+      }
     },
     "Oldest Article on Top" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo más antiguo arriba"
+          }
+        }
+      }
     },
     "Open" : {
-      "comment" : "Open"
+      "comment" : "Open",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir"
+          }
+        }
+      }
     },
     "Open Home Page" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir página de inicio"
+          }
+        }
+      }
     },
     "Open in Browser" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en el navegador"
+          }
+        }
+      }
     },
     "Open In Browser" : {
-      "comment" : "Open In Browser"
+      "comment" : "Open In Browser",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en el navegador"
+          }
+        }
+      }
     },
     "Open in Browser in Background" : {
-      "comment" : "Open in Browser in Background menu item title"
+      "comment" : "Open in Browser in Background menu item title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en el navegador en segundo plano"
+          }
+        }
+      }
     },
     "Open in Browser in Foreground" : {
-      "comment" : "Open in Browser in Foreground menu item title"
+      "comment" : "Open in Browser in Foreground menu item title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en el navegador en primer plano"
+          }
+        }
+      }
     },
     "Open Settings" : {
-      "comment" : "Open Settings button"
+      "comment" : "Open Settings button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes"
+          }
+        }
+      }
     },
     "Open Settings to configure iCloud and enable iCloud Drive." : {
-      "comment" : "CloudKit account setup recovery suggestion"
+      "comment" : "CloudKit account setup recovery suggestion",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre Ajustes para configurar iCloud y activar iCloud Drive."
+          }
+        }
+      }
     },
     "Open System Preferences" : {
-      "comment" : "Open System Preferences"
+      "comment" : "Open System Preferences",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Preferencias del Sistema"
+          }
+        }
+      }
     },
     "Open System Settings" : {
-      "comment" : "Open System Settings button"
+      "comment" : "Open System Settings button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes del Sistema"
+          }
+        }
+      }
     },
     "Open System Settings to configure iCloud and enable iCloud Drive." : {
-      "comment" : "CloudKit account setup recovery suggestion"
+      "comment" : "CloudKit account setup recovery suggestion",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre Ajustes del Sistema para configurar iCloud y activar iCloud Drive."
+          }
+        }
+      }
     },
     "Open Theme Folder" : {
-      "comment" : "Open Theme Folder"
+      "comment" : "Open Theme Folder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir carpeta de temas"
+          }
+        }
+      }
     },
     "Overwrite" : {
-      "comment" : "Overwrite"
+      "comment" : "Overwrite",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobrescribir"
+          }
+        }
+      }
     },
     "Password" : {
-      "comment" : "Password field placeholder"
+      "comment" : "Password field placeholder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña"
+          }
+        }
+      }
     },
     "Pending" : {
-      "comment" : "Pending"
+      "comment" : "Pending",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendiente"
+          }
+        }
+      }
     },
     "Previous Article" : {
-      "comment" : "Previous Article"
+      "comment" : "Previous Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artículo anterior"
+          }
+        }
+      }
     },
     "Processing - Reader View" : {
-      "comment" : "Processing - Reader View"
+      "comment" : "Processing - Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesando - Vista de lector"
+          }
+        }
+      }
     },
     "Read" : {
-      "comment" : "Read row label"
+      "comment" : "Read row label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leído"
+          }
+        }
+      }
     },
     "Read Articles Filter" : {
-      "comment" : "Read Articles Filter"
+      "comment" : "Read Articles Filter",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtro de artículos leídos"
+          }
+        }
+      }
     },
     "Read Content Deleted" : {
-      "comment" : "Cleanup stat row label"
+      "comment" : "Cleanup stat row label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenido leído eliminado"
+          }
+        }
+      }
     },
     "read content record" : {
-      "comment" : "Singular label for read content records"
+      "comment" : "Singular label for read content records",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "registro de contenido leído"
+          }
+        }
+      }
     },
     "read content records" : {
-      "comment" : "Plural label for read content records"
+      "comment" : "Plural label for read content records",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "registros de contenido leído"
+          }
+        }
+      }
     },
     "Reader View" : {
-      "comment" : "Reader View"
+      "comment" : "Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista de lector"
+          }
+        }
+      }
     },
     "Refresh" : {
-      "comment" : "Refresh"
+      "comment" : "Refresh",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar"
+          }
+        }
+      }
     },
     "Refresh Scan" : {
-      "comment" : "Refresh scan button"
+      "comment" : "Refresh scan button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar análisis"
+          }
+        }
+      }
     },
     "Remove" : {
-      "comment" : "Remove"
+      "comment" : "Remove",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        }
+      }
     },
     "Remove Account" : {
-      "comment" : "Remove Account"
+      "comment" : "Remove Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar cuenta"
+          }
+        }
+      }
     },
     "Rename" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renombrar"
+          }
+        }
+      }
     },
     "Rename “%@”" : {
-      "comment" : "Rename feed"
+      "comment" : "Rename feed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renombrar «%@»"
+          }
+        }
+      }
     },
     "Rename %@ to:" : {
-      "comment" : "Rename sheet"
+      "comment" : "Rename sheet",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renombrar %@ a:"
+          }
+        }
+      }
     },
     "Return to Previous Scan Results" : {
-      "comment" : "Return to previous scan results button"
+      "comment" : "Return to previous scan results button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volver a los resultados del análisis anterior"
+          }
+        }
+      }
     },
     "Running" : {
-      "comment" : "Running"
+      "comment" : "Running",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En ejecución"
+          }
+        }
+      }
     },
     "Save" : {
-      "comment" : "Save button"
+      "comment" : "Save button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
+          }
+        }
+      }
     },
     "Save Search" : {
-      "comment" : "Save Search button"
+      "comment" : "Save Search button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar búsqueda"
+          }
+        }
+      }
     },
     "Scan completed." : {
-      "comment" : "Scan status text when completed"
+      "comment" : "Scan status text when completed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Análisis completado."
+          }
+        }
+      }
     },
     "Scan failed." : {
-      "comment" : "Scan failed text"
+      "comment" : "Scan failed text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El análisis falló."
+          }
+        }
+      }
     },
     "Scan failed. Numbers are incomplete." : {
-      "comment" : "Scan status text on error"
+      "comment" : "Scan status text on error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El análisis falló. Las cifras están incompletas."
+          }
+        }
+      }
     },
     "Scanning" : {
-      "comment" : "Spinner accessibility label"
+      "comment" : "Spinner accessibility label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analizando"
+          }
+        }
+      }
     },
     "Scanning iCloud storage" : {
-      "comment" : "Scan status text while fetching"
+      "comment" : "Scan status text while fetching",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analizando el almacenamiento de iCloud"
+          }
+        }
+      }
     },
     "Search" : {
-      "comment" : "Search"
+      "comment" : "Search",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar"
+          }
+        }
+      }
     },
     "Search Articles" : {
-      "comment" : "Search Articles"
+      "comment" : "Search Articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar artículos"
+          }
+        }
+      }
     },
     "Search: " : {
-      "comment" : "Search smart feed title prefix"
+      "comment" : "Search smart feed title prefix",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar: "
+          }
+        }
+      }
     },
     "Search: %@" : {
-      "comment" : "Search"
+      "comment" : "Search",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar: %@"
+          }
+        }
+      }
     },
     "See articles in  “%@”" : {
-      "comment" : "See articles in Folder"
+      "comment" : "See articles in Folder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver artículos en «%@»"
+          }
+        }
+      }
     },
     "See first unread article" : {
-      "comment" : "First Unread"
+      "comment" : "First Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver el primer artículo no leído"
+          }
+        }
+      }
     },
     "Select “%@” in Sidebar" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar «%@» en la barra lateral"
+          }
+        }
+      }
     },
     "Select Next Down" : {
-      "comment" : "Select Next Down"
+      "comment" : "Select Next Down",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar el siguiente hacia abajo"
+          }
+        }
+      }
     },
     "Select Next Up" : {
-      "comment" : "Select Next Up"
+      "comment" : "Select Next Up",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar el siguiente hacia arriba"
+          }
+        }
+      }
     },
     "Selected - Filter Read Articles" : {
-      "comment" : "Selected - Filter Read Articles"
+      "comment" : "Selected - Filter Read Articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado - Filtrar artículos leídos"
+          }
+        }
+      }
     },
     "Selected - Filter Read Feeds" : {
-      "comment" : "Selected - Filter Read Feeds"
+      "comment" : "Selected - Filter Read Feeds",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado - Filtrar fuentes leídas"
+          }
+        }
+      }
     },
     "Selected - Mark Article Unread" : {
-      "comment" : "Selected - Mark Article Unread"
+      "comment" : "Selected - Mark Article Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado - Marcar artículo como no leído"
+          }
+        }
+      }
     },
     "Selected - Reader View" : {
-      "comment" : "Selected - Reader View"
+      "comment" : "Selected - Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado - Vista de lector"
+          }
+        }
+      }
     },
     "Selected - Star Article" : {
-      "comment" : "Selected - Star Article"
+      "comment" : "Selected - Star Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado - Destacar artículo"
+          }
+        }
+      }
     },
     "Self-hosted" : {
-      "comment" : "Self hosted Account"
+      "comment" : "Self hosted Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autoalojado"
+          }
+        }
+      }
     },
     "Self-hosted accounts sync your feeds across all your devices" : {
-      "comment" : "Self hosted Account"
+      "comment" : "Self hosted Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas autoalojadas sincronizan tus fuentes en todos tus dispositivos"
+          }
+        }
+      }
     },
     "Self-hosted accounts sync your feeds across all your devices." : {
-      "comment" : "Self hosted Account"
+      "comment" : "Self hosted Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas autoalojadas sincronizan tus fuentes en todos tus dispositivos."
+          }
+        }
+      }
     },
     "Share" : {
-      "comment" : "Share button"
+      "comment" : "Share button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir"
+          }
+        }
+      }
     },
     "Share Stats" : {
-      "comment" : "Share stats menu item"
+      "comment" : "Share stats menu item",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir estadísticas"
+          }
+        }
+      }
     },
     "Share…" : {
-      "comment" : "Share…"
+      "comment" : "Share…",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir…"
+          }
+        }
+      }
     },
     "Show" : {
-      "comment" : "Show password button"
+      "comment" : "Show password button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar"
+          }
+        }
+      }
     },
     "Show Feed Article" : {
-      "comment" : "Show Feed Article"
+      "comment" : "Show Feed Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar artículo de la fuente"
+          }
+        }
+      }
     },
     "Show feeds that haven’t updated in…" : {
-      "comment" : "Show stale feeds text"
+      "comment" : "Show stale feeds text",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar fuentes que no se han actualizado en…"
+          }
+        }
+      }
     },
     "Show notifications for new articles" : {
-      "comment" : "Show notifications for new articles"
+      "comment" : "Show notifications for new articles",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar notificaciones de artículos nuevos"
+          }
+        }
+      }
     },
     "Show Read Articles" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar artículos leídos"
+          }
+        }
+      }
     },
     "Show Read Feeds" : {
-      "comment" : "Command"
+      "comment" : "Command",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar fuentes leídas"
+          }
+        }
+      }
     },
     "Show Reader View" : {
-      "comment" : "Show Reader View"
+      "comment" : "Show Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar vista de lector"
+          }
+        }
+      }
     },
     "Show Website" : {
-      "comment" : "Show Website"
+      "comment" : "Show Website",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar sitio web"
+          }
+        }
+      }
     },
     "Shows current activity" : {
-      "comment" : "Current Activity accessibility hint"
+      "comment" : "Current Activity accessibility hint",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra la actividad actual"
+          }
+        }
+      }
     },
     "Sign in to your BazQux account and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have a BazQux account?" : {
-      "comment" : "BazQux"
+      "comment" : "BazQux",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de BazQux y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una cuenta de BazQux?"
+          }
+        }
+      }
     },
     "Sign in to your BazQux account." : {
-      "comment" : "BazQux"
+      "comment" : "BazQux",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de BazQux."
+          }
+        }
+      }
     },
     "Sign in to your Feedbin account and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have a Feedbin account?" : {
-      "comment" : "Feedbin"
+      "comment" : "Feedbin",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de Feedbin y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una cuenta de Feedbin?"
+          }
+        }
+      }
     },
     "Sign in to your Feedbin account." : {
-      "comment" : "SignIn"
+      "comment" : "SignIn",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de Feedbin."
+          }
+        }
+      }
     },
     "Sign in to your FreshRSS account." : {
-      "comment" : "FreshRSS"
+      "comment" : "FreshRSS",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de FreshRSS."
+          }
+        }
+      }
     },
     "Sign in to your FreshRSS instance and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have an FreshRSS instance?" : {
-      "comment" : "FreshRSS"
+      "comment" : "FreshRSS",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu instancia de FreshRSS y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una instancia de FreshRSS?"
+          }
+        }
+      }
     },
     "Sign in to your Inoreader account and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have an Inoreader account?" : {
-      "comment" : "Inoreader"
+      "comment" : "Inoreader",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de Inoreader y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una cuenta de Inoreader?"
+          }
+        }
+      }
     },
     "Sign in to your Inoreader account." : {
-      "comment" : "Inoreader"
+      "comment" : "Inoreader",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de Inoreader."
+          }
+        }
+      }
     },
     "Sign in to your NewsBlur account and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have a NewsBlur account?" : {
-      "comment" : "NewsBlur"
+      "comment" : "NewsBlur",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de NewsBlur y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una cuenta de NewsBlur?"
+          }
+        }
+      }
     },
     "Sign in to your NewsBlur account." : {
-      "comment" : "SignIn"
+      "comment" : "SignIn",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de NewsBlur."
+          }
+        }
+      }
     },
     "Sign in to your The Old Reader account and sync your feeds across your devices. Your username and password will be encrypted and stored in Keychain.\n\nDon’t have a The Old Reader account?" : {
-      "comment" : "TOR"
+      "comment" : "TOR",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de The Old Reader y sincroniza tus fuentes en tus dispositivos. Tu nombre de usuario y contraseña se cifrarán y guardarán en el Llavero.\n\n¿No tienes una cuenta de The Old Reader?"
+          }
+        }
+      }
     },
     "Sign in to your The Old Reader account." : {
-      "comment" : "The Old Reader"
+      "comment" : "The Old Reader",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión en tu cuenta de The Old Reader."
+          }
+        }
+      }
     },
     "Sign Up Here" : {
-      "comment" : "Sign Up"
+      "comment" : "Sign Up",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regístrate aquí"
+          }
+        }
+      }
     },
     "Small" : {
-      "comment" : "Small"
+      "comment" : "Small",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pequeño"
+          }
+        }
+      }
     },
     "Smart Feed Inspector" : {
-      "comment" : "Smart Feed Inspector window title"
+      "comment" : "Smart Feed Inspector window title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspector de fuente inteligente"
+          }
+        }
+      }
     },
     "Smart Feeds" : {
-      "comment" : "Smart Feeds group title"
+      "comment" : "Smart Feeds group title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuentes inteligentes"
+          }
+        }
+      }
     },
     "Star" : {
-      "comment" : "Star"
+      "comment" : "Star",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacar"
+          }
+        }
+      }
     },
     "Star Article" : {
-      "comment" : "Star Article"
+      "comment" : "Star Article",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacar artículo"
+          }
+        }
+      }
     },
     "Starred" : {
-      "comment" : "Starred"
+      "comment" : "Starred",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacados"
+          }
+        }
+      }
     },
     "Status Records" : {
-      "comment" : "Status records section header"
+      "comment" : "Status records section header",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros de estado"
+          }
+        }
+      }
     },
     "Statuses" : {
-      "comment" : "Statuses"
+      "comment" : "Statuses",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estados"
+          }
+        }
+      }
     },
     "Swipe a feed to show the action menu and delete button." : {
-      "comment" : "Dinosaurs swipe hint."
+      "comment" : "Dinosaurs swipe hint.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desliza una fuente para mostrar el menú de acciones y el botón de eliminar."
+          }
+        }
+      }
     },
     "Sync content of unread articles" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizar el contenido de los artículos no leídos"
+          }
+        }
+      }
     },
     "Syncing article content increases iCloud storage use, sync time, and battery use.\n\nArticle status and the content of starred articles are always synced." : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizar el contenido de los artículos aumenta el uso de almacenamiento de iCloud, el tiempo de sincronización y el consumo de batería.\n\nEl estado de los artículos y el contenido de los artículos destacados siempre se sincronizan."
+          }
+        }
+      }
     },
     "System Default (%@)" : {
-      "comment" : "Default browser item title format"
+      "comment" : "Default browser item title format",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predeterminado del sistema (%@)"
+          }
+        }
+      }
     },
     "Thanks to Sheila and my family; thanks to my friends in Seattle and around the globe; thanks to the ever-patient and ever-awesome NetNewsWire beta testers.\n\nThanks to [Gus Mueller](https://shapeof.com/) for [FMDB](https://github.com/ccgus/fmdb) by [Flying Meat Software](http://flyingmeat.com/). Thanks to [GitHub](https://github.com) and [Discourse](https://discourse.com) for making open source collaboration easy and fun. Thanks to [Ben Ubois](https://benubois.com/) at [Feedbin](https://feedbin.com) for all the extra help with syncing and article rendering — and [for hosting the server for the Reader view](https://feedbin.com/blog/2019/03/11/the-future-of-full-content/)." : {
       "comment" : "A list of credits for the app.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gracias a Sheila y a mi familia; gracias a mis amigos de Seattle y de todo el mundo; gracias a los probadores beta de NetNewsWire, siempre pacientes y siempre geniales.\n\nGracias a [Gus Mueller](https://shapeof.com/) por [FMDB](https://github.com/ccgus/fmdb), de [Flying Meat Software](http://flyingmeat.com/). Gracias a [GitHub](https://github.com) y a [Discourse](https://discourse.com) por hacer que la colaboración en open source sea fácil y divertida. Gracias a [Ben Ubois](https://benubois.com/) de [Feedbin](https://feedbin.com) por toda la ayuda extra con la sincronización y la presentación de artículos — y [por hospedar el servidor de la vista de lector](https://feedbin.com/blog/2019/03/11/the-future-of-full-content/)."
+          }
+        }
+      }
     },
     "The name can be anything you want. You can even use emoji. 🎸" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El nombre puede ser el que quieras. Incluso puedes usar emoji. 🎸"
+          }
+        }
+      }
     },
     "The theme “%@” already exists. Overwrite it?" : {
-      "comment" : "Overwrite theme"
+      "comment" : "Overwrite theme",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El tema «%@» ya existe. ¿Sobrescribirlo?"
+          }
+        }
+      }
     },
     "The theme “%@” has been installed." : {
-      "comment" : "Theme installed"
+      "comment" : "Theme installed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El tema «%@» se ha instalado."
+          }
+        }
+      }
     },
     "Theme Error" : {
-      "comment" : "Theme download error"
+      "comment" : "Theme download error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de tema"
+          }
+        }
+      }
     },
     "Theme installed" : {
-      "comment" : "Theme installed"
+      "comment" : "Theme installed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema instalado"
+          }
+        }
+      }
     },
     "There are no accounts to add the feed to." : {
       "comment" : "Error message when the user has no accounts to add a feed to.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay cuentas a las que añadir la fuente."
+          }
+        }
+      }
     },
     "There is already a Feedbin account with that username created." : {
-      "comment" : "Duplicate Error"
+      "comment" : "Duplicate Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya existe una cuenta de Feedbin con ese nombre de usuario."
+          }
+        }
+      }
     },
     "There is already a NewsBlur account with that username created." : {
-      "comment" : "Duplicate Error"
+      "comment" : "Duplicate Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya existe una cuenta de NewsBlur con ese nombre de usuario."
+          }
+        }
+      }
     },
     "There is already an account of that type with that username created." : {
-      "comment" : "Duplicate Error"
+      "comment" : "Duplicate Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya existe una cuenta de ese tipo con ese nombre de usuario."
+          }
+        }
+      }
     },
     "There is already an account of this type with that username created." : {
-      "comment" : "Duplicate Error"
+      "comment" : "Duplicate Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya existe una cuenta de este tipo con ese nombre de usuario."
+          }
+        }
+      }
     },
     "This device cannot send emails." : {
-      "comment" : "This device cannot send emails."
+      "comment" : "This device cannot send emails.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo no puede enviar correos electrónicos."
+          }
+        }
+      }
     },
     "This may take several minutes." : {
-      "comment" : "Clean up confirmation suffix"
+      "comment" : "Clean up confirmation suffix",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede tardar varios minutos."
+          }
+        }
+      }
     },
     "This theme cannot be used because of data corruption in the Info.plist: %@." : {
-      "comment" : "Theme import error — Info.plist data corruption"
+      "comment" : "Theme import error — Info.plist data corruption",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tema no se puede usar por un error de datos en el Info.plist: %@."
+          }
+        }
+      }
     },
     "This theme cannot be used because the key “%@” is not found in the Info.plist." : {
-      "comment" : "Theme import error — key missing from Info.plist"
+      "comment" : "Theme import error — key missing from Info.plist",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tema no se puede usar porque la clave «%@» no se encuentra en el Info.plist."
+          }
+        }
+      }
     },
     "This theme cannot be used because the type “%@” is mismatched in the Info.plist." : {
-      "comment" : "Theme import error — type mismatch in Info.plist"
+      "comment" : "Theme import error — type mismatch in Info.plist",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tema no se puede usar porque el tipo «%@» no coincide en el Info.plist."
+          }
+        }
+      }
     },
     "This theme cannot be used because the value “%@” is not found in the Info.plist." : {
-      "comment" : "Theme import error — value missing from Info.plist"
+      "comment" : "Theme import error — value missing from Info.plist",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tema no se puede usar porque el valor «%@» no se encuentra en el Info.plist."
+          }
+        }
+      }
     },
     "This will delete any not-starred content records.\n\nThis may take several minutes." : {
-      "comment" : "Clean up confirmation when plan is stale"
+      "comment" : "Clean up confirmation when plan is stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se eliminarán todos los registros de contenido no destacados.\n\nPuede tardar varios minutos."
+          }
+        }
+      }
     },
     "This will delete any read content records.\n\nThis may take several minutes." : {
-      "comment" : "Clean up confirmation when sync unread is on and plan is stale"
+      "comment" : "Clean up confirmation when sync unread is on and plan is stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se eliminarán todos los registros de contenido leído.\n\nPuede tardar varios minutos."
+          }
+        }
+      }
     },
     "This will delete:" : {
-      "comment" : "Clean up confirmation prefix"
+      "comment" : "Clean up confirmation prefix",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se eliminará:"
+          }
+        }
+      }
     },
     "Timeline" : {
-      "comment" : "Timeline"
+      "comment" : "Timeline",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cronología"
+          }
+        }
+      }
     },
     "Timeline Layout" : {
-      "comment" : "Timeline Layout"
+      "comment" : "Timeline Layout",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disposición de la cronología"
+          }
+        }
+      }
     },
     "Timeline Separator" : {
-      "comment" : "Toolbar item"
+      "comment" : "Toolbar item",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separador de la cronología"
+          }
+        }
+      }
     },
     "Title" : {
-      "comment" : "Timeline column header"
+      "comment" : "Timeline column header",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título"
+          }
+        }
+      }
     },
     "Title (Optional)" : {
-      "comment" : "Feed title placeholder"
+      "comment" : "Feed title placeholder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título (opcional)"
+          }
+        }
+      }
     },
     "To add an account to NetNewsWire,\nclick its icon above.\n\nOr click the + button in the lower left." : {
-      "comment" : "Add Account Explainer"
+      "comment" : "Add Account Explainer",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para añadir una cuenta a NetNewsWire,\npulsa su icono arriba.\n\nO pulsa el botón + abajo a la izquierda."
+          }
+        }
+      }
     },
     "To enable notifications, open Notifications in System Preferences, then find NetNewsWire in the list." : {
-      "comment" : "To enable notifications, open Notifications in System Preferences, then find NetNewsWire in the list."
+      "comment" : "To enable notifications, open Notifications in System Preferences, then find NetNewsWire in the list.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para activar las notificaciones, abre Notificaciones en Preferencias del Sistema y busca NetNewsWire en la lista."
+          }
+        }
+      }
     },
     "Today" : {
-      "comment" : "Today pseudo-feed title"
+      "comment" : "Today pseudo-feed title",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy"
+          }
+        }
+      }
     },
     "Toggle Read Articles Filter" : {
-      "comment" : "Toggle Read Articles Filter"
+      "comment" : "Toggle Read Articles Filter",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar/desactivar filtro de artículos leídos"
+          }
+        }
+      }
     },
     "Toggle Read Feeds Filter" : {
-      "comment" : "Toggle Read Feeds Filter"
+      "comment" : "Toggle Read Feeds Filter",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar/desactivar filtro de fuentes leídas"
+          }
+        }
+      }
     },
     "Toggle Read Status" : {
-      "comment" : "Toggle Read Status"
+      "comment" : "Toggle Read Status",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar estado de lectura"
+          }
+        }
+      }
     },
     "Toggle Reader View" : {
-      "comment" : "Toggle Reader View"
+      "comment" : "Toggle Reader View",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar/desactivar vista de lector"
+          }
+        }
+      }
     },
     "Toggle Sidebar" : {
-      "comment" : "Toggle Sidebar"
+      "comment" : "Toggle Sidebar",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar/ocultar barra lateral"
+          }
+        }
+      }
     },
     "Toggle Starred Status" : {
-      "comment" : "Toggle Starred Status"
+      "comment" : "Toggle Starred Status",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar estado de destacado"
+          }
+        }
+      }
     },
     "Total" : {
-      "comment" : "Total row label"
+      "comment" : "Total row label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
     },
     "Totals" : {
-      "comment" : "Totals section"
+      "comment" : "Totals section",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totales"
+          }
+        }
+      }
     },
     "Type:" : {
-      
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo:"
+          }
+        }
+      }
     },
     "Unable to Add Feed" : {
-      "comment" : "Feed finder"
+      "comment" : "Feed finder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede añadir la fuente"
+          }
+        }
+      }
     },
     "Unknown" : {
-      "comment" : "Unknown Value"
+      "comment" : "Unknown Value",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconocido"
+          }
+        }
+      }
     },
     "unread" : {
-      "comment" : "Unread label for accessibility"
+      "comment" : "Unread label for accessibility",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no leídos"
+          }
+        }
+      }
     },
     "Unread" : {
-      "comment" : "Unread"
+      "comment" : "Unread",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No leídos"
+          }
+        }
+      }
     },
     "Unread Content Deleted" : {
-      "comment" : "Cleanup stat row label"
+      "comment" : "Cleanup stat row label",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenido no leído eliminado"
+          }
+        }
+      }
     },
     "unread content record" : {
-      "comment" : "Singular label for unread content records"
+      "comment" : "Singular label for unread content records",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "registro de contenido no leído"
+          }
+        }
+      }
     },
     "unread content records" : {
-      "comment" : "Plural label for unread content records"
+      "comment" : "Plural label for unread content records",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "registros de contenido no leído"
+          }
+        }
+      }
     },
     "Unrecognized account type." : {
-      "comment" : "Bad account type"
+      "comment" : "Bad account type",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de cuenta no reconocido."
+          }
+        }
+      }
     },
     "Unstar" : {
-      "comment" : "Unstar"
+      "comment" : "Unstar",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar destacado"
+          }
+        }
+      }
     },
     "Unstarred" : {
-      "comment" : "Accessibility announcement"
+      "comment" : "Accessibility announcement",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No destacado"
+          }
+        }
+      }
     },
     "Untitled" : {
-      "comment" : "Feed name"
+      "comment" : "Feed name",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin título"
+          }
+        }
+      }
     },
     "Update" : {
-      "comment" : "Update"
+      "comment" : "Update",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar"
+          }
+        }
+      }
     },
     "Update Credentials" : {
-      "comment" : "Update Credentials"
+      "comment" : "Update Credentials",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizar credenciales"
+          }
+        }
+      }
     },
     "Update your Feedbin account credentials." : {
-      "comment" : "SignIn"
+      "comment" : "SignIn",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualiza las credenciales de tu cuenta de Feedbin."
+          }
+        }
+      }
     },
     "Update your NewsBlur account credentials." : {
-      "comment" : "SignIn"
+      "comment" : "SignIn",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualiza las credenciales de tu cuenta de NewsBlur."
+          }
+        }
+      }
     },
     "Updated %@" : {
-      "comment" : "Updated"
+      "comment" : "Updated",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado %@"
+          }
+        }
+      }
     },
     "Updated Just Now" : {
-      "comment" : "Updated Just Now"
+      "comment" : "Updated Just Now",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado ahora mismo"
+          }
+        }
+      }
     },
     "Updating…" : {
-      "comment" : "Updating…"
+      "comment" : "Updating…",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizando…"
+          }
+        }
+      }
     },
     "URL" : {
       "comment" : "Label for the URL parameter in the Add Feed intent.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        }
+      }
     },
     "Use iCloud" : {
-      "comment" : "Use iCloud button"
+      "comment" : "Use iCloud button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar iCloud"
+          }
+        }
+      }
     },
     "Username and password are required." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El nombre de usuario y la contraseña son obligatorios."
+          }
+        }
+      }
     },
     "Username or Email" : {
-      "comment" : "Username field placeholder"
+      "comment" : "Username field placeholder",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de usuario o correo electrónico"
+          }
+        }
+      }
     },
     "Username required." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El nombre de usuario es obligatorio."
+          }
+        }
+      }
     },
     "Username, password, and API URL are required." : {
-      "comment" : "Credentials Error"
+      "comment" : "Credentials Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El nombre de usuario, la contraseña y la URL de la API son obligatorios."
+          }
+        }
+      }
     },
     "Vacuum Databases" : {
-      "comment" : "Vacuum databases button"
+      "comment" : "Vacuum databases button",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compactar bases de datos"
+          }
+        }
+      }
     },
     "Vacuuming may make databases faster." : {
-      "comment" : "Vacuum explanation"
+      "comment" : "Vacuum explanation",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compactar puede acelerar las bases de datos."
+          }
+        }
+      }
     },
     "Waiting for access to Feedly" : {
-      "comment" : "Alert title when adding a Feedly account and waiting for authorization from the user."
+      "comment" : "Alert title when adding a Feedly account and waiting for authorization from the user.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esperando acceso a Feedly"
+          }
+        }
+      }
     },
     "We were unable to process the selected file.  Please ensure that it is a properly formatted OPML file." : {
-      "comment" : "Import Failed Message"
+      "comment" : "Import Failed Message",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No pudimos procesar el archivo seleccionado. Asegúrate de que sea un archivo OPML con el formato correcto."
+          }
+        }
+      }
     },
     "Web" : {
-      "comment" : "Web Account"
+      "comment" : "Web Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web"
+          }
+        }
+      }
     },
     "Web accounts sync your feeds across all your devices" : {
-      "comment" : "Web Account"
+      "comment" : "Web Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas web sincronizan tus fuentes en todos tus dispositivos"
+          }
+        }
+      }
     },
     "Web accounts sync your feeds across all your devices." : {
-      "comment" : "Web Account"
+      "comment" : "Web Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las cuentas web sincronizan tus fuentes en todos tus dispositivos."
+          }
+        }
+      }
     },
     "You can enable NetNewsWire notifications in System Preferences." : {
-      "comment" : "Notifications are not enabled."
+      "comment" : "Notifications are not enabled.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puedes activar las notificaciones de NetNewsWire en Preferencias del Sistema."
+          }
+        }
+      }
     },
     "You can turn this confirmation off in Settings." : {
-      "comment" : "You can turn this confirmation off in Settings."
+      "comment" : "You can turn this confirmation off in Settings.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puedes desactivar esta confirmación en Ajustes."
+          }
+        }
+      }
     },
     "You must have at least one active account." : {
-      "comment" : "Missing active account"
+      "comment" : "Missing active account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debes tener al menos una cuenta activa."
+          }
+        }
+      }
     },
     "Your iCloud account syncs your feeds across your Mac and iOS devices" : {
-      "comment" : "iCloud Account"
+      "comment" : "iCloud Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu cuenta de iCloud sincroniza tus fuentes en tus dispositivos Mac y iOS"
+          }
+        }
+      }
     },
     "Your iCloud account syncs your feeds across your Mac and iOS devices." : {
-      "comment" : "iCloud Account"
+      "comment" : "iCloud Account",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu cuenta de iCloud sincroniza tus fuentes en tus dispositivos Mac y iOS."
+          }
+        }
+      }
     },
     "Z to A" : {
-      "comment" : "Sort direction"
+      "comment" : "Sort direction",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De la Z a la A"
+          }
+        }
+      }
     },
     "Sync Read and Starred with iCloud" : {
       "extractionState" : "manual",
@@ -1564,6 +4987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync Read and Starred with iCloud"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizar leídos y destacados con iCloud"
           }
         }
       },
@@ -1577,9 +5006,87 @@
             "state" : "translated",
             "value" : "Syncs the read and starred status of this account's articles across devices signed in to the same iCloud account. Article content is not synced."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincroniza el estado de leído y destacado de los artículos de esta cuenta entre los dispositivos con la misma sesión de iCloud. El contenido de los artículos no se sincroniza."
+          }
         }
       },
       "comment" : "Local account iCloud status sync footer"
+    },
+    "Previous Result" : {
+      "comment" : "Previous search result button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Result"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultado anterior"
+          }
+        }
+      }
+    },
+    "Next Result" : {
+      "comment" : "Next search result button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Result"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultado siguiente"
+          }
+        }
+      }
+    },
+    "Exit Find" : {
+      "comment" : "Keyboard command to close find-in-article",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Find"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salir de la búsqueda"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "comment" : "Settings button",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"
