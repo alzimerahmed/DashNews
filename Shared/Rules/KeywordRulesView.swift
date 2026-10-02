@@ -18,6 +18,7 @@ import Articles
 	let feed: Feed
 
 	@ObservedObject private var store = KeywordRuleStore.shared
+	@ObservedObject private var intelligenceStore = FeedIntelligenceStore.shared
 	@State private var newKeyword = ""
 	@State private var newAction: KeywordRuleAction = .hide
 	@Environment(\.dismiss) private var dismiss
@@ -71,6 +72,14 @@ import Articles
 				} header: {
 					Text("Add Rule")
 				}
+
+				Section {
+					Toggle("Highlight Key Points", isOn: highlightKeyPointsBinding)
+				} header: {
+					Text("Intelligence")
+				} footer: {
+					Text("Marks the most important sentences in each article. Computed on-device.")
+				}
 			}
 			.navigationTitle(feed.nameForDisplay)
 			.toolbar {
@@ -88,6 +97,13 @@ import Articles
 // MARK: - Private
 
 private extension KeywordRulesView {
+
+	var highlightKeyPointsBinding: Binding<Bool> {
+		Binding(
+			get: { intelligenceStore.highlightKeyPoints(forFeedID: feed.feedID) },
+			set: { intelligenceStore.setHighlightKeyPoints($0, forFeedID: feed.feedID) }
+		)
+	}
 
 	func actionLabel(_ action: KeywordRuleAction) -> LocalizedStringKey {
 		switch action {

@@ -575,3 +575,22 @@ mark.nnwKeywordHighlight {
 	padding: 0 1px;
 	border-radius: 2px;
 }
+
+/* Key-point highlighting (Feature #8) — translucent accent blue, distinct
+   from the yellow keyword highlight and legible in both appearances. */
+:root {
+	--key-point-background-color: rgba(94, 158, 244, 0.28);
+}
+
+@media(prefers-color-scheme: dark) {
+	:root {
+		--key-point-background-color: rgba(94, 158, 244, 0.40);
+	}
+}
+
+mark.nnwKeyPoint {
+	background-color: var(--key-point-background-color);
+	color: inherit;
+	padding: 0 1px;
+	border-radius: 2px;
+}

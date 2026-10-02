@@ -1580,6 +1580,150 @@
         }
       },
       "comment" : "Local account iCloud status sync footer"
+    },
+    "Summarize Article" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarize Article"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumir artículo"
+          }
+        }
+      },
+      "comment" : "Command"
+    },
+    "Summary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen"
+          }
+        }
+      },
+      "comment" : "Article summary sheet title"
+    },
+    "Summarizing…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarizing…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumiendo…"
+          }
+        }
+      },
+      "comment" : "Summary loading state"
+    },
+    "No Summary Available" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Summary Available"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen no disponible"
+          }
+        }
+      },
+      "comment" : "Summary empty state title"
+    },
+    "This article is too short to summarize, or summarization isn't available on this device." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This article is too short to summarize, or summarization isn't available on this device."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este artículo es demasiado corto para resumir, o el resumen no está disponible en este dispositivo."
+          }
+        }
+      },
+      "comment" : "Summary empty state message"
+    },
+    "Intelligence" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligence"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligencia"
+          }
+        }
+      },
+      "comment" : "Feed intelligence settings section"
+    },
+    "Highlight Key Points" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highlight Key Points"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resaltar frases clave"
+          }
+        }
+      },
+      "comment" : "Key-point highlighting toggle"
+    },
+    "Marks the most important sentences in each article. Computed on-device." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marks the most important sentences in each article. Computed on-device."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marca las frases más importantes de cada artículo. Se calcula en el dispositivo."
+          }
+        }
+      },
+      "comment" : "Key-point highlighting footer"
     }
   },
   "version" : "1.1"
