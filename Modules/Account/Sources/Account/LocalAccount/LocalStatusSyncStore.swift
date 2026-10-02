@@ -33,7 +33,7 @@ final class LocalStatusSyncStore: Sendable {
 		self.serialDispatchQueue = DispatchQueue(label: "LocalStatusSyncStore")
 		self.database = FMDatabase.openAndSetUpDatabase(path: databasePath)
 		serialDispatchQueue.sync { [database] in
-			_ = database.runCreateStatements(Self.tableCreationStatements)
+			database.runCreateStatements(Self.tableCreationStatements)
 		}
 	}
 
