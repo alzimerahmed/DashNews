@@ -63,7 +63,7 @@ import CloudKitSync
 		Task { @MainActor in
 			iCloudAccountIsUnavailable = false
 			Self.logger.info("LocalCloudStatusSyncer: iCloud account changed — retrying sync")
-			try? await syncArticleStatus()
+			_ = try? await syncArticleStatus()
 		}
 	}
 
@@ -80,10 +80,18 @@ import CloudKitSync
 		}
 
 		let now = Date()
+		// Prefer the article's true current status over the mirror: the mirror
+		// only knows about changes made while the feature was on, so a
+		// never-synced starred article marked read must not push starred=false.
+		var currentStatuses = [String: ArticleStatus]()
+		for article in account?.fetchArticles(.articleIDs(articleIDs)) ?? [] {
+			currentStatuses[article.articleID] = article.status
+		}
 		for articleID in articleIDs {
 			let existing = store.status(for: articleID)
-			let read = statusKey == .read ? flag : (existing?.read ?? false)
-			let starred = statusKey == .starred ? flag : (existing?.starred ?? false)
+			let current = currentStatuses[articleID]
+			let read = current?.read ?? (statusKey == .read ? flag : (existing?.read ?? false))
+			let starred = current?.starred ?? (statusKey == .starred ? flag : (existing?.starred ?? false))
 			store.recordLocalChange(articleID: articleID, read: read, starred: starred, lastModified: now)
 		}
 	}
@@ -114,7 +122,7 @@ import CloudKitSync
 		guard await checkiCloudAvailability() else {
 			return
 		}
-		try await pushLocalChanges()
+		_ = try await pushLocalChanges()
 	}
 
 	/// Pulls remote status changes and applies them to the account.
@@ -125,7 +133,7 @@ import CloudKitSync
 		guard await checkiCloudAvailability() else {
 			return
 		}
-		try await pullRemoteChanges()
+		_ = try await pullRemoteChanges()
 	}
 
 	/// Deletes the mirror store contents and stops observing notifications.

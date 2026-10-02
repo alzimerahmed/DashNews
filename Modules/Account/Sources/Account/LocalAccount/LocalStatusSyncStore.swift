@@ -33,7 +33,7 @@ final class LocalStatusSyncStore: Sendable {
 		self.serialDispatchQueue = DispatchQueue(label: "LocalStatusSyncStore")
 		self.database = FMDatabase.openAndSetUpDatabase(path: databasePath)
 		serialDispatchQueue.sync { [database] in
-			database.runCreateStatements(Self.tableCreationStatements)
+			_ = database.runCreateStatements(Self.tableCreationStatements)
 		}
 	}
 
@@ -44,7 +44,7 @@ final class LocalStatusSyncStore: Sendable {
 	func recordLocalChange(articleID: String, read: Bool, starred: Bool, lastModified: Date) {
 		let recordName = LocalStatusRecord.recordName(for: articleID)
 		serialDispatchQueue.sync { [database] in
-			database.executeUpdate("""
+			_ = database.executeUpdate("""
 				INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 1)
 				ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 1
 				""", withArgumentsIn: [articleID, recordName, read, starred, lastModified.timeIntervalSince1970])
@@ -71,7 +71,7 @@ final class LocalStatusSyncStore: Sendable {
 	func markClean(articleIDs: Set<String>, pushedBefore lastModified: Date) {
 		serialDispatchQueue.sync { [database] in
 			for articleID in articleIDs {
-				database.executeUpdate("""
+				_ = database.executeUpdate("""
 					UPDATE localStatus SET dirty = 0 WHERE articleID = ? AND lastModified <= ?
 					""", withArgumentsIn: [articleID, lastModified.timeIntervalSince1970])
 			}
@@ -84,10 +84,10 @@ final class LocalStatusSyncStore: Sendable {
 	/// already wins.
 	func applyRemote(_ remote: LocalStatusRecord) -> Bool {
 		let recordName = LocalStatusRecord.recordName(for: remote.articleID)
-		serialDispatchQueue.sync { [database] in
+		return serialDispatchQueue.sync { [database] in
 			let local = Self.status(for: remote.articleID, database: database)
 			guard let local else {
-				database.executeUpdate("""
+				_ = database.executeUpdate("""
 					INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 0)
 					""", withArgumentsIn: [remote.articleID, recordName, remote.read, remote.starred, remote.lastModified.timeIntervalSince1970])
 				return true
@@ -100,7 +100,7 @@ final class LocalStatusSyncStore: Sendable {
 			// be pushed back. A row that was dirty with an older timestamp loses
 			// here too — the remote change is newer, so the queued local change
 			// is stale and gets dropped.
-			database.executeUpdate("""
+			_ = database.executeUpdate("""
 				INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 0)
 				ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 0
 				""", withArgumentsIn: [winner.articleID, recordName, winner.read, winner.starred, winner.lastModified.timeIntervalSince1970])
@@ -130,14 +130,14 @@ final class LocalStatusSyncStore: Sendable {
 	/// deleted and the row is clean).
 	func deleteRow(articleID: String) {
 		serialDispatchQueue.sync { [database] in
-			database.executeUpdate("DELETE FROM localStatus WHERE articleID = ? AND dirty = 0", withArgumentsIn: [articleID])
+			_ = database.executeUpdate("DELETE FROM localStatus WHERE articleID = ? AND dirty = 0", withArgumentsIn: [articleID])
 		}
 	}
 
 	/// Removes all rows. Used when the sync feature is turned off.
 	func deleteAll() {
 		serialDispatchQueue.sync { [database] in
-			database.executeUpdate("DELETE FROM localStatus", withArgumentsIn: [])
+			_ = database.executeUpdate("DELETE FROM localStatus", withArgumentsIn: [])
 		}
 	}
 
@@ -151,10 +151,10 @@ final class LocalStatusSyncStore: Sendable {
 		defer {
 			resultSet.close()
 		}
-		guard resultSet.next(), let readValue = resultSet.object(forColumnIndex: 0) as? Bool, let starredValue = resultSet.object(forColumnIndex: 1) as? Bool, let lastModifiedValue = resultSet.object(forColumnIndex: 2) as? Double else {
+		guard resultSet.next() else {
 			return nil
 		}
-		return LocalStatusRecord(articleID: articleID, read: readValue, starred: starredValue, lastModified: Date(timeIntervalSince1970: lastModifiedValue))
+		return LocalStatusRecord(articleID: articleID, read: resultSet.bool(forColumnIndex: 0), starred: resultSet.bool(forColumnIndex: 1), lastModified: Date(timeIntervalSince1970: resultSet.double(forColumnIndex: 2)))
 	}
 
 	private static func selectDirty(database: FMDatabase) -> [LocalStatusRecord] {
@@ -168,10 +168,10 @@ final class LocalStatusSyncStore: Sendable {
 
 		var records = [LocalStatusRecord]()
 		while resultSet.next() {
-			guard let articleID = resultSet.object(forColumnIndex: 0) as? String, let readValue = resultSet.object(forColumnIndex: 1) as? Bool, let starredValue = resultSet.object(forColumnIndex: 2) as? Bool, let lastModifiedValue = resultSet.object(forColumnIndex: 3) as? Double else {
+			guard let articleID = resultSet.object(forColumnIndex: 0) as? String else {
 				continue
 			}
-			records.append(LocalStatusRecord(articleID: articleID, read: readValue, starred: starredValue, lastModified: Date(timeIntervalSince1970: lastModifiedValue)))
+			records.append(LocalStatusRecord(articleID: articleID, read: resultSet.bool(forColumnIndex: 1), starred: resultSet.bool(forColumnIndex: 2), lastModified: Date(timeIntervalSince1970: resultSet.double(forColumnIndex: 3))))
 		}
 		return records
 	}

@@ -78,7 +78,7 @@ struct LocalStatusRecord: Equatable, Sendable {
 		let readValue = record[Fields.read] as? String ?? "0"
 		let starredValue = record[Fields.starred] as? String ?? "0"
 		let lastModified = record[Fields.lastModified] as? Date ?? record.modificationDate ?? record.creationDate ?? Date(timeIntervalSince1970: 0)
-		self.init(articleID: articleID, read: readValue != "0", starred: starredValue == "1", lastModified: lastModified)
+		self.init(articleID: articleID, read: readValue == "1", starred: starredValue == "1", lastModified: lastModified)
 	}
 
 	// MARK: - Conflict resolution
