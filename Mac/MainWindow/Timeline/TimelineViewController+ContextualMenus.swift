@@ -137,6 +137,19 @@ extension TimelineViewController {
 		send()
 	}
 
+	@objc func summarizeArticleFromContextualMenu(_ sender: Any?) {
+		guard let menuItem = sender as? NSMenuItem,
+			  let article = menuItem.representedObject as? Article,
+			  let window = view.window else {
+			return
+		}
+		let hostingController = NSHostingController(rootView: ArticleSummaryView(title: article.title, contentText: article.summarizableText))
+		let summaryWindow = NSWindow(contentViewController: hostingController)
+		summaryWindow.styleMask = [.titled, .closable, .resizable]
+		summaryWindow.setContentSize(NSSize(width: 520, height: 560))
+		window.beginSheet(summaryWindow)
+	}
+
 	@objc func translateArticleFromContextualMenu(_ sender: Any?) {
 		guard let menuItem = sender as? NSMenuItem,
 			  let article = menuItem.representedObject as? Article,
@@ -271,6 +284,7 @@ private extension TimelineViewController {
 
 		if articles.count == 1, let singleArticle = articles.first {
 			menu.addSeparatorIfNeeded()
+			menu.addItem(menuItem(NSLocalizedString("Summarize Article", comment: "Command"), #selector(summarizeArticleFromContextualMenu(_:)), singleArticle))
 			menu.addItem(menuItem(NSLocalizedString("Translate Article", comment: "Command"), #selector(translateArticleFromContextualMenu(_:)), singleArticle))
 		}
 

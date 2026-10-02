@@ -50,6 +50,24 @@ final class ArticleViewController: UIViewController {
 		return item
 	}()
 
+	/// On-device article summary (Feature #9). Available on all supported OS
+	/// versions — SummarizationService falls back to extractive summarization
+	/// when Foundation Models isn't present.
+	private lazy var summarizeBarButtonItem: UIBarButtonItem = {
+		let item = UIBarButtonItem(image: UIImage(systemName: "text.append"), style: .plain, target: self, action: #selector(summarizeArticle(_:)))
+		item.accessibilityLabel = NSLocalizedString("Summarize Article", comment: "Summarize article")
+		return item
+	}()
+
+	@objc func summarizeArticle(_ sender: Any?) {
+		guard let article else {
+			return
+		}
+		let summaryController = UIHostingController(rootView: ArticleSummaryView(title: article.title, contentText: article.summarizableText))
+		summaryController.modalPresentationStyle = .pageSheet
+		present(summaryController, animated: true)
+	}
+
 	@objc func translateArticle(_ sender: Any?) {
 		guard #available(iOS 18.0, *) else {
 			return
@@ -184,6 +202,7 @@ final class ArticleViewController: UIViewController {
 				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
 				items.insert(displayBarButtonItem, at: min(6, items.count))
 				items.insert(translateBarButtonItem, at: min(7, items.count))
+				items.insert(summarizeBarButtonItem, at: min(8, items.count))
 				toolbarItems = items
 			}
 		} else {
@@ -201,6 +220,7 @@ final class ArticleViewController: UIViewController {
 				flex(),
 				actionBarButtonItem
 			]
+			items.insert(summarizeBarButtonItem, at: items.count - 1)
 			if #available(iOS 18.0, *) {
 				items.insert(translateBarButtonItem, at: items.count - 1)
 			}
