@@ -10,6 +10,7 @@ import Foundation
 import os
 import RSCore
 import RSDatabase
+import RSDatabaseObjC
 import RSParser
 import Articles
 
@@ -86,6 +87,7 @@ public struct ArticleCounts: Sendable {
 			}
 			database.executeStatements("CREATE INDEX if not EXISTS articles_searchRowID on articles(searchRowID);")
 			database.executeStatements("DROP TABLE if EXISTS tags;DROP INDEX if EXISTS tags_tagName_index;DROP INDEX if EXISTS articles_feedID_index;DROP INDEX if EXISTS statuses_read_index;DROP TABLE if EXISTS attachments;DROP TABLE if EXISTS attachmentsLookup;")
+			Self.migrateSearchIndexToFTS5IfNeeded(database)
 		}
 
 		DispatchQueue.main.async {
@@ -425,6 +427,21 @@ public struct ArticleCounts: Sendable {
 		articlesTable.deleteArticlesNotInSubscribedToFeedIDs(subscribedToFeedIDs)
 		articlesTable.deleteOldStatuses()
 	}
+
+	// MARK: - Search Index Rebuild
+
+	/// Rebuild the FTS5 search index from the articles table.
+	/// Use after a schema migration or if the index appears corrupted.
+	/// The global-queue hop keeps `rebuildSearchIndex` off the DatabaseQueue's
+	/// serial queue — its sync transactions would deadlock there.
+	public func rebuildSearchIndexAsync() async {
+		await withCheckedContinuation { continuation in
+			DispatchQueue.global(qos: .userInitiated).async {
+				self.articlesTable.rebuildSearchIndex()
+				continuation.resume()
+			}
+		}
+	}
 }
 
 // MARK: - Private
@@ -440,7 +457,16 @@ private extension ArticlesDatabase {
 
 	CREATE INDEX if not EXISTS statuses_starred_index on statuses (starred);
 
-	CREATE VIRTUAL TABLE if not EXISTS search using fts4(title, body);
+	CREATE VIRTUAL TABLE if not EXISTS search using fts5(title, body);
+
+	CREATE TRIGGER if not EXISTS articles_after_delete_trigger_delete_search_text after delete on articles begin delete from search where rowid = OLD.searchRowID; end;
+	"""
+
+	/// Statements for the FTS5 search index. Kept separate so the FTS4→FTS5
+	/// migration can re-run them after dropping the legacy table.
+	/// See <docs/research.md> ADR-003: search is on-device SQLite FTS.
+	nonisolated static let fts5SearchTableStatements = """
+	CREATE VIRTUAL TABLE if not EXISTS search using fts5(title, body);
 
 	CREATE TRIGGER if not EXISTS articles_after_delete_trigger_delete_search_text after delete on articles begin delete from search where rowid = OLD.searchRowID; end;
 	"""
@@ -448,6 +474,43 @@ private extension ArticlesDatabase {
 	func todayCutoffDate() -> Date {
 		// 24 hours previous. This is used by the Today smart feed, which should not actually empty out at midnight.
 		return Date(timeIntervalSinceNow: -(60 * 60 * 24)) // This does not need to be more precise.
+	}
+
+	// MARK: - Search Index Migration
+
+	/// Databases created before the FTS5 migration used an FTS4 virtual table
+	/// named `search`. FTS4 and FTS5 tables with the same name are incompatible,
+	/// so drop the legacy index and rebuild it from the articles table.
+	/// The rebuild itself is asynchronous: articles get searchRowID = NULL and are
+	/// reindexed by `indexUnindexedArticles` (called just after init).
+	nonisolated static func migrateSearchIndexToFTS5IfNeeded(_ database: FMDatabase) {
+		guard searchTableUsesFTS4(database) else {
+			return
+		}
+		logger.debug("ArticlesDatabase: migrating search index from FTS4 to FTS5")
+		let statements = "DROP TRIGGER if EXISTS articles_after_delete_trigger_delete_search_text;DROP TABLE if EXISTS search;" + fts5SearchTableStatements + "update articles set searchRowID = NULL;"
+		database.beginTransaction()
+		if database.executeStatements(statements) {
+			database.commit()
+		} else {
+			logger.error("ArticlesDatabase: FTS4 to FTS5 search index migration failed — \(database.lastErrorMessage(), privacy: .public)")
+			database.rollback()
+		}
+	}
+
+	/// Returns true if the `search` table exists and is an FTS4 virtual table.
+	nonisolated static func searchTableUsesFTS4(_ database: FMDatabase) -> Bool {
+		guard let resultSet = database.executeQuery("select sql from sqlite_master where type = 'table' and name = 'search';", withArgumentsIn: []) else {
+			return false
+		}
+		defer {
+			resultSet.close()
+		}
+		guard resultSet.next() else {
+			return false
+		}
+		let sql = resultSet.swiftString(forColumnIndex: 0) ?? ""
+		return sql.lowercased().contains("fts4")
 	}
 
 	// MARK: - Operations

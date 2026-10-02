@@ -517,6 +517,12 @@ final class ArticlesTable: DatabaseTable, Sendable {
 
 	// MARK: - Indexing
 
+	/// Rebuild the entire search index from the articles table.
+	/// Manages its own transactions — do not call from within a transaction block.
+	func rebuildSearchIndex() {
+		searchTable.rebuildIndex()
+	}
+
 	func indexUnindexedArticles() {
 		queue.runInDatabase { database in
 			let sql = "select articleID from articles where searchRowID is null limit 500;"

@@ -1157,6 +1157,21 @@ extension MainFeedCollectionViewController {
 	}
 
 	func makePseudoFeedContextMenu(indexPath: IndexPath) -> UIContextMenuConfiguration? {
+		let savedSearchFeed = dataSource.itemIdentifier(for: indexPath)?.node.representedObject as? SmartFeed
+		let savedSearchIDToUse = savedSearchFeed?.savedSearchID
+
+		// Saved searches always have an unreadCount of 0, so markAllAsReadAction
+		// returns nil for them — build their menu without it so Rename/Delete
+		// remain reachable.
+		if let savedSearchID = savedSearchIDToUse {
+			return UIContextMenuConfiguration(identifier: MainFeedRowIdentifier(indexPath: indexPath), previewProvider: nil, actionProvider: { _ in
+				return UIMenu(title: "", children: [
+					self.renameSavedSearchAction(id: savedSearchID),
+					self.deleteSavedSearchAction(id: savedSearchID)
+				])
+			})
+		}
+
 		guard let markAllAction = self.markAllAsReadAction(indexPath: indexPath) else {
 			return nil
 		}
@@ -1164,6 +1179,43 @@ extension MainFeedCollectionViewController {
 		return UIContextMenuConfiguration(identifier: MainFeedRowIdentifier(indexPath: indexPath), previewProvider: nil, actionProvider: { _ in
 			return UIMenu(title: "", children: [markAllAction])
 		})
+	}
+
+	func renameSavedSearchAction(id: UUID) -> UIAction {
+		let title = NSLocalizedString("Rename", comment: "Command")
+		let action = UIAction(title: title, image: Assets.Images.edit) { [weak self] _ in
+			self?.showRenameSavedSearchAlert(id: id)
+		}
+		return action
+	}
+
+	func deleteSavedSearchAction(id: UUID) -> UIAction {
+		let title = NSLocalizedString("Delete", comment: "Delete button")
+		let action = UIAction(title: title, image: Assets.Images.trash, attributes: .destructive) { _ in
+			SmartFeedsController.shared.deleteSavedSearch(id: id)
+		}
+		return action
+	}
+
+	func showRenameSavedSearchAlert(id: UUID) {
+		guard let savedSearch = SmartFeedsController.shared.savedSearchFeed(id: id) else {
+			return
+		}
+
+		let alert = UIAlertController(title: NSLocalizedString("Rename", comment: "Command"), message: nil, preferredStyle: .alert)
+		alert.addTextField { textField in
+			textField.text = savedSearch.nameForDisplay
+		}
+		let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel)
+		let renameAction = UIAlertAction(title: NSLocalizedString("Save", comment: "Save button"), style: .default) { _ in
+			guard let name = alert.textFields?.first?.text else {
+				return
+			}
+			SmartFeedsController.shared.renameSavedSearch(id: id, to: name)
+		}
+		alert.addAction(renameAction)
+		alert.addAction(cancelAction)
+		present(alert, animated: true)
 	}
 
 	func homePageAction(indexPath: IndexPath) -> UIAction? {

@@ -21,6 +21,7 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 	// MARK: Private Variables
 	private var numberOfTextLines = 0
 	private var iconSize = IconSize.medium
+	private var previousLeftBarButtonItem: UIBarButtonItem?
 	private lazy var feedTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showFeedInspector(_:)))
 	private lazy var filterButton = UIBarButtonItem(image: Assets.Images.filter, style: .plain, target: self, action: #selector(toggleFilter(_:)))
 	private lazy var nextUnreadButton = UIBarButtonItem(image: Assets.Images.nextUnread, style: .plain, target: self, action: #selector(nextUnread(_:)))
@@ -1159,19 +1160,33 @@ private extension MainTimelineModernViewController {
 
 extension MainTimelineModernViewController: UISearchControllerDelegate {
 
+	private var saveSearchButton: UIBarButtonItem {
+		let button = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveSearch(_:)))
+		button.accessibilityLabel = NSLocalizedString("Save Search", comment: "Save Search button")
+		return button
+	}
+
 	func willPresentSearchController(_ searchController: UISearchController) {
 		coordinator?.beginSearching()
 		searchController.searchBar.showsScopeBar = true
+		previousLeftBarButtonItem = navigationItem.leftBarButtonItem
+		navigationItem.leftBarButtonItem = saveSearchButton
 	}
 
 	func willDismissSearchController(_ searchController: UISearchController) {
 		searchController.searchBar.showsScopeBar = false
+		navigationItem.leftBarButtonItem = previousLeftBarButtonItem
+		previousLeftBarButtonItem = nil
 		// Async to avoid iOS 26 UINavigationBar crashes during the search-bar dismissal
 		// transition — endSearching() mutates the timeline and the navigation stack.
 		DispatchQueue.main.async {
 			self.coordinator?.endSearching()
 			self.updateToolbar()
 		}
+	}
+
+	@objc func saveSearch(_ sender: Any?) {
+		coordinator?.saveSearch()
 	}
 }
 
