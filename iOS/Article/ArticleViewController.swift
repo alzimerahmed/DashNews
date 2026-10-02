@@ -43,7 +43,7 @@ final class ArticleViewController: UIViewController {
 		return item
 	}()
 
-	/// System translation of the article text (Feature #11). Only added on iOS 17.4+.
+	/// System translation of the article text (Feature #11). Only added on iOS 18+.
 	private lazy var translateBarButtonItem: UIBarButtonItem = {
 		let item = UIBarButtonItem(image: UIImage(systemName: "character.book.closed"), style: .plain, target: self, action: #selector(translateArticle(_:)))
 		item.accessibilityLabel = NSLocalizedString("Translate Article", comment: "Translate article")
@@ -51,7 +51,7 @@ final class ArticleViewController: UIViewController {
 	}()
 
 	@objc func translateArticle(_ sender: Any?) {
-		guard #available(iOS 17.4, *) else {
+		guard #available(iOS 18.0, *) else {
 			return
 		}
 		guard let article, let text = articleTextForTranslation(article), !text.isEmpty else {
@@ -183,7 +183,7 @@ final class ArticleViewController: UIViewController {
 				let extractorIndex = min(5, items.count)
 				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
 				items.insert(displayBarButtonItem, at: min(6, items.count))
-				if #available(iOS 17.4, *) {
+				if #available(iOS 18.0, *) {
 					items.insert(translateBarButtonItem, at: min(7, items.count))
 				}
 				toolbarItems = items
@@ -203,7 +203,7 @@ final class ArticleViewController: UIViewController {
 				flex(),
 				actionBarButtonItem
 			]
-			if #available(iOS 17.4, *) {
+			if #available(iOS 18.0, *) {
 				items.insert(translateBarButtonItem, at: items.count - 1)
 			}
 			toolbarItems = items

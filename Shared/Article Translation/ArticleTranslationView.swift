@@ -12,9 +12,10 @@ import SwiftUI
 import Translation
 
 /// System translation of an article's text using the Translation framework.
-/// Feature #11. Available on iOS 17.4+ / macOS 14.4+; call sites must gate
-/// with `#available(iOS 17.4, macOS 14.4, *)` so older OS builds still compile.
-@available(iOS 17.4, macOS 14.4, *)
+/// Feature #11. TranslationSession is available on iOS 18+ / macOS 15+;
+/// call sites must gate with `#available(iOS 18.0, macOS 15.0, *)` so older
+/// OS builds still compile.
+@available(iOS 18.0, macOS 15.0, *)
 @MainActor struct ArticleTranslationView: View {
 
 	let sourceText: String

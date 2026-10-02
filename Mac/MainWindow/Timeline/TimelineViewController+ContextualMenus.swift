@@ -143,7 +143,7 @@ extension TimelineViewController {
 			  let window = view.window else {
 			return
 		}
-		guard #available(iOS 17.4, macOS 14.4, *) else {
+		guard #available(iOS 18.0, macOS 15.0, *) else {
 			return
 		}
 		let text = KeywordRuleMatcher.searchableText(of: article)
