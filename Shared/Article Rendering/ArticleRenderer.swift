@@ -222,7 +222,7 @@ private extension ArticleRenderer {
 			d["external_link"] = ""
 		}
 
-		d["body"] = body
+		d["body"] = highlightedBody()
 
 		d["text_size_class"] = AppDefaults.shared.articleTextSize.cssClass
 
@@ -258,6 +258,18 @@ private extension ArticleRenderer {
 		d["time_short"] = Self.shortTimeFormatter.string(from: datePublished)
 
 		return d
+	}
+
+	/// Applies the feed's highlight rules (Feature #2) to the article body.
+	func highlightedBody() -> String {
+		guard let feedID = article?.feedID else {
+			return body
+		}
+		let keywords = KeywordRuleStore.shared.highlightKeywords(forFeedID: feedID)
+		guard !keywords.isEmpty else {
+			return body
+		}
+		return KeywordHighlighter.highlightedHTML(body, keywords: keywords)
 	}
 
 	func byline() -> String {

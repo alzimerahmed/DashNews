@@ -83,7 +83,7 @@ typealias FetchRequestOperationResultBlock = (Set<Article>, FetchRequestOperatio
 
 				assert(!self.isFinished)
 
-				fetchedArticles.formUnion(articles)
+				fetchedArticles.formUnion(Self.filterHiddenArticles(articles))
 				fetchersReturned += 1
 				if fetchersReturned == numberOfFetchers {
 					self.isFinished = true
@@ -171,7 +171,7 @@ typealias FetchRequestOperationResultBlock = (Set<Article>, FetchRequestOperatio
 
 				assert(!self.isFinished)
 
-				fetchedArticles.formUnion(articles)
+				fetchedArticles.formUnion(Self.filterHiddenArticles(articles))
 				fetchersReturned += 1
 				if fetchersReturned == numberOfFetchers {
 					self.isFinished = true
@@ -205,6 +205,22 @@ typealias FetchRequestOperationResultBlock = (Set<Article>, FetchRequestOperatio
 }
 
 #endif
+
+// MARK: - Keyword Rule Filtering (Feature #2)
+
+extension FetchRequestOperation {
+
+	/// Removes articles matching a feed's hide rules (Feature #2 — keyword rules).
+	@MainActor static func filterHiddenArticles(_ articles: Set<Article>) -> Set<Article> {
+		let store = KeywordRuleStore.shared
+		guard !store.rules.isEmpty else {
+			return articles
+		}
+		return Set(articles.filter { article in
+			!KeywordRuleMatcher.shouldHide(article: article, rules: store.hideRules(forFeedID: article.feedID))
+		})
+	}
+}
 
 private extension FetchRequestOperation {
 

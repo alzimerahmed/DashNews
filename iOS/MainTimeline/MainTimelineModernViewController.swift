@@ -584,6 +584,10 @@ extension MainTimelineModernViewController: UICollectionViewDelegate {
 				menuElements.append(UIMenu(title: "", options: .displayInline, children: [action]))
 			}
 
+			if let action = self.sendToInstapaperAction(article) {
+				menuElements.append(UIMenu(title: "", options: .displayInline, children: [action]))
+			}
+
 			if let action = self.shareAction(article, indexPath: firstIndex) {
 				menuElements.append(UIMenu(title: "", options: .displayInline, children: [action]))
 			}
@@ -1471,6 +1475,82 @@ extension MainTimelineModernViewController {
 			self?.showBrowserForArticle(article)
 		}
 		return action
+	}
+
+	func sendToInstapaperAction(_ article: Article) -> UIAction? {
+		guard article.preferredURL != nil else {
+			return nil
+		}
+		let title = NSLocalizedString("Send to Instapaper", comment: "Command")
+		let action = UIAction(title: title, image: UIImage(systemName: "text.badge.plus")) { [weak self] _ in
+			self?.sendToInstapaper(article: article)
+		}
+		return action
+	}
+
+	func sendToInstapaper(article: Article) {
+		guard let url = article.preferredURL else {
+			return
+		}
+		if InstapaperService.isConfigured {
+			sendToInstapaper(url: url, title: article.title, presenter: self)
+		} else {
+			promptForInstapaperCredentials(from: self) { [weak self] in
+				self?.sendToInstapaper(url: url, title: article.title, presenter: self)
+			}
+		}
+	}
+
+	func sendToInstapaper(url: URL, title: String?, presenter: UIViewController?) {
+		Task { @MainActor in
+			do {
+				try await InstapaperService.send(url: url, title: title)
+				presentInstapaperResult(title: NSLocalizedString("Saved to Instapaper", comment: "Instapaper success"), presenter: presenter)
+			} catch {
+				presentInstapaperResult(title: NSLocalizedString("Instapaper Error", comment: "Instapaper error title"), message: error.localizedDescription, presenter: presenter)
+			}
+		}
+	}
+
+	func presentInstapaperResult(title: String, message: String? = nil, presenter: UIViewController?) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let okTitle = NSLocalizedString("OK", comment: "OK button")
+		alert.addAction(UIAlertAction(title: okTitle, style: .default))
+		presenter?.present(alert, animated: true)
+	}
+
+	func promptForInstapaperCredentials(from presenter: UIViewController?, completion: @escaping () -> Void) {
+		let alert = UIAlertController(
+			title: NSLocalizedString("Instapaper Account", comment: "Instapaper account setup title"),
+			message: NSLocalizedString("Enter your Instapaper username and password to save articles for later.", comment: "Instapaper account setup message"),
+			preferredStyle: .alert)
+
+		alert.addTextField { textField in
+			textField.placeholder = NSLocalizedString("Username", comment: "Username")
+			textField.autocorrectionType = .no
+			textField.autocapitalizationType = .none
+		}
+		alert.addTextField { textField in
+			textField.placeholder = NSLocalizedString("Password", comment: "Password")
+			textField.isSecureTextEntry = true
+		}
+
+		let saveTitle = NSLocalizedString("Save", comment: "Save button")
+		let saveAction = UIAlertAction(title: saveTitle, style: .default) { _ in
+			let username = alert.textFields?.first?.text ?? ""
+			let password = alert.textFields?.last?.text ?? ""
+			do {
+				try InstapaperService.saveCredentials(username: username, password: password)
+				completion()
+			} catch {
+				self.presentInstapaperResult(title: NSLocalizedString("Instapaper Error", comment: "Instapaper error title"), message: error.localizedDescription, presenter: presenter)
+			}
+		}
+		alert.addAction(saveAction)
+
+		let cancelTitle = NSLocalizedString("Cancel", comment: "Cancel button")
+		alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel))
+		presenter?.present(alert, animated: true)
 	}
 
 	func openInBrowserAlertAction(_ article: Article, completion: @escaping (Bool) -> Void) -> UIAlertAction? {

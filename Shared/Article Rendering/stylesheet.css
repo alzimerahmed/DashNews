@@ -567,3 +567,11 @@ a.footnote:hover,
 	}
 
 }
+
+/* Keyword rule highlighting (Feature #2) */
+mark.nnwKeywordHighlight {
+	background-color: rgba(255, 204, 0, 0.45);
+	color: inherit;
+	padding: 0 1px;
+	border-radius: 2px;
+}

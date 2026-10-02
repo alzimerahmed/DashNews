@@ -9,6 +9,7 @@
 import UIKit
 import os
 import SafariServices
+import SwiftUI
 import WebKit
 import RSCore
 import Account
@@ -41,6 +42,30 @@ final class ArticleViewController: UIViewController {
 		item.accessibilityLabel = NSLocalizedString("Article Display", comment: "Article theme and text size quick switch")
 		return item
 	}()
+
+	/// System translation of the article text (Feature #11). Only added on iOS 18+.
+	private lazy var translateBarButtonItem: UIBarButtonItem = {
+		let item = UIBarButtonItem(image: UIImage(systemName: "character.book.closed"), style: .plain, target: self, action: #selector(translateArticle(_:)))
+		item.accessibilityLabel = NSLocalizedString("Translate Article", comment: "Translate article")
+		return item
+	}()
+
+	@objc func translateArticle(_ sender: Any?) {
+		guard #available(iOS 18.0, *) else {
+			return
+		}
+		guard let article, let text = articleTextForTranslation(article), !text.isEmpty else {
+			return
+		}
+		let translationController = UIHostingController(rootView: ArticleTranslationView(sourceText: text))
+		translationController.modalPresentationStyle = .pageSheet
+		present(translationController, animated: true)
+	}
+
+	func articleTextForTranslation(_ article: Article) -> String? {
+		let text = KeywordRuleMatcher.searchableText(of: article)
+		return text.isEmpty ? nil : text
+	}
 
 	private var pageViewController: UIPageViewController!
 	private var isPageTransitionInProgress = false
@@ -158,11 +183,12 @@ final class ArticleViewController: UIViewController {
 				let extractorIndex = min(5, items.count)
 				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
 				items.insert(displayBarButtonItem, at: min(6, items.count))
+				items.insert(translateBarButtonItem, at: min(7, items.count))
 				toolbarItems = items
 			}
 		} else {
 			let flex = { UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) }
-			toolbarItems = [
+			var items: [UIBarButtonItem] = [
 				readBarButtonItem,
 				flex(),
 				starBarButtonItem,
@@ -175,6 +201,10 @@ final class ArticleViewController: UIViewController {
 				flex(),
 				actionBarButtonItem
 			]
+			if #available(iOS 18.0, *) {
+				items.insert(translateBarButtonItem, at: items.count - 1)
+			}
+			toolbarItems = items
 		}
 
 		pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
