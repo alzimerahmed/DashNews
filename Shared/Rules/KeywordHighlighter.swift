@@ -64,7 +64,8 @@ private extension KeywordHighlighter {
 			guard let matchRange = Range(match.range, in: result) else {
 				continue
 			}
-			result.replaceSubrange(matchRange, with: markOpenTag + result[matchRange] + markCloseTag)
+			let matchedText = String(result[matchRange])
+			result.replaceSubrange(matchRange, with: markOpenTag + matchedText + markCloseTag)
 		}
 		return result
 	}

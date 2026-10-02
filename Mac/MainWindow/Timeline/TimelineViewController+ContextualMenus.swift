@@ -173,7 +173,7 @@ extension TimelineViewController {
 		stack.alignment = .leading
 		stack.spacing = 6.0
 		stack.frame = NSRect(x: 0, y: 0, width: 240, height: 110)
-		alert.window.accessoryView = stack
+		alert.accessoryView = stack
 
 		guard let window = view.window else {
 			return
