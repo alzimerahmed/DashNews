@@ -10,8 +10,9 @@ import Foundation
 
 /// Wraps key sentences in article HTML with <mark> tags for highlighting.
 /// Feature #8 — NewsBlur-style key-point highlighting. Replacements happen
-/// only in text segments between HTML tags, so markup is never corrupted,
-/// and each sentence is marked at its first occurrence only.
+/// only in text segments between HTML tags, so markup is never corrupted;
+/// text inside <script>/<style> regions and inside previously inserted marks
+/// is never touched, and each sentence is marked at its first occurrence only.
 nonisolated enum KeySentenceHighlighter {
 
 	static let markOpenTag = "<mark class=\"nnwKeyPoint\">"
@@ -35,12 +36,16 @@ nonisolated enum KeySentenceHighlighter {
 		var result = html
 		var placedNeedles = Set<String>()
 		for sentence in sentences {
-			for needle in needles(for: sentence) where !placedNeedles.contains(needle) {
+			let candidates = needles(for: sentence)
+			for needle in candidates where !placedNeedles.contains(needle) {
 				guard let marked = markFirstOccurrence(in: result, needle: needle) else {
 					continue
 				}
 				result = marked
-				placedNeedles.insert(needle)
+				// Record every needle for this sentence — including the
+				// anchor — so a later sentence sharing the prefix can't mark
+				// inside (or next to) the mark just placed.
+				placedNeedles.formUnion(candidates)
 				break
 			}
 		}
@@ -71,43 +76,126 @@ private extension KeySentenceHighlighter {
 			.joined(separator: " ")
 	}
 
-	/// A case-insensitive regex matching the needle with flexible whitespace
-	/// between words — HTML text may contain newlines or runs of spaces where
-	/// the plain-text source has single spaces.
+	/// A case-insensitive regex matching the needle in raw HTML text.
+	/// Whitespace between words is flexible (spaces, newlines, &nbsp; forms),
+	/// and characters that commonly appear as entities (' & " – — … and
+	/// non-breaking spaces inside words) map to alternations covering both
+	/// the literal character and its entity spellings — needles come from
+	/// decoded plain text while segments are raw HTML.
 	static func needleRegex(for needle: String) -> NSRegularExpression? {
-		let escapedWords = needle
+		let wordPatterns = needle
 			.components(separatedBy: " ")
 			.filter { !$0.isEmpty }
-			.map { NSRegularExpression.escapedPattern(for: $0) }
-		guard !escapedWords.isEmpty else {
+			.map(escapedWordPattern)
+		guard !wordPatterns.isEmpty else {
 			return nil
 		}
-		return try? NSRegularExpression(pattern: "(?i)" + escapedWords.joined(separator: "\\s+"), options: [])
+		let separator = "(?:\\s|&nbsp;|&#0*160;|&#x0*a0;)+"
+		return try? NSRegularExpression(pattern: "(?i)" + wordPatterns.joined(separator: separator), options: [])
 	}
 
-	/// Wraps the first occurrence of `needle` found in the text segments
+	static func escapedWordPattern(for word: String) -> String {
+		var pattern = ""
+		for character in word {
+			pattern += entityTolerantPattern(for: character)
+		}
+		return pattern
+	}
+
+	/// Alternation matching a character and its common HTML entity forms.
+	static func entityTolerantPattern(for character: Character) -> String {
+		switch character {
+		case "'", "\u{2018}", "\u{2019}", "`":
+			return "(?:'|\u{2018}|\u{2019}|`|&apos;|&lsquo;|&rsquo;|&#0*39;|&#0*96;|&#0*8216;|&#0*8217;|&#x0*27;|&#x0*60;|&#x0*2018;|&#x0*2019;)"
+		case "\"", "\u{201C}", "\u{201D}":
+			return "(?:\"|\u{201C}|\u{201D}|&quot;|&ldquo;|&rdquo;|&#0*34;|&#0*8220;|&#0*8221;|&#x0*22;|&#x0*201C;|&#x0*201D;)"
+		case "&":
+			return "(?:&amp;|&#0*38;|&#x0*26;|&)"
+		case "-", "\u{2013}", "\u{2014}":
+			return "(?:-|\u{2013}|\u{2014}|&ndash;|&mdash;|&#0*45;|&#0*8211;|&#0*8212;|&#x0*2d;|&#x0*2013;|&#x0*2014;)"
+		case "\u{00A0}":
+			return "(?:\\s|&nbsp;|&#0*160;|&#x0*a0;)+"
+		case "\u{2026}":
+			return "(?:\u{2026}|&hellip;|&#0*8230;|&#x0*2026;|\\.{3})"
+		default:
+			return NSRegularExpression.escapedPattern(for: String(character))
+		}
+	}
+
+	/// Matches whole HTML tags, respecting > characters inside single- or
+	/// double-quoted attribute values, plus HTML comments.
+	static let tagPattern = "(?:<!--[\\s\\S]*?-->|<(?:\"[^\"]*\"|'[^']*'|[^'\">]*)*>)"
+
+	/// Wraps the first occurrence of `needle` found in eligible text segments
 	/// between HTML tags. Returns nil when the needle isn't found.
 	static func markFirstOccurrence(in html: String, needle: String) -> String? {
-		guard let tagRegex = try? NSRegularExpression(pattern: "<[^>]*>", options: []),
+		guard let tagRegex = try? NSRegularExpression(pattern: tagPattern, options: []),
 			  let regex = needleRegex(for: needle) else {
 			return nil
 		}
 
+		var markDepth = 0
+		var suppressed = false
 		let tagMatches = tagRegex.matches(in: html, options: [], range: NSRange(html.startIndex..., in: html))
 		var previousEnd = html.startIndex
 		for tagMatch in tagMatches {
 			guard let tagRange = Range(tagMatch.range, in: html) else {
 				continue
 			}
-			if let markedSegment = markFirstMatch(in: html[previousEnd..<tagRange.lowerBound], regex: regex) {
+			if markDepth == 0 && !suppressed,
+			   let markedSegment = markFirstMatch(in: html[previousEnd..<tagRange.lowerBound], regex: regex) {
 				return String(html[..<previousEnd]) + markedSegment + String(html[tagRange...])
 			}
+			updateState(for: html[tagRange], markDepth: &markDepth, suppressed: &suppressed)
 			previousEnd = tagRange.upperBound
 		}
-		if let markedSegment = markFirstMatch(in: html[previousEnd...], regex: regex) {
+		if markDepth == 0 && !suppressed,
+		   let markedSegment = markFirstMatch(in: html[previousEnd...], regex: regex) {
 			return String(html[..<previousEnd]) + markedSegment
 		}
 		return nil
+	}
+
+	/// Tracks whether following text segments are inside a <mark>,
+	/// <script>, or <style> region and therefore ineligible for marking.
+	static func updateState(for tag: Substring, markDepth: inout Int, suppressed: inout Bool) {
+		let lowered = tag.lowercased()
+		if isMarkOpenTag(lowered) {
+			markDepth += 1
+			return
+		}
+		if isMarkCloseTag(lowered) {
+			markDepth = max(0, markDepth - 1)
+			return
+		}
+		if let name = tagName(of: tag), name == "script" || name == "style" {
+			suppressed = !isClosingTag(lowered)
+		}
+	}
+
+	static func isMarkOpenTag(_ loweredTag: String) -> Bool {
+		loweredTag.hasPrefix("<mark>") || loweredTag.hasPrefix("<mark ")
+	}
+
+	static func isMarkCloseTag(_ loweredTag: String) -> Bool {
+		loweredTag.hasPrefix("</mark")
+	}
+
+	static func isClosingTag(_ loweredTag: String) -> Bool {
+		loweredTag.dropFirst().first == "/"
+	}
+
+	static func tagName(of tag: Substring) -> String? {
+		var content = tag.dropFirst() // drop "<"
+		if content.first == "!" || content.first == "/" {
+			content = content.dropFirst()
+		}
+		content = content.drop(while: { $0 == " " })
+		let name = content.prefix(while: { $0.isLetter || $0.isNumber })
+		guard !name.isEmpty else {
+			return nil
+		}
+		return String(name).lowercased()
 	}
 
 	static func markFirstMatch(in segment: Substring, regex: NSRegularExpression) -> String? {

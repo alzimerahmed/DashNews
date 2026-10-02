@@ -90,5 +90,8 @@ private extension FeedIntelligenceStore {
 		} catch {
 			Self.logger.error("FeedIntelligenceStore: could not save \(self.fileURL.path, privacy: .public) — \(error, privacy: .public)")
 		}
+		// Cached key sentences can depend on these settings; drop them so a
+		// toggle takes effect on the next render.
+		KeySentenceCache.shared.removeAll()
 	}
 }

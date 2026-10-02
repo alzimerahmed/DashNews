@@ -264,12 +264,16 @@ private extension ArticleRenderer {
 	/// rules (Feature #2) to the article body. Key-point marking runs first so
 	/// its sentence matching sees pristine text segments.
 	func highlightedBody() -> String {
-		guard let feedID = article?.feedID else {
+		guard let article else {
 			return body
 		}
+		let feedID = article.feedID
 		var result = body
 		if FeedIntelligenceStore.shared.highlightKeyPoints(forFeedID: feedID) {
-			let keySentences = ExtractiveSummarizer().keySentences(in: article?.summarizableText ?? "", title: article?.title)
+			// In reader view the rendered body comes from the ExtractedArticle,
+			// which can differ from the feed text the key sentences were scored
+			// on — marks may miss there.
+			let keySentences = KeySentenceCache.shared.keySentences(for: article)
 			result = KeySentenceHighlighter.highlightedHTML(result, keySentences: keySentences)
 		}
 		let keywords = KeywordRuleStore.shared.highlightKeywords(forFeedID: feedID)

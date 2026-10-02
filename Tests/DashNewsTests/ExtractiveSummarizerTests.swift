@@ -82,6 +82,23 @@ final class ExtractiveSummarizerTests: XCTestCase {
 		XCTAssertLessThanOrEqual(summary.count, 80)
 	}
 
+	func testTruncatedSummaryEndsAtWordBoundaryWithEllipsis() async throws {
+		let summarizer = ExtractiveSummarizer(maxSentenceCount: 3, maxCharacterCount: 30)
+		let result = await summarizer.summarize(title: nil, contentText: transitArticle)
+		let summary = try XCTUnwrap(result)
+		XCTAssertLessThanOrEqual(summary.count, 30)
+		XCTAssertTrue(summary.hasSuffix("…"))
+	}
+
+	func testKeySentencesSkipsZeroScoreSentences() {
+		let summarizer = ExtractiveSummarizer()
+		// "Go!" is below the minimum word count, so it scores zero and must
+		// never be returned — it would be pointless to highlight.
+		let text = "The council approved the sweeping transit plan on Tuesday. Go!"
+		let keySentences = summarizer.keySentences(in: text, maxCount: 5)
+		XCTAssertEqual(keySentences, ["The council approved the sweeping transit plan on Tuesday."])
+	}
+
 	func testKeySentencesReturnsTopSentencesInDocumentOrder() {
 		let summarizer = ExtractiveSummarizer()
 		let keySentences = summarizer.keySentences(in: transitArticle, maxCount: 2)

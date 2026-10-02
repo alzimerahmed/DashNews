@@ -201,8 +201,8 @@ final class ArticleViewController: UIViewController {
 				let extractorIndex = min(5, items.count)
 				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
 				items.insert(displayBarButtonItem, at: min(6, items.count))
-				items.insert(translateBarButtonItem, at: min(7, items.count))
-				items.insert(summarizeBarButtonItem, at: min(8, items.count))
+				items.insert(summarizeBarButtonItem, at: min(7, items.count))
+				items.insert(translateBarButtonItem, at: min(8, items.count))
 				toolbarItems = items
 			}
 		} else {

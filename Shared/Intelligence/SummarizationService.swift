@@ -19,6 +19,10 @@ import RSCore
 /// show an empty state rather than an error.
 nonisolated enum SummarizationService {
 
+	/// @concurrent so the pure-CPU extractive path runs off the caller's
+	/// actor (NonisolatedNonsendingByDefault would otherwise keep it on the
+	/// main actor when called from the view's .task).
+	@concurrent
 	static func summarize(title: String?, contentText: String) async -> String? {
 		let trimmed = contentText.trimmingCharacters(in: .whitespacesAndNewlines)
 		guard !trimmed.isEmpty else {
@@ -33,10 +37,7 @@ nonisolated enum SummarizationService {
 		}
 		#endif
 
-		// The extractive path is pure CPU work — keep it off the main actor.
-		return await Task.detached {
-			await ExtractiveSummarizer().summarize(title: title, contentText: trimmed)
-		}.value
+		return await ExtractiveSummarizer().summarize(title: title, contentText: trimmed)
 	}
 }
 

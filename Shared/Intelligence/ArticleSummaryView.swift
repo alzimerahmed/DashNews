@@ -60,7 +60,6 @@ import SwiftUI
 				}
 			}
 		}
-		.formStyle(.grouped)
 		.task {
 			let result = await SummarizationService.summarize(title: title, contentText: contentText)
 			if let result {

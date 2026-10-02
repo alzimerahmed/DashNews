@@ -41,10 +41,11 @@ nonisolated struct ExtractiveSummarizer {
 	}
 
 	/// The highest-scored sentences in their original document order.
-	/// No minimum-length gate, so this can mark key sentences in articles of
-	/// any length.
+	/// Zero-score sentences are never returned. No minimum-length gate, so
+	/// this can mark key sentences in articles of any length.
 	func keySentences(in contentText: String, title: String? = nil, maxCount: Int = ExtractiveSummarizer.defaultMaxSentenceCount) -> [String] {
 		scoredSentences(in: contentText, title: title)
+			.filter { $0.score > 0 }
 			.sorted(by: Self.scoreOrdering)
 			.prefix(maxCount)
 			.sorted { $0.index < $1.index }
@@ -57,12 +58,15 @@ nonisolated struct ExtractiveSummarizer {
 		guard !sentences.isEmpty else {
 			return []
 		}
-		let frequencies = Self.normalizedTermFrequencies(in: sentences)
+		// Tokenize each sentence exactly once — the same word list feeds both
+		// the frequency table and the per-sentence score.
+		let wordsPerSentence = sentences.map { Self.contentWords(in: $0) }
+		let frequencies = Self.normalizedTermFrequencies(wordsPerSentence: wordsPerSentence)
 		let titleWords = Set(Self.contentWords(in: title ?? ""))
 		var scored = [ScoredSentence]()
 		scored.reserveCapacity(sentences.count)
 		for (index, sentence) in sentences.enumerated() {
-			let score = Self.score(sentence: sentence, index: index, frequencies: frequencies, titleWords: titleWords)
+			let score = Self.score(words: wordsPerSentence[index], index: index, frequencies: frequencies, titleWords: titleWords)
 			scored.append(ScoredSentence(text: sentence, score: score, index: index))
 		}
 		return scored
@@ -103,10 +107,7 @@ extension ExtractiveSummarizer: ArticleSummarizing {
 		guard !summary.isEmpty else {
 			return nil
 		}
-		if summary.count > maxCharacterCount {
-			return String(summary.prefix(maxCharacterCount))
-		}
-		return summary
+		return Self.truncatedToCap(summary, maxCharacterCount: maxCharacterCount)
 	}
 }
 
@@ -126,8 +127,7 @@ private extension ExtractiveSummarizer {
 		return lhs.index < rhs.index
 	}
 
-	static func score(sentence: String, index: Int, frequencies: [String: Double], titleWords: Set<String>) -> Double {
-		let words = contentWords(in: sentence)
+	static func score(words: [String], index: Int, frequencies: [String: Double], titleWords: Set<String>) -> Double {
 		guard words.count >= minimumSentenceWordCount else {
 			return 0
 		}
@@ -180,10 +180,10 @@ private extension ExtractiveSummarizer {
 		return words
 	}
 
-	static func normalizedTermFrequencies(in sentences: [String]) -> [String: Double] {
+	static func normalizedTermFrequencies(wordsPerSentence: [[String]]) -> [String: Double] {
 		var counts = [String: Int]()
-		for sentence in sentences {
-			for word in contentWords(in: sentence) {
+		for words in wordsPerSentence {
+			for word in words {
 				counts[word, default: 0] += 1
 			}
 		}
@@ -191,6 +191,17 @@ private extension ExtractiveSummarizer {
 			return [:]
 		}
 		return counts.mapValues { Double($0) / Double(maxCount) }
+	}
+
+	/// Trims an over-cap summary to the last word boundary inside the cap and
+	/// appends an ellipsis so the result still reads as a sentence fragment.
+	static func truncatedToCap(_ summary: String, maxCharacterCount: Int) -> String {
+		guard summary.count > maxCharacterCount, maxCharacterCount > 1 else {
+			return summary
+		}
+		let cutoff = summary.prefix(maxCharacterCount - 1)
+		let trimmedEnd = cutoff.lastIndex(of: " ").map { cutoff[..<$0] } ?? cutoff[...]
+		return String(trimmedEnd) + "…"
 	}
 
 	static let stopWords: Set<String> = [

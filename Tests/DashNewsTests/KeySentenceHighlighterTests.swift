@@ -82,4 +82,59 @@ final class KeySentenceHighlighterTests: XCTestCase {
 		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["Inflation hit 3.5% (a record) in June."])
 		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">Inflation hit 3.5% (a record) in June.</mark>"))
 	}
+
+	func testEntityEncodedApostropheMatches() {
+		// Needle comes from decoded text ("company's"); the HTML segment
+		// holds the entity-encoded form.
+		let html = "<p>The company&#8217;s earnings beat estimates.</p>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["The company's earnings beat estimates."])
+		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">The company&#8217;s earnings beat estimates.</mark>"))
+	}
+
+	func testAmpersandEntityMatches() {
+		let html = "<p>Trial &amp; error shaped the rollout.</p>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["Trial & error shaped the rollout."])
+		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">Trial &amp; error shaped the rollout.</mark>"))
+	}
+
+	func testNbspEntityMatchesWhitespace() {
+		let html = "<p>Rates&nbsp;rose sharply.</p>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["Rates rose sharply."])
+		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">Rates&nbsp;rose sharply.</mark>"))
+	}
+
+	func testAngleBracketInsideQuotedAttributeIsNotText() {
+		// A > inside a quoted attribute value must not split the tag, so
+		// attribute text can never receive a mark.
+		let html = "<p><a href=\"https://example.com\" title=\"read > more\">Rates rose sharply.</a></p>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["more"])
+		XCTAssertEqual(result, html)
+	}
+
+	func testMarksTextAfterQuotedAttributeWithAngleBracket() {
+		let html = "<a href=\"https://example.com\" title=\"read > more\">Rates rose sharply.</a>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["Rates rose sharply."])
+		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">Rates rose sharply.</mark>"))
+		XCTAssertTrue(result.contains("title=\"read > more\""))
+	}
+
+	func testScriptAndStyleContentIsNotMarked() {
+		let html = "<p>Rates rose sharply.</p><script>var x = 'var x';</script><style>.article { color: red; }</style>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: ["Rates rose sharply.", "var x"])
+		XCTAssertTrue(result.contains("<mark class=\"nnwKeyPoint\">Rates rose sharply.</mark>"))
+		XCTAssertTrue(result.contains("<script>var x = 'var x';</script>"))
+		XCTAssertEqual(result.components(separatedBy: "<mark class=\"nnwKeyPoint\">").count - 1, 1)
+	}
+
+	func testSharedPrefixAnchorDoesNotNestInsideEarlierMark() {
+		// The second sentence shares the first's 8-word anchor; after the
+		// first is fully marked the anchor must not match inside that mark.
+		let html = "<p>The council voted early on Tuesday to approve the transit plan.</p>"
+		let result = KeySentenceHighlighter.highlightedHTML(html, keySentences: [
+			"The council voted early on Tuesday to approve the transit plan.",
+			"The council voted early on Tuesday to approve the budget."
+		])
+		XCTAssertEqual(result.components(separatedBy: "<mark").count - 1, 1)
+		XCTAssertFalse(result.contains("<mark class=\"nnwKeyPoint\"><mark"))
+	}
 }
