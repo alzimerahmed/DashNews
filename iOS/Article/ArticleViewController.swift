@@ -183,14 +183,12 @@ final class ArticleViewController: UIViewController {
 				let extractorIndex = min(5, items.count)
 				items.insert(articleExtractorBarButtonItem, at: extractorIndex)
 				items.insert(displayBarButtonItem, at: min(6, items.count))
-				if #available(iOS 18.0, *) {
-					items.insert(translateBarButtonItem, at: min(7, items.count))
-				}
+				items.insert(translateBarButtonItem, at: min(7, items.count))
 				toolbarItems = items
 			}
 		} else {
 			let flex = { UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) }
-			var items = [
+			var items: [UIBarButtonItem] = [
 				readBarButtonItem,
 				flex(),
 				starBarButtonItem,

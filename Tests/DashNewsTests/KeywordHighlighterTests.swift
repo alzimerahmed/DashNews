@@ -13,7 +13,7 @@ final class KeywordHighlighterTests: XCTestCase {
 
 	func testWrapsMatchInPlainText() {
 		let result = KeywordHighlighter.highlightedHTML("Breaking crypto news today", keywords: ["crypto"])
-		XCTAssertEqual(result, "<mark class=\"nnwKeywordHighlight\">crypto</mark>")
+		XCTAssertEqual(result, "Breaking <mark class=\"nnwKeywordHighlight\">crypto</mark> news today")
 	}
 
 	func testMatchIsCaseInsensitive() {
