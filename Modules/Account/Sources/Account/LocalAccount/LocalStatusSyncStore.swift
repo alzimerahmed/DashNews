@@ -155,7 +155,9 @@ final class LocalStatusSyncStore: Sendable {
 			return nil
 		}
 		return LocalStatusRecord(articleID: articleID, read: readValue, starred: starredValue, lastModified: Date(timeIntervalSince1970: lastModifiedValue))
-	}	private static func selectDirty(database: FMDatabase) -> [LocalStatusRecord] {
+	}
+
+	private static func selectDirty(database: FMDatabase) -> [LocalStatusRecord] {
 		guard let resultSet = database.executeQuery("SELECT articleID, read, starred, lastModified FROM localStatus WHERE dirty = 1 ORDER BY lastModified", withArgumentsIn: []) else {
 			logDatabaseError("select dirty", database)
 			return []
