@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Account
 import Articles
 
 /// Editor for a feed's keyword hide/highlight rules. Feature #2.

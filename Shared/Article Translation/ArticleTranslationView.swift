@@ -22,7 +22,6 @@ import Translation
 	@State private var configuration: TranslationSession.Configuration?
 	@State private var translatedText: String?
 	@State private var translationFailed = false
-	@State private var translationFailed = false
 
 	var body: some View {
 		ScrollView {
