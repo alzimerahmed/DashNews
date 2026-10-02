@@ -1562,15 +1562,6 @@ private extension Account {
 		localStatusSyncerIfNeeded()?.queueLocalChange(articleIDs: articleIDs, statusKey: statusKey, flag: flag)
 	}
 
-	/// Drops the local iCloud status mirror and stops syncing for this
-	/// account. Called when the feature is turned off.
-	func clearLocalStatusMirror() {
-		guard type == .onMyMac else {
-			return
-		}
-		localStatusSyncer?.clearMirror()
-		localStatusSyncer = nil
-	}
 	func noteStatusesForArticleIDsDidChange(_ articleIDs: Set<String>) {
 		_fetchAllUnreadCounts()
 		NotificationCenter.default.post(name: .StatusesDidChange, object: self, userInfo: [UserInfoKey.articleIDs: articleIDs])
@@ -1619,6 +1610,16 @@ private extension Account {
 // MARK: - Container Overrides
 
 extension Account {
+
+	/// Drops the local iCloud status mirror and stops syncing for this
+	/// account. Called when the feature is turned off.
+	func clearLocalStatusMirror() {
+		guard type == .onMyMac else {
+			return
+		}
+		localStatusSyncer?.clearMirror()
+		localStatusSyncer = nil
+	}
 
 	public func existingFeed(withFeedID feedID: String) -> Feed? {
 		return idToFeedDictionary[feedID]
