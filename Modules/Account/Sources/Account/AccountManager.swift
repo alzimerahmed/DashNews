@@ -37,6 +37,7 @@ import ActivityLog
 	public var isSuspended = false
 
 	nonisolated static let syncArticleContentForUnreadArticlesKey = "iCloudSyncArticleContentForUnreadArticles"
+	nonisolated static let localAccountCloudStatusSyncKey = "LocalAccountCloudStatusSync"
 
 	public var syncArticleContentForUnreadArticles: Bool {
 		get {
@@ -49,6 +50,35 @@ import ActivityLog
 			if Platform.deviceHasiCloudAccount {
 				NSUbiquitousKeyValueStore.default.set(newValue, forKey: Self.syncArticleContentForUnreadArticlesKey)
 			}
+		}
+	}
+
+	/// iCloud sync of read/starred status for local (OnDisk) accounts.
+	/// Defaults to off; toggling it on starts syncing on the next status-sync
+	/// round. Toggling it off stops queueing and clears the local mirror.
+	public var localAccountCloudStatusSync: Bool {
+		get {
+			assert(Thread.isMainThread)
+			return UserDefaults.standard.bool(forKey: Self.localAccountCloudStatusSyncKey)
+		}
+		set {
+			assert(Thread.isMainThread)
+			let oldValue = UserDefaults.standard.bool(forKey: Self.localAccountCloudStatusSyncKey)
+			UserDefaults.standard.set(newValue, forKey: Self.localAccountCloudStatusSyncKey)
+			guard newValue != oldValue else {
+				return
+			}
+			if newValue {
+				syncArticleStatusAllWithoutWaiting()
+			} else {
+				clearLocalStatusMirrors()
+			}
+		}
+	}
+
+	private func clearLocalStatusMirrors() {
+		for account in accounts where account.type == .onMyMac {
+			account.clearLocalStatusMirror()
 		}
 	}
 

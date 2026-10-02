@@ -19,6 +19,7 @@ final class AccountInspectorViewController: UITableViewController {
 	@IBOutlet var activeSwitch: UISwitch!
 	@IBOutlet var deleteAccountButton: VibrantButton!
 	@IBOutlet var syncContentSwitch: UISwitch!
+	@IBOutlet var localStatusSyncSwitch: UISwitch!
 	@IBOutlet var limitationsAndSolutionsButton: UIButton!
 
 	var isModal = false
@@ -34,6 +35,7 @@ final class AccountInspectorViewController: UITableViewController {
 		nameTextField.delegate = self
 		activeSwitch.isOn = account.isActive
 		syncContentSwitch.isOn = AccountManager.shared.syncArticleContentForUnreadArticles
+		localStatusSyncSwitch.isOn = AccountManager.shared.localAccountCloudStatusSync
 
 		navigationItem.title = account.nameForDisplay
 
@@ -61,6 +63,10 @@ final class AccountInspectorViewController: UITableViewController {
 
 	@IBAction func syncContentSwitchDidChange(_ sender: UISwitch) {
 		AccountManager.shared.syncArticleContentForUnreadArticles = sender.isOn
+	}
+
+	@IBAction func localStatusSyncSwitchDidChange(_ sender: UISwitch) {
+		AccountManager.shared.localAccountCloudStatusSync = sender.isOn
 	}
 
 	@objc func done() {
@@ -133,10 +139,15 @@ extension AccountInspectorViewController {
 		case credentials = 1
 		case deleteAccount = 2
 		case syncContent = 3
+		case localStatusSync = 4
 	}
 
 	var isCloudKitAccount: Bool {
 		account?.type == .cloudKit
+	}
+
+	var isLocalAccount: Bool {
+		account?.type == .onMyMac
 	}
 
 	var hidesCredentialsSection: Bool {
@@ -160,6 +171,12 @@ extension AccountInspectorViewController {
 	var displayedSections: [StoryboardSection] {
 		guard let account else {
 			return []
+		}
+		if isLocalAccount {
+			if account == AccountManager.shared.defaultAccount {
+				return [.nameAndActive, .localStatusSync]
+			}
+			return [.nameAndActive, .localStatusSync, .deleteAccount]
 		}
 		if account == AccountManager.shared.defaultAccount {
 			return [.nameAndActive]
@@ -211,6 +228,9 @@ extension AccountInspectorViewController {
 	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		if displayedSections[section] == .syncContent {
 			return "Syncing article content increases iCloud storage use, sync time, and battery use.\n\nArticle status and the content of starred articles are always synced."
+		}
+		if displayedSections[section] == .localStatusSync {
+			return NSLocalizedString("Syncs the read and starred status of this account's articles across devices signed in to the same iCloud account. Article content is not synced.", comment: "Local account iCloud status sync footer")
 		}
 		let storyboardIndex = displayedSections[section].rawValue
 		return super.tableView(tableView, titleForFooterInSection: storyboardIndex)

@@ -259,6 +259,26 @@ public enum FetchType {
 	private typealias FeedSettingsDictionary = [String: FeedSettings]
 	private var feedSettingsCache = FeedSettingsDictionary()
 
+	/// iCloud status sync for local (OnDisk) accounts. Created on demand —
+	/// only when the feature is enabled and this is a local account — so
+	/// accounts that never use the feature pay nothing for it. Reset to nil
+	/// when the feature is turned off so it can be recreated later.
+	private(set) var localStatusSyncer: LocalCloudStatusSyncer?
+
+	/// Returns the status syncer, creating it if needed. Returns nil when the
+	/// feature is off or this is not a local account.
+	func localStatusSyncerIfNeeded() -> LocalCloudStatusSyncer? {
+		guard type == .onMyMac, AccountManager.shared.localAccountCloudStatusSync else {
+			return nil
+		}
+		if let localStatusSyncer {
+			return localStatusSyncer
+		}
+		let syncer = LocalCloudStatusSyncer(account: self)
+		localStatusSyncer = syncer
+		return syncer
+	}
+
     public var unreadCount = 0 {
         didSet {
             if unreadCount != oldValue {
@@ -1530,8 +1550,27 @@ private extension Account {
 	func noteStatusesForArticleIDsDidChange(articleIDs: Set<String>, statusKey: ArticleStatus.Key, flag: Bool) {
 		_fetchAllUnreadCounts()
 		NotificationCenter.default.post(name: .StatusesDidChange, object: self, userInfo: [UserInfoKey.articleIDs: articleIDs, UserInfoKey.statusKey: statusKey, UserInfoKey.statusFlag: flag])
+		queueLocalStatusChangeIfNeeded(articleIDs: articleIDs, statusKey: statusKey, flag: flag)
 	}
 
+	/// Queues a status change for iCloud sync when this is a local account
+	/// with the feature enabled. No-op otherwise.
+	func queueLocalStatusChangeIfNeeded(articleIDs: Set<String>, statusKey: ArticleStatus.Key, flag: Bool) {
+		guard type == .onMyMac, AccountManager.shared.localAccountCloudStatusSync else {
+			return
+		}
+		localStatusSyncerIfNeeded()?.queueLocalChange(articleIDs: articleIDs, statusKey: statusKey, flag: flag)
+	}
+
+	/// Drops the local iCloud status mirror and stops syncing for this
+	/// account. Called when the feature is turned off.
+	func clearLocalStatusMirror() {
+		guard type == .onMyMac else {
+			return
+		}
+		localStatusSyncer?.clearMirror()
+		localStatusSyncer = nil
+	}
 	func noteStatusesForArticleIDsDidChange(_ articleIDs: Set<String>) {
 		_fetchAllUnreadCounts()
 		NotificationCenter.default.post(name: .StatusesDidChange, object: self, userInfo: [UserInfoKey.articleIDs: articleIDs])

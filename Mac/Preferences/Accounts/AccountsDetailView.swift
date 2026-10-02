@@ -16,6 +16,7 @@ struct AccountsDetailView: View {
 	@State private var accountName: String
 	@State private var isActive: Bool
 	@State private var syncUnreadContent: Bool
+	@State private var localStatusSync: Bool
 
 	init(account: Account, onCredentials: (() -> Void)? = nil) {
 		self.account = account
@@ -23,6 +24,7 @@ struct AccountsDetailView: View {
 		_accountName = State(initialValue: account.name ?? "")
 		_isActive = State(initialValue: account.isActive)
 		_syncUnreadContent = State(initialValue: AccountManager.shared.syncArticleContentForUnreadArticles)
+		_localStatusSync = State(initialValue: AccountManager.shared.localAccountCloudStatusSync)
 	}
 
 	private var showCredentialsButton: Bool {
@@ -95,6 +97,20 @@ struct AccountsDetailView: View {
 					.padding(.top, 12)
 
 				Text("Syncing article content increases iCloud storage use, sync time, and battery use.\n\nArticle status and the content of starred articles are always synced.")
+					.foregroundStyle(.secondary)
+					.fixedSize(horizontal: false, vertical: true)
+					.padding(.top, 4)
+					.padding(.leading, 21)
+			}
+
+			if account.type == .onMyMac {
+				Toggle("Sync read and starred with iCloud", isOn: $localStatusSync)
+					.onChange(of: localStatusSync) {
+						AccountManager.shared.localAccountCloudStatusSync = localStatusSync
+					}
+					.padding(.top, 12)
+
+				Text("Syncs the read and starred status of this account's articles across devices signed in to the same iCloud account. Article content is not synced.")
 					.foregroundStyle(.secondary)
 					.fixedSize(horizontal: false, vertical: true)
 					.padding(.top, 4)
