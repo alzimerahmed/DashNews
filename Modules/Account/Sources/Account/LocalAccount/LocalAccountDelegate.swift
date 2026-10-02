@@ -58,13 +58,24 @@ import Secrets
 	}
 
 	@MainActor func syncArticleStatus() async throws -> Bool {
-		false
+		guard let account, AccountManager.shared.localAccountCloudStatusSync, let syncer = account.localStatusSyncerIfNeeded() else {
+			return false
+		}
+		return try await syncer.syncArticleStatus()
 	}
 
 	@MainActor func sendArticleStatus() async throws {
+		guard let account, AccountManager.shared.localAccountCloudStatusSync, let syncer = account.localStatusSyncerIfNeeded() else {
+			return
+		}
+		try await syncer.sendArticleStatus()
 	}
 
 	@MainActor func refreshArticleStatus() async throws {
+		guard let account, AccountManager.shared.localAccountCloudStatusSync, let syncer = account.localStatusSyncerIfNeeded() else {
+			return
+		}
+		try await syncer.refreshArticleStatus()
 	}
 
 	@MainActor func importOPML(opmlFile: URL) async throws {
