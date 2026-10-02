@@ -117,6 +117,10 @@ private extension KeySentenceHighlighter {
 			return "(?:\\s|&nbsp;|&#0*160;|&#x0*a0;)+"
 		case "\u{2026}":
 			return "(?:\u{2026}|&hellip;|&#0*8230;|&#x0*2026;|\\.{3})"
+		case "<":
+			return "(?:<|&lt;|&#0*60;|&#x0*3c;)"
+		case ">":
+			return "(?:>|&gt;|&#0*62;|&#x0*3e;)"
 		default:
 			return NSRegularExpression.escapedPattern(for: String(character))
 		}
@@ -144,7 +148,7 @@ private extension KeySentenceHighlighter {
 			}
 			if markDepth == 0 && !suppressed,
 			   let markedSegment = markFirstMatch(in: html[previousEnd..<tagRange.lowerBound], regex: regex) {
-				return String(html[..<previousEnd]) + markedSegment + String(html[tagRange...])
+				return String(html[..<previousEnd]) + markedSegment + String(html[tagRange.lowerBound...])
 			}
 			updateState(for: html[tagRange], markDepth: &markDepth, suppressed: &suppressed)
 			previousEnd = tagRange.upperBound
