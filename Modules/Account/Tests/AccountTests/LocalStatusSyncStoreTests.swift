@@ -117,7 +117,7 @@ import Foundation
 		store.deleteRow(articleID: "a")
 		#expect(store.status(for: "a") != nil)
 
-		store.markClean(articleIDs: ["a"], pushedBefore: Date(timeIntervalSince1970: 10_000))
+		store.markClean(articleIDs: ["a"], pushedBefore: .distantFuture)
 		store.deleteRow(articleID: "a")
 		#expect(store.status(for: "a") == nil)
 	}
