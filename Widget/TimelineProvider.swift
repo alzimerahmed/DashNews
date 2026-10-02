@@ -21,24 +21,13 @@ struct Provider: TimelineProvider {
 	}
 
 	func getSnapshot(in context: Context, completion: @escaping (WidgetTimelineEntry) -> Void) {
-		if context.isPreview {
-			do {
-				let data = try WidgetDataDecoder.decodeWidgetData()
-				completion(WidgetTimelineEntry(date: Date.now, widgetData: data))
-			} catch {
-				completion(WidgetTimelineEntry(date: Date.now,
-											   widgetData: WidgetDataDecoder.sampleData()))
-			}
-		} else {
-			do {
-				let widgetData = try WidgetDataDecoder.decodeWidgetData()
-				let entry = WidgetTimelineEntry(date: Date.now, widgetData: widgetData)
-				completion(entry)
-			} catch {
-				let entry = WidgetTimelineEntry(date: Date.now,
-												widgetData: WidgetDataDecoder.sampleData())
-				completion(entry)
-			}
+		// Preview and non-preview snapshots show the same thing: real widget
+		// data when it decodes, otherwise bundled sample data.
+		do {
+			let widgetData = try WidgetDataDecoder.decodeWidgetData()
+			completion(WidgetTimelineEntry(date: Date.now, widgetData: widgetData))
+		} catch {
+			completion(WidgetTimelineEntry(date: Date.now, widgetData: WidgetDataDecoder.sampleData()))
 		}
 	}
 
@@ -54,7 +43,7 @@ struct Provider: TimelineProvider {
 			entry = WidgetTimelineEntry(date: date, widgetData: WidgetData(totalUnreadCount: 0, totalTodayCount: 0, totalTodayUnreadCount: 0, totalStarredCount: 0, unreadArticles: [], starredArticles: [], todayArticles: [], lastUpdateTime: Date.now))
 		}
 
-		let fallback = Calendar.current.date(byAdding: .minute, value: 30, to: Date.now)!
+		let fallback = Calendar.current.date(byAdding: .minute, value: 30, to: Date.now) ?? Date.now.addingTimeInterval(30 * 60)
 
 		let timeline = Timeline(
 			entries: [entry],

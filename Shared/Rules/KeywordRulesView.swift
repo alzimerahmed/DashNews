@@ -31,6 +31,7 @@ import Articles
 						HStack {
 							Image(systemName: rule.action == .hide ? "eye.slash" : "highlighter")
 								.foregroundStyle(rule.action == .hide ? Color.red : Color.orange)
+								.accessibilityHidden(true) // The action name is already read as text.
 							Text(rule.keyword)
 							Spacer()
 							Text(actionLabel(rule.action))

@@ -9,6 +9,12 @@
             "state" : "translated",
             "value" : "Summary"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen"
+          }
         }
       }
     },
@@ -19,6 +25,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The Lock Screen Summary displays current article counts across the Smart Feeds. "
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El resumen de la pantalla de bloqueo muestra el recuento actual de artículos en las fuentes inteligentes."
           }
         }
       }
@@ -31,6 +43,12 @@
             "state" : "translated",
             "value" : "Starred"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacados"
+          }
         }
       }
     },
@@ -41,6 +59,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "There are no starred articles."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay artículos destacados."
           }
         }
       }
@@ -53,6 +77,12 @@
             "state" : "translated",
             "value" : "This widget displays your starred articles."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este widget muestra tus artículos destacados."
+          }
         }
       }
     },
@@ -63,6 +93,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Today"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy"
           }
         }
       }
@@ -75,6 +111,12 @@
             "state" : "translated",
             "value" : "There are no recent articles."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay artículos recientes."
+          }
         }
       }
     },
@@ -85,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This widget displays articles posted within the last 24 hours."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este widget muestra los artículos publicados en las últimas 24 horas."
           }
         }
       }
@@ -97,6 +145,12 @@
             "state" : "translated",
             "value" : "Unread"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No leídos"
+          }
         }
       }
     },
@@ -108,6 +162,12 @@
             "state" : "translated",
             "value" : "There are no unread articles."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay artículos sin leer."
+          }
         }
       }
     },
@@ -118,6 +178,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This widget display unread articles."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este widget muestra tus artículos no leídos."
+          }
+        }
+      }
+    },
+    "label.text.untitled-article" : {
+      "comment" : "Shown in place of a missing article title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untitled"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin título"
           }
         }
       }

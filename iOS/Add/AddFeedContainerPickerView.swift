@@ -61,6 +61,7 @@ struct AddFeedContainerPickerView: View {
 				.padding(.leading, row.container is Folder ? Self.folderIndent : 0)
 			}
 			.foregroundStyle(.primary)
+			.accessibilityAddTraits(isSelected(row.container) ? .isSelected : []) // the checkmark alone doesn't announce selection
 			.disabled(!canSelect(row.container))
 		}
 		.navigationTitle(NSLocalizedString("Choose Folder", comment: "Choose Folder"))

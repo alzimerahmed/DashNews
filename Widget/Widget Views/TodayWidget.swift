@@ -62,6 +62,8 @@ struct TodayWidgetView: View {
 			.frame(width: WidgetLayout.titleImageSize, height: WidgetLayout.titleImageSize, alignment: .top)
 			.cornerRadius(4)
 			.foregroundColor(.orange)
+			.widgetAccentable()
+			.accessibilityHidden(true)
 	}
 
 	func maxCount() -> Int {
@@ -84,6 +86,7 @@ struct TodayWidgetView: View {
 				.scaledToFit()
 				.frame(width: 30)
 				.foregroundColor(.orange)
+				.accessibilityHidden(true)
 
 			Text("label.text.today", comment: "Today")
 				.font(.headline)

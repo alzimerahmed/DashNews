@@ -280,6 +280,12 @@
             "state" : "new",
             "value" : "Safari"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safari"
+          }
         }
       }
     },
@@ -291,6 +297,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Default"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predeterminado"
           }
         }
       }
