@@ -1165,7 +1165,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Artículo más antiguo arriba"
           }
         }
@@ -1993,7 +1993,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Artículo más reciente arriba"
           }
         }

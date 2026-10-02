@@ -71,7 +71,7 @@ struct ArticleItemView: View {
 	}
 
 	private var fallbackIcon: Image {
-		Image(uiImage: UIImage(systemName: "globe") ?? UIImage())
+		Image(systemName: "globe")
 	}
 
 	func pubDate(_ dateString: String) -> String {

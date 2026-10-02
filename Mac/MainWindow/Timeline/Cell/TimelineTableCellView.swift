@@ -116,9 +116,13 @@ final class TimelineTableCellView: NSTableCellView {
 		guard let cellData else {
 			return super.accessibilityLabel()
 		}
-		let starredStatus = cellData.starred ? "\(NSLocalizedString("Starred", comment: "Starred")), " : ""
-		let unreadStatus = cellData.read ? "" : "\(NSLocalizedString("Unread", comment: "Unread")), "
-		return starredStatus + unreadStatus + "\(cellData.feedName), \(cellData.title), \(cellData.text), \(cellData.dateString)"
+		let status = [cellData.starred ? NSLocalizedString("Starred", comment: "Starred") : nil,
+					  cellData.read ? nil : NSLocalizedString("Unread", comment: "Unread")].compactMap { $0 }
+		let parts = status + [cellData.feedName, cellData.title, cellData.text, cellData.dateString].filter { !$0.isEmpty }
+		guard !parts.isEmpty else {
+			return super.accessibilityLabel()
+		}
+		return parts.joined(separator: ", ")
 	}
 }
 
