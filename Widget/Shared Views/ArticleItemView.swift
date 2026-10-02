@@ -19,16 +19,17 @@ struct ArticleItemView: View {
 		Link(destination: deepLink, label: {
 			HStack(alignment: .top, spacing: nil, content: {
 				// Feed Icon
-				if iconImage != nil {
-					iconImage!
+				if let iconImage {
+					iconImage
 						.resizable()
 						.frame(width: WidgetLayout.feedIconSize, height: WidgetLayout.feedIconSize)
 						.cornerRadius(4)
+						.accessibilityHidden(true)
 				}
 
 				// Title and Feed Name
 				VStack(alignment: .leading) {
-					Text(article.articleTitle ?? "Untitled")
+					Text(article.articleTitle ?? String(localized: "label.text.untitled-article", comment: "Shown in place of a missing article title"))
 						.font(.footnote)
 						.bold()
 						.lineLimit(1)
@@ -48,6 +49,7 @@ struct ArticleItemView: View {
 					}
 				}
 			})
+			.accessibilityElement(children: .combine)
 		}).onAppear {
 			iconImage = thumbnail(from: article.feedIconPath)
 		}
@@ -55,17 +57,21 @@ struct ArticleItemView: View {
 
 	func thumbnail(from path: String?) -> Image? {
 		guard let imagePath = path else {
-			return Image(uiImage: UIImage(systemName: "globe")!)
+			return fallbackIcon
 		}
 
 		let url = URL(fileURLWithPath: imagePath)
 
 		guard let data = try? Data(contentsOf: url),
 			  let uiImage = UIImage(data: data) else {
-			return Image(uiImage: UIImage(systemName: "globe")!)
+			return fallbackIcon
 		}
 
 		return Image(uiImage: uiImage)
+	}
+
+	private var fallbackIcon: Image {
+		Image(uiImage: UIImage(systemName: "globe") ?? UIImage())
 	}
 
 	func pubDate(_ dateString: String) -> String {

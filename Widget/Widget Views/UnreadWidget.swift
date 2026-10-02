@@ -60,6 +60,8 @@ struct UnreadWidgetView: View {
 			.resizable()
 			.frame(width: WidgetLayout.titleImageSize, height: WidgetLayout.titleImageSize, alignment: .top)
 			.foregroundColor(.accentColor)
+			.widgetAccentable()
+			.accessibilityHidden(true)
 	}
 
 	func maxCount() -> Int {
@@ -82,6 +84,7 @@ struct UnreadWidgetView: View {
 				.scaledToFit()
 				.foregroundColor(.accentColor)
 				.frame(width: 30)
+				.accessibilityHidden(true)
 
 			Text("label.text.unread", comment: "Unread")
 				.font(.headline)

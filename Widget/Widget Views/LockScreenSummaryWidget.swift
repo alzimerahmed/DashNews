@@ -21,6 +21,7 @@ struct LockScreenSummaryWidgetView: View {
 				Spacer()
 				Text(verbatim: entry.widgetData.totalUnreadCount.formatted())
 					.frame(maxWidth: .infinity, alignment: .trailing)
+					.widgetAccentable()
 			}
 			HStack(alignment: .center) {
 				todayImage
@@ -28,6 +29,7 @@ struct LockScreenSummaryWidgetView: View {
 				Spacer()
 				Text(verbatim: entry.widgetData.totalTodayCount.formatted())
 					.frame(maxWidth: .infinity, alignment: .trailing)
+					.widgetAccentable()
 			}
 			HStack(alignment: .center) {
 				starredImage
@@ -35,27 +37,33 @@ struct LockScreenSummaryWidgetView: View {
 				Spacer()
 				Text(verbatim: entry.widgetData.totalStarredCount.formatted())
 					.frame(maxWidth: .infinity, alignment: .trailing)
+					.widgetAccentable()
 			}
 		}
 		.font(.subheadline)
+		.accessibilityElement(children: .combine)
+		.widgetURL(WidgetDeepLink.unread.url)
     }
 
 	var starredImage: some View {
 		Image(systemName: "star.fill")
 			.resizable()
 			.frame(width: 14, height: 14)
+			.accessibilityHidden(true)
 	}
 
 	var unreadImage: some View {
 		Image(systemName: "largecircle.fill.circle")
 			.resizable()
 			.frame(width: 14, height: 14)
+			.accessibilityHidden(true)
 	}
 
 	var todayImage: some View {
 		Image(systemName: "sun.max.fill")
 			.resizable()
 			.frame(width: 14, height: 14)
+			.accessibilityHidden(true)
 	}
 
 }

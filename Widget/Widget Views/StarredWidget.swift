@@ -61,6 +61,8 @@ struct StarredWidgetView: View {
 			.frame(width: WidgetLayout.titleImageSize, height: WidgetLayout.titleImageSize, alignment: .top)
 			.cornerRadius(4)
 			.foregroundColor(.yellow)
+			.widgetAccentable()
+			.accessibilityHidden(true)
 	}
 
 	func maxCount() -> Int {
@@ -83,6 +85,7 @@ struct StarredWidgetView: View {
 				.scaledToFit()
 				.frame(width: 30)
 				.foregroundColor(.yellow)
+				.accessibilityHidden(true)
 
 			Text("label.text.starred", comment: "Starred")
 				.font(.headline)
