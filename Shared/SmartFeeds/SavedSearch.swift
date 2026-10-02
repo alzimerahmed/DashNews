@@ -104,8 +104,9 @@ private extension SavedSearchStore {
 		do {
 			return try JSONDecoder().decode([SavedSearch].self, from: data)
 		} catch {
+			// A corrupt or unreadable file is recoverable: saved searches reset
+			// to empty rather than crashing the app.
 			Self.logger.error("SavedSearchStore: could not decode \(fileURL.path, privacy: .public) — \(error, privacy: .public)")
-			assertionFailure("SavedSearchStore: could not decode \(fileURL.path) — \(error)")
 			return []
 		}
 	}
@@ -116,7 +117,6 @@ private extension SavedSearchStore {
 			try data.write(to: fileURL, options: .atomic)
 		} catch {
 			Self.logger.error("SavedSearchStore: could not save \(self.fileURL.path, privacy: .public) — \(error, privacy: .public)")
-			assertionFailure("SavedSearchStore: could not save \(self.fileURL.path) — \(error)")
 		}
 	}
 }
