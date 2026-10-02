@@ -108,6 +108,18 @@ final class TimelineTableCellView: NSTableCellView {
 		iconView.setFrameIfNotEqual(layoutRects.iconImageRect)
 		starView.setFrameIfNotEqual(layoutRects.starRect)
 	}
+
+	// The table row derives its VoiceOver label from the cell, so report one
+	// combined string — including unread/starred status, which is otherwise
+	// conveyed only by the indicator images. Mirrors MainTimelineCell on iOS.
+	override func accessibilityLabel() -> String? {
+		guard let cellData else {
+			return super.accessibilityLabel()
+		}
+		let starredStatus = cellData.starred ? "\(NSLocalizedString("Starred", comment: "Starred")), " : ""
+		let unreadStatus = cellData.read ? "" : "\(NSLocalizedString("Unread", comment: "Unread")), "
+		return starredStatus + unreadStatus + "\(cellData.feedName), \(cellData.title), \(cellData.text), \(cellData.dateString)"
+	}
 }
 
 // MARK: - Private

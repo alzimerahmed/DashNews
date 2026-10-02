@@ -24,7 +24,11 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 	private var previousLeftBarButtonItem: UIBarButtonItem?
 	private lazy var feedTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showFeedInspector(_:)))
 	private lazy var filterButton = UIBarButtonItem(image: Assets.Images.filter, style: .plain, target: self, action: #selector(toggleFilter(_:)))
-	private lazy var nextUnreadButton = UIBarButtonItem(image: Assets.Images.nextUnread, style: .plain, target: self, action: #selector(nextUnread(_:)))
+	private lazy var nextUnreadButton: UIBarButtonItem = {
+		let button = UIBarButtonItem(image: Assets.Images.nextUnread, style: .plain, target: self, action: #selector(nextUnread(_:)))
+		button.accLabelText = NSLocalizedString("Next Unread", comment: "Next Unread")
+		return button
+	}()
 	private let refreshProgressView = RefreshProgressView(frame: .zero)
 	private lazy var refreshBarItem = UIBarButtonItem(customView: refreshProgressView)
 	private var isToolbarProgressViewShowing = false

@@ -38,7 +38,7 @@ import UIKit
 	weak var delegate: SearchBarDelegate?
 
 	override var keyCommands: [UIKeyCommand]? {
-		return [UIKeyCommand(title: "Exit Find", action: #selector(donePressed(_:)), input: UIKeyCommand.inputEscape)]
+		return [UIKeyCommand(title: NSLocalizedString("Exit Find", comment: "Exit Find"), action: #selector(donePressed(_:)), input: UIKeyCommand.inputEscape)]
 	}
 
 	override init(frame: CGRect) {
@@ -104,6 +104,7 @@ private extension ArticleSearchBar {
 		doneButton.setTitle(NSLocalizedString("Done", comment: "Done"), for: .normal)
 		doneButton.setTitleColor(UIColor.label, for: .normal)
 		doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+		doneButton.titleLabel?.adjustsFontForContentSizeCategory = true
 		doneButton.isAccessibilityElement = true
 		doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
 		doneButton.isEnabled = true
@@ -116,7 +117,8 @@ private extension ArticleSearchBar {
 		searchField.returnKeyType = .search
 		searchField.delegate = self
 
-		resultsLabel.font = .systemFont(ofSize: UIFont.smallSystemFontSize)
+		resultsLabel.font = .preferredFont(forTextStyle: .caption1)
+		resultsLabel.adjustsFontForContentSizeCategory = true
 		resultsLabel.textColor = .secondaryLabel
 		resultsLabel.text = ""
 		resultsLabel.textAlignment = .right
@@ -129,14 +131,14 @@ private extension ArticleSearchBar {
 
 		prevButton = UIButton(type: .system)
 		prevButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-		prevButton.accessibilityLabel = "Previous Result"
+		prevButton.accessibilityLabel = NSLocalizedString("Previous Result", comment: "Previous search result")
 		prevButton.isAccessibilityElement = true
 		prevButton.addTarget(self, action: #selector(previousPressed), for: .touchUpInside)
 		addArrangedSubview(prevButton)
 
 		nextButton = UIButton(type: .system)
 		nextButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-		nextButton.accessibilityLabel = "Next Result"
+		nextButton.accessibilityLabel = NSLocalizedString("Next Result", comment: "Next search result")
 		nextButton.isAccessibilityElement = true
 		nextButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
 		addArrangedSubview(nextButton)

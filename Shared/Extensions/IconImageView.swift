@@ -60,7 +60,7 @@ struct IconImageView: View {
 		}
 		.frame(width: size.size.width, height: size.size.height)
 		.clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-		.accessibilityHidden(false)
+		.accessibilityHidden(true) // Feed icons are decorative next to a text label; hiding avoids an unlabeled "image" element.
 	}
 
 	private var backgroundColor: Color {

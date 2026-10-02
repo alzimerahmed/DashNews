@@ -45,6 +45,25 @@ final class MainFeedCollectionHeaderReusableView: UICollectionReusableView {
 		return NSLocalizedString("Collapsed", comment: "Collapsed")
 	}
 
+	// The tap gesture is invisible to VoiceOver — expose expand/collapse as a
+	// custom action, matching MainFeedCollectionViewFolderCell.
+	override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+		get {
+			let name: String
+			if disclosureExpanded {
+				name = NSLocalizedString("Collapse", comment: "Collapse")
+			} else {
+				name = NSLocalizedString("Expand", comment: "Expand")
+			}
+			let toggleAction = UIAccessibilityCustomAction(name: name) { [weak self] _ in
+				self?.containerHeaderTapped()
+				return true
+			}
+			return [toggleAction]
+		}
+		set {}
+	}
+
 	private var _unreadCount: Int = 0
 
 	var unreadCount: Int {

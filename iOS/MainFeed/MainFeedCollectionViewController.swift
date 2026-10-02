@@ -31,6 +31,7 @@ final class MainFeedCollectionViewController: UICollectionViewController, Undoab
 		didSet {
 			addNewItemButton.target = self
 			addNewItemButton.action = #selector(MainFeedCollectionViewController.add(_:))
+			addNewItemButton.accLabelText = NSLocalizedString("Add", comment: "Add feed or folder")
 		}
 	}
 
@@ -77,6 +78,8 @@ final class MainFeedCollectionViewController: UICollectionViewController, Undoab
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		registerForNotifications()
+		// The storyboard Settings gear has an image but no title for VoiceOver.
+		toolbarItems?.first(where: { $0.action == #selector(settings(_:)) })?.accessibilityLabel = NSLocalizedString("Settings", comment: "Settings button")
 		configureCurrentActivityButton()
 		configureCollectionView()
 		configureDiffableDataSource()
