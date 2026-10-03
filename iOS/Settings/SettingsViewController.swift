@@ -39,7 +39,7 @@ final class SettingsViewController: UITableViewController {
 	private enum FeedsRow: Int {
 		case importSubscriptions = 0
 		case exportSubscriptions = 1
-		case addNetNewsWireNewsFeed = 2
+		case addFeed = 2
 	}
 
 	private enum TimelineRow: Int {
@@ -259,7 +259,7 @@ final class SettingsViewController: UITableViewController {
 					let sourceRect = tableView.rectForRow(at: indexPath)
 					exportOPML(sourceView: sourceView, sourceRect: sourceRect)
 				}
-			case .addNetNewsWireNewsFeed:
+			case .addFeed:
 				addFeed()
 				tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 			default:

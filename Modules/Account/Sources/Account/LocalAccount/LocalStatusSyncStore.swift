@@ -51,25 +51,32 @@ final class LocalStatusSyncStore: Sendable {
 		}
 	}
 
-	/// Batch variant of `recordLocalChange` — one queue hop, one transaction.
+	/// Batch variant of `recordLocalChange` — one queue hop, one transaction,
+	/// off the caller's thread.
 	/// A change is only written when it is at least as new as the stored row,
 	/// so async queueing can't let an earlier-queued write clobber a later one.
-	func recordLocalChanges(_ changes: [(articleID: String, read: Bool, starred: Bool)], lastModified: Date) {
+	/// lastModified is stamped at write time: a caller-side timestamp could
+	/// predate a concurrent push's `pushedBefore` cut-off and let markClean
+	/// clear dirty on a change that was never sent.
+	func recordLocalChanges(_ changes: [(articleID: String, read: Bool, starred: Bool)]) async {
 		guard !changes.isEmpty else {
 			return
 		}
-		let timestamp = lastModified.timeIntervalSince1970
-		serialDispatchQueue.sync { [database] in
-			database.beginTransaction()
-			for change in changes {
-				let recordName = LocalStatusRecord.recordName(for: change.articleID)
-				_ = database.executeUpdate("""
-					INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 1)
-					ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 1
-					WHERE excluded.lastModified >= localStatus.lastModified
-					""", withArgumentsIn: [change.articleID, recordName, change.read, change.starred, timestamp])
+		await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+			serialDispatchQueue.async { [database] in
+				let timestamp = Date().timeIntervalSince1970
+				database.beginTransaction()
+				for change in changes {
+					let recordName = LocalStatusRecord.recordName(for: change.articleID)
+					_ = database.executeUpdate("""
+						INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 1)
+						ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 1
+						WHERE excluded.lastModified >= localStatus.lastModified
+						""", withArgumentsIn: [change.articleID, recordName, change.read, change.starred, timestamp])
+				}
+				database.commit()
+				continuation.resume()
 			}
-			database.commit()
 		}
 	}
 
@@ -82,31 +89,34 @@ final class LocalStatusSyncStore: Sendable {
 
 	/// Batch variant of `status(for:)` — one SELECT with an IN clause per
 	/// 500-ID chunk (SQLite host-variable limits) instead of N queries.
-	func statuses(for articleIDs: Set<String>) -> [String: LocalStatusRecord] {
+	/// Runs on the store's serial queue without blocking the caller's thread.
+	func statuses(for articleIDs: Set<String>) async -> [String: LocalStatusRecord] {
 		guard !articleIDs.isEmpty else {
 			return [:]
 		}
-		return serialDispatchQueue.sync { [database] in
-			var result = [String: LocalStatusRecord]()
-			let ids = Array(articleIDs)
-			for start in stride(from: 0, to: ids.count, by: 500) {
-				let chunk = Array(ids[start..<min(start + 500, ids.count)])
-				let placeholders = chunk.map { _ in "?" }.joined(separator: ", ")
-				guard let resultSet = database.executeQuery("SELECT articleID, read, starred, lastModified FROM localStatus WHERE articleID IN (\(placeholders))", withArgumentsIn: chunk) else {
-					Self.logDatabaseError("select statuses", database)
-					continue
-				}
-				defer {
-					resultSet.close()
-				}
-				while resultSet.next() {
-					guard let articleID = resultSet.object(forColumnIndex: 0) as? String else {
+		return await withCheckedContinuation { (continuation: CheckedContinuation<[String: LocalStatusRecord], Never>) in
+			serialDispatchQueue.async { [database] in
+				var result = [String: LocalStatusRecord]()
+				let ids = Array(articleIDs)
+				for start in stride(from: 0, to: ids.count, by: 500) {
+					let chunk = Array(ids[start..<min(start + 500, ids.count)])
+					let placeholders = chunk.map { _ in "?" }.joined(separator: ", ")
+					guard let resultSet = database.executeQuery("SELECT articleID, read, starred, lastModified FROM localStatus WHERE articleID IN (\(placeholders))", withArgumentsIn: chunk) else {
+						Self.logDatabaseError("select statuses", database)
 						continue
 					}
-					result[articleID] = LocalStatusRecord(articleID: articleID, read: resultSet.bool(forColumnIndex: 1), starred: resultSet.bool(forColumnIndex: 2), lastModified: Date(timeIntervalSince1970: resultSet.double(forColumnIndex: 3)))
+					defer {
+						resultSet.close()
+					}
+					while resultSet.next() {
+						guard let articleID = resultSet.object(forColumnIndex: 0) as? String else {
+							continue
+						}
+						result[articleID] = LocalStatusRecord(articleID: articleID, read: resultSet.bool(forColumnIndex: 1), starred: resultSet.bool(forColumnIndex: 2), lastModified: Date(timeIntervalSince1970: resultSet.double(forColumnIndex: 3)))
+					}
 				}
+				continuation.resume(returning: result)
 			}
-			return result
 		}
 	}
 

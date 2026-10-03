@@ -785,14 +785,18 @@ private extension WebViewController {
 			return
 		}
 
-		guard let imageURL = URL(string: clickMessage.imageURL), imageURL.isHTTPOrHTTPSURL() else { return }
+		guard let imageURL = URL(string: clickMessage.imageURL), imageURL.isHTTPOrHTTPSURL() else {
+			return
+		}
 
 		// A hostile page must not use this handler to make the app fetch
 		// arbitrary URLs (SSRF) — verify the URL actually belongs to an
 		// <img> in the loaded document before downloading it.
 		guard let encodedURL = try? JSONEncoder().encode(imageURL.absoluteString),
-			  let jsURL = String(data: encodedURL, encoding: .utf8) else { return }
-		webView.evaluateJavaScript("Array.from(document.images).some(function (img) { return img.src === \(jsURL); });") { [weak self] result, _ in
+			  let jsURL = String(data: encodedURL, encoding: .utf8) else {
+			return
+		}
+		webView.evaluateJavaScript("(function () { var target = new URL(\(jsURL), document.baseURI).href; return Array.from(document.images).some(function (img) { return img.src === target; }); })()") { [weak self] result, _ in
 			guard (result as? Bool) == true else {
 				return
 			}

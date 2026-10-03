@@ -270,10 +270,10 @@ private extension TimelineViewController {
 			}
 		}
 
-		if articles.count == 1, let link = articles.first!.preferredLink {
+		if articles.count == 1, let article = articles.first, let link = article.preferredLink {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
-			menu.addItem(menuItem(NSLocalizedString("Send to Instapaper", comment: "Command"), #selector(sendToInstapaperFromContextualMenu(_:)), articles.first!))
+			menu.addItem(menuItem(NSLocalizedString("Send to Instapaper", comment: "Command"), #selector(sendToInstapaperFromContextualMenu(_:)), article))
 			menu.addSeparatorIfNeeded()
 			menu.addItem(copyArticleURLMenuItem(link))
 

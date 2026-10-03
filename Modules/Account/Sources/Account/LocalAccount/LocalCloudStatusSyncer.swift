@@ -83,7 +83,6 @@ import CloudKitSync
 			return
 		}
 
-		let now = Date()
 		let account = self.account
 		let store = self.store
 		Task {
@@ -99,7 +98,7 @@ import CloudKitSync
 					currentStatuses[article.articleID] = article.status
 				}
 			}
-			let mirror = store.statuses(for: articleIDs)
+			let mirror = await store.statuses(for: articleIDs)
 			var changes = [(articleID: String, read: Bool, starred: Bool)]()
 			changes.reserveCapacity(articleIDs.count)
 			for articleID in articleIDs {
@@ -109,7 +108,7 @@ import CloudKitSync
 				let starred = current?.starred ?? (statusKey == .starred ? flag : (existing?.starred ?? false))
 				changes.append((articleID, read, starred))
 			}
-			store.recordLocalChanges(changes, lastModified: now)
+			await store.recordLocalChanges(changes)
 		}
 	}
 

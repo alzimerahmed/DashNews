@@ -45,15 +45,23 @@ nonisolated enum KeywordHighlighter {
 			guard let tagRange = Range(match.range, in: html) else {
 				continue
 			}
+			let segment = html[previousEnd..<tagRange.lowerBound]
 			if markDepth == 0 && !suppressed {
-				result += markKeywords(in: String(html[previousEnd..<tagRange.lowerBound]), regex: keywordRegex)
+				result += markKeywords(in: String(segment), regex: keywordRegex)
+			} else {
+				// Suppressed regions are passed through unmarked — the
+				// text must survive even though it isn't highlighted.
+				result += segment
 			}
 			result += html[tagRange]
 			updateState(for: html[tagRange], markDepth: &markDepth, suppressed: &suppressed)
 			previousEnd = tagRange.upperBound
 		}
+		let tail = html[previousEnd...]
 		if markDepth == 0 && !suppressed {
-			result += markKeywords(in: String(html[previousEnd...]), regex: keywordRegex)
+			result += markKeywords(in: String(tail), regex: keywordRegex)
+		} else {
+			result += tail
 		}
 		return result
 	}
@@ -98,7 +106,12 @@ private extension KeywordHighlighter {
 			return
 		}
 		if let name = tagName(of: tag), name == "script" || name == "style" {
-			suppressed = !isClosingTag(lowered)
+			if isClosingTag(lowered) {
+				suppressed = false
+			} else if !lowered.hasSuffix("/>") {
+				// Self-closing <script/> or <style/> never opens a region.
+				suppressed = true
+			}
 		}
 	}
 

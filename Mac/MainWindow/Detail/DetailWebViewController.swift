@@ -10,6 +10,7 @@ import AppKit
 @preconcurrency import WebKit
 import os
 import RSCore
+import RSWeb
 import Articles
 import Images
 
