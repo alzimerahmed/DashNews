@@ -33,25 +33,27 @@ jobs:
           version="${GITHUB_REF_NAME#mac-}"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
-      - name: Archive DashNews
+      - name: Build DashNews (unsigned Release)
         run: |
           set -euo pipefail
+          # Unsigned release zip — the appcast already ships unsigned
+          # enclosures. A Release build + ditto is enough; `archive`
+          # requires signing for embedded-binary validation.
           xcodebuild \
             -project DashNews.xcodeproj \
             -scheme DashNews \
             -configuration Release \
             -destination "platform=macOS,arch=arm64" \
-            -archivePath "$RUNNER_TEMP/DashNews.xcarchive" \
+            -derivedDataPath "$RUNNER_TEMP/derived" \
             -xcconfig .github/macos-ci-no-signing.xcconfig \
-            archive 2>&1 | xcbeautify --renderer github-actions
+            build 2>&1 | xcbeautify --renderer github-actions
 
       - name: Package DashNews.app
         run: |
           set -euo pipefail
-          app="$RUNNER_TEMP/DashNews.xcarchive/Products/Applications/DashNews.app"
-          test -d "$app"
-          cd "$RUNNER_TEMP/DashNews.xcarchive/Products/Applications"
-          ditto -c -k --keepParent "DashNews.app" "$RUNNER_TEMP/DashNews${{ steps.version.outputs.version }}.zip"
+          app_dir="$(find "$RUNNER_TEMP/derived/Build/Products/Release" -maxdepth 1 -name "DashNews.app" -type d)"
+          test -d "$app_dir"
+          ditto -c -k --keepParent "$app_dir" "$RUNNER_TEMP/DashNews${{ steps.version.outputs.version }}.zip"
 
       - name: Create release and upload asset
         env:
