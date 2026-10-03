@@ -1,5 +1,23 @@
 # iOS Release Notes
 
+### 7.2.0 build 7220 3 Oct 2026 - branch: phase/10-quality-gate tag: iOS-7.2.0-7220
+
+First DashNews release — a privacy-first, local-first NetNewsWire fork with on-device intelligence.
+
+New since the 7.1.4 baseline:
+
+Added on-device article summaries (Foundation Models with deterministic extractive fallback)
+Added per-feed keyword rules — hide articles and highlight keywords in article bodies
+Added key-point highlighting inside articles
+Added saved searches that persist as smart feeds
+Added mark-as-read on scroll
+Added Send to Instapaper
+Added iCloud status sync for the On My iPhone/iPad account (read/starred across devices)
+Added home-screen/lock-screen widgets
+Added full Spanish localization
+
+Quality-gate pass: all untrusted feed metadata is now escaped in article HTML, article JavaScript defaults off, top-frame webview navigation locked down, theme archives are validated on extraction, iCloud status queueing no longer blocks the main thread, and search results are bounded
+
 ### 7.1.4 build 7213 18 Sep 2026 - branch: main tag: iOS-7.1.4-7213
 
 This was originally a TestFlight release. It was submitted to the App Store as the 7.1.4 release version on 20 Sep 2026.
