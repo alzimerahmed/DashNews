@@ -63,7 +63,8 @@ final class LocalStatusSyncStore: Sendable {
 			return
 		}
 		await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
-			serialDispatchQueue.async { [database] in
+			serialDispatchQueue.async {
+				let database = self.database
 				let timestamp = Date().timeIntervalSince1970
 				database.beginTransaction()
 				for change in changes {
@@ -95,7 +96,8 @@ final class LocalStatusSyncStore: Sendable {
 			return [:]
 		}
 		return await withCheckedContinuation { (continuation: CheckedContinuation<[String: LocalStatusRecord], Never>) in
-			serialDispatchQueue.async { [database] in
+			serialDispatchQueue.async {
+				let database = self.database
 				var result = [String: LocalStatusRecord]()
 				let ids = Array(articleIDs)
 				for start in stride(from: 0, to: ids.count, by: 500) {
