@@ -1,5 +1,9 @@
 # Mac Release Notes
 
+### 1.0.0 7221 3 Oct 2026 - branch: main tag: v1.0.0
+
+DashNews 1.0.0 — renumbered from the inherited 7.x series. Same feature set as 7.2.0, plus the final brand sweep: new app icon everywhere and all remaining user-facing strings now say DashNews.
+
 ### 7.2.0 7220 3 Oct 2026 - branch: phase/10-quality-gate tag: mac-7.2.0
 
 First DashNews release — a privacy-first, local-first NetNewsWire fork with on-device intelligence.

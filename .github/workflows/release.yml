@@ -5,6 +5,7 @@ on:
     tags:
       - "mac-*"
       - "iOS-*"
+      - "v*"
   workflow_dispatch:
 
 permissions:
@@ -14,7 +15,7 @@ jobs:
   macos-release:
     name: macOS Release
     runs-on: macos-26
-    if: startsWith(github.ref_name, 'mac-')
+    if: startsWith(github.ref_name, 'mac-') || startsWith(github.ref_name, 'v')
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -31,6 +32,7 @@ jobs:
         id: version
         run: |
           version="${GITHUB_REF_NAME#mac-}"
+          version="${version#v}"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Build DashNews (unsigned Release)
@@ -69,14 +71,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if ! gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            gh release create "${GITHUB_REF_NAME}" --generate-notes --latest=false
+            gh release create "${GITHUB_REF_NAME}" --generate-notes --latest=false || true
           fi
           gh release upload "${GITHUB_REF_NAME}" "$RUNNER_TEMP/DashNews${{ steps.version.outputs.version }}.zip" --clobber
 
   ios-release:
     name: iOS Archive
     runs-on: macos-26
-    if: startsWith(github.ref_name, 'iOS-')
+    if: startsWith(github.ref_name, 'iOS-') || startsWith(github.ref_name, 'v')
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -92,8 +94,9 @@ jobs:
       - name: Resolve version
         id: version
         run: |
-          # Tag form: iOS-<marketing>-<build>
+          # Tag forms: iOS-<marketing>-<build> or v<marketing>
           tag="${GITHUB_REF_NAME#iOS-}"
+          tag="${tag#v}"
           echo "version=$tag" >> "$GITHUB_OUTPUT"
 
       - name: Archive DashNews-iOS
@@ -119,6 +122,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if ! gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            gh release create "${GITHUB_REF_NAME}" --generate-notes --latest=false
+            gh release create "${GITHUB_REF_NAME}" --generate-notes --latest=false || true
           fi
           gh release upload "${GITHUB_REF_NAME}" "$RUNNER_TEMP/DashNews-iOS-${{ steps.version.outputs.version }}.zip" --clobber

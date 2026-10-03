@@ -52,7 +52,7 @@ struct AboutView: View {
 						.bold()
 						.foregroundStyle(.secondary)
 						.padding(.top, 16)
-					Text("NetNewsWire 7 is dedicated to everyone working to save democracy in the United States and around the world.")
+					Text("DashNews is dedicated to everyone working to save democracy in the United States and around the world.")
 				}
 
 				Text(verbatim: "Copyright © 2026 Alzimer Ahmed\nIncludes NetNewsWire code © 2002-2026 Brent Simmons")

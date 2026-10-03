@@ -12,7 +12,7 @@ import AppIntents
 struct AddFeedAppIntent: AppIntent {
 
 	static let title: LocalizedStringResource = "Add Feed"
-	static let description = IntentDescription("Adds a feed to NetNewsWire.")
+	static let description = IntentDescription("Adds a feed to DashNews.")
 
 	// Runs in the background: like the Share Extension, this only enqueues a request into the
 	// app group; the main app turns it into an actual feed the next time it processes the queue.
@@ -69,7 +69,7 @@ struct AddFeedAppIntent: AppIntent {
 		ExtensionFeedAddRequestFile.save(request)
 
 		// Neutral wording: the feed is queued here and actually created when the app next runs.
-		return .result(dialog: "Adding \(url.absoluteString) to NetNewsWire.")
+		return .result(dialog: "Adding \(url.absoluteString) to DashNews.")
 	}
 }
 

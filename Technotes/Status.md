@@ -1,18 +1,18 @@
 # DashNews Status
 
-Current milestone: DashNews 7.2 shipped
+Current milestone: DashNews 1.0.0 shipped
 https://github.com/alzimerahmed/DashNews/milestones
 
 ## iOS
 
-iOS shipping: 7.2.0
+iOS shipping: 1.0.0
 https://github.com/alzimerahmed/DashNews/releases
 
 iOS beta: none
 
 ## Mac
 
-Mac shipping: 7.2.0
+Mac shipping: 1.0.0
 https://github.com/alzimerahmed/DashNews/releases
 
 Mac beta: none
