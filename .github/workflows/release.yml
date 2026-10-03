@@ -40,7 +40,8 @@ jobs:
           # enclosures. App extensions still need *a* signature for the
           # embedded-binary validation step, so sign ad-hoc ("-"): the
           # result verifies like an unsigned app under Gatekeeper.
-          xcodebuild \
+          build_log="$RUNNER_TEMP/DashNews-release-build.log"
+          if ! xcodebuild \
             -project DashNews.xcodeproj \
             -scheme DashNews \
             -configuration Release \
@@ -50,7 +51,11 @@ jobs:
             CODE_SIGNING_ALLOWED=YES \
             CODE_SIGNING_REQUIRED=YES \
             CODE_SIGN_IDENTITY=- \
-            build 2>&1 | xcbeautify --renderer github-actions
+            build 2>&1 | tee "$build_log" | xcbeautify --renderer github-actions; then
+            echo "::error::xcodebuild failed — last 100 lines of raw log:"
+            tail -100 "$build_log"
+            exit 1
+          fi
 
       - name: Package DashNews.app
         run: |
