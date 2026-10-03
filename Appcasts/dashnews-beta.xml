@@ -7,6 +7,29 @@
     <language>en</language>
 
 <item>
+	<title>DashNews 7.2.0</title>
+	<description><![CDATA[
+<p><b>Changes since 7.1.5:</b>
+<ul>
+<li>Added on-device article summaries (Foundation Models with deterministic extractive fallback)
+<li>Added per-feed keyword rules — hide articles and highlight keywords in article bodies
+<li>Added key-point highlighting inside articles
+<li>Added saved searches that persist as smart feeds
+<li>Added mark-as-read on scroll
+<li>Added Send to Instapaper
+<li>Added iCloud status sync for the On My Mac account (read/starred across devices)
+<li>Added home-screen and lock-screen widgets
+<li>Added full Spanish localization
+<li>Reworked article rendering, navigation policy, and search for safety and speed
+<li>Quality gate: untrusted feed metadata is now escaped in article HTML, article JavaScript defaults off, top-frame webview navigation is locked down, iCloud status queueing no longer blocks the main thread, and search results are bounded
+</ul>
+	]]></description>
+	<pubDate>Sat, 03 Oct 2026 09:15:00 -0700</pubDate>
+	<enclosure url="https://github.com/alzimerahmed/DashNews/releases/download/mac-7.2.0/DashNews7.2.0.zip" sparkle:version="7220" sparkle:shortVersionString="7.2.0" length="11921581" type="application/zip" />
+	<sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+</item>
+
+<item>
 	<title>DashNews 7.1.5</title>
 	<description><![CDATA[
 <p><b>Changes since 7.1.4:</b>
