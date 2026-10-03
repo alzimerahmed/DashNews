@@ -5231,6 +5231,149 @@
         }
       },
       "comment" : "Key-point highlighting footer"
+    },
+    "API URL must use https for non-local servers." : {
+      "comment" : "Insecure API URL",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La URL de la API debe usar https para servidores que no sean locales."
+          }
+        }
+      }
+    },
+    "Hide Toolbars" : {
+      "comment" : "Accessibility label for the navigation bar tap zone that hides the toolbars",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar barras de herramientas"
+          }
+        }
+      }
+    },
+    "Instapaper account is not configured." : {
+      "comment" : "Instapaper error: account not configured",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La cuenta de Instapaper no está configurada."
+          }
+        }
+      }
+    },
+    "Instapaper rejected the username or password." : {
+      "comment" : "Instapaper error: authentication failed",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instapaper rechazó el nombre de usuario o la contraseña."
+          }
+        }
+      }
+    },
+    "Instapaper request failed with status %d." : {
+      "comment" : "Instapaper error: request failed with HTTP status",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La solicitud a Instapaper falló con el estado %d."
+          }
+        }
+      }
+    },
+    "Loading…" : {
+      "comment" : "Shown in the article view while an article loads",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando…"
+          }
+        }
+      }
+    },
+    "Mark Article Read" : {
+      "comment" : "Mark Article Read",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar artículo como leído"
+          }
+        }
+      }
+    },
+    "May be cleaned up" : {
+      "comment" : "iCloud stats: warning that these records may be cleaned up",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podría limpiarse"
+          }
+        }
+      }
+    },
+    "Multiple selection" : {
+      "comment" : "Shown in the article view when multiple articles are selected",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selección múltiple"
+          }
+        }
+      }
+    },
+    "No selection" : {
+      "comment" : "Shown in the article view when no article is selected",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin selección"
+          }
+        }
+      }
+    },
+    "Show Toolbars" : {
+      "comment" : "Accessibility label for the edge tap zone that shows the toolbars",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar barras de herramientas"
+          }
+        }
+      }
+    },
+    "Summary ready" : {
+      "comment" : "Accessibility announcement that the article summary finished loading",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen listo"
+          }
+        }
+      }
+    },
+    "The DashNews theme archive is invalid." : {
+      "comment" : "Theme error: invalid archive",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El archivo del tema de DashNews no es válido."
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

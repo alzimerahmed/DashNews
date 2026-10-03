@@ -17,12 +17,12 @@ struct AboutView: View {
 					.frame(width: 100, height: 100)
 					.clipShape(RoundedRectangle(cornerRadius: 20))
 
-				Text(verbatim: "NetNewsWire")
+				Text(verbatim: "DashNews")
 					.font(.largeTitle)
 
-				Text(verbatim: "By Brent Simmons and the Ranchero Software team")
+				Text(verbatim: "By Alzimer Ahmed — a NetNewsWire fork honoring the work of Brent Simmons and the Ranchero Software team")
 					.foregroundStyle(.secondary)
-				Text("[netnewswire.com](https://netnewswire.com/)")
+				Text("[github.com/alzimerahmed/DashNews](https://github.com/alzimerahmed/DashNews)")
 
 				VStack(spacing: 6) {
 					Text(verbatim: "Credits")
@@ -55,7 +55,7 @@ struct AboutView: View {
 					Text("NetNewsWire 7 is dedicated to everyone working to save democracy in the United States and around the world.")
 				}
 
-				Text(verbatim: "Copyright © 2002-2026 Brent Simmons")
+				Text(verbatim: "Copyright © 2026 Alzimer Ahmed\nIncludes NetNewsWire code © 2002-2026 Brent Simmons")
 					.font(.caption)
 					.foregroundStyle(.secondary)
 					.padding(.bottom)
@@ -64,7 +64,7 @@ struct AboutView: View {
 		}
 		.multilineTextAlignment(.center)
 		.background(Color(uiColor: .systemBackground))
-		.navigationTitle(Text(verbatim: "About NetNewsWire"))
+		.navigationTitle(Text(verbatim: "About DashNews"))
     }
 }
 

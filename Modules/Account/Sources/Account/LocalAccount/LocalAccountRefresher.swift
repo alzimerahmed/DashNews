@@ -370,7 +370,7 @@ import os
 		let webserviceError = WebserviceError.httpError(status: statusCode, responseBody: nil)
 		let statusDescription = webserviceError.localizedDescription
 		let errorMessage = "HTTP \(statusCode) \(statusDescription): \(url.absoluteString)"
-		let error = NSError(domain: "NetNewsWire", code: statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+		let error = NSError(domain: "DashNews", code: statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
 
 		reportFeedRefreshError(feed: feed, error: error, activityKind: .refreshFeedContent(feedURL: feed.url))
 	}
@@ -477,15 +477,10 @@ private extension LocalAccountRefresher {
 	/// The 5-hour Cache-Control cap in
 	/// `feedShouldBeSkippedForCacheControlReasons` still applies.
 	///
-	/// We have permissions from the feed owners for each of these.
-	static let domainsWithNoMinimumTime: Set<String> = [
-		"inessential.com", "ranchero.com", "netnewswire.blog",
-		"daringfireball.net", "redsweater.com", "indiestack.com",
-		"blog.plunkitup.com", "bitsplitting.org", "allenpike.com",
-		"hypercritical.co", "micro.inessential.com", "discourse.netnewswire.com",
-		"onefoottsunami.com", "manton.org", "randsinrepose.com",
-		"micro.blog", "shapeof.com", "flyingmeat.com"
-	]
+	/// Upstream had owner permission to exempt these blogs from the
+	/// minimum refresh interval; that permission doesn't transfer to
+	/// DashNews, so the list is empty — every feed respects the minimum.
+	static let domainsWithNoMinimumTime: Set<String> = []
 
 	/// Returns whether this feed should be skipped and the reason if so.
 	static func feedShouldBeSkipped(_ feed: Feed, _ specialCaseCutoffDate: Date, _ redditURLToRefresh: String?) -> (Bool, String?) {

@@ -216,8 +216,22 @@ extension FetchRequestOperation {
 		guard !store.rules.isEmpty else {
 			return articles
 		}
+		// Index hide keywords by feed once per fetch — the per-article path
+		// must not re-filter the whole rule list per feed or rebuild the
+		// searchable text once per keyword.
+		var hideKeywordsByFeed = [String: [String]]()
+		for rule in store.rules where rule.action == .hide {
+			hideKeywordsByFeed[rule.feedID, default: []].append(rule.keyword)
+		}
+		guard !hideKeywordsByFeed.isEmpty else {
+			return articles
+		}
 		return Set(articles.filter { article in
-			!KeywordRuleMatcher.shouldHide(article: article, rules: store.hideRules(forFeedID: article.feedID))
+			guard let keywords = hideKeywordsByFeed[article.feedID] else {
+				return true
+			}
+			let text = KeywordRuleMatcher.searchableText(of: article)
+			return !keywords.contains { KeywordRuleMatcher.matches(keyword: $0, in: text) }
 		})
 	}
 }

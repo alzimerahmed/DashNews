@@ -38,7 +38,6 @@ import Articles
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						}
-						.deleteDisabled(false)
 					}
 					.onDelete { indexSet in
 						let feedRules = store.rules(forFeedID: feed.feedID)

@@ -18,17 +18,20 @@ public final class ArticleThemeDownloader: Sendable {
 		case noThemeFile
 		case tooLarge
 		case unsupportedURLScheme
+		case invalidArchive
 
 		public var errorDescription: String? {
 			switch self {
 			case .downloadFailed:
-				return "The NetNewsWire theme could not be downloaded."
+				return "The DashNews theme could not be downloaded."
 			case .noThemeFile:
-				return "There is no NetNewsWire theme available."
+				return "There is no DashNews theme available."
 			case .tooLarge:
-				return "The NetNewsWire theme is too large."
+				return "The DashNews theme is too large."
 			case .unsupportedURLScheme:
-				return "A NetNewsWire theme can be downloaded only from an http or https URL."
+				return "A DashNews theme can be downloaded only from an http or https URL."
+			case .invalidArchive:
+				return "The DashNews theme archive is invalid."
 			}
 		}
 	}
@@ -75,7 +78,7 @@ public final class ArticleThemeDownloader: Sendable {
 		NotificationCenter.default.post(name: .didEndDownloadingTheme, object: nil, userInfo: ["url": unzippedFileLocation])
 	}
 
-	/// Creates `Application Support/NetNewsWire/Downloads` if needed.
+	/// Creates `Application Support/DashNews/Downloads` if needed.
 	private func createDownloadDirectoryIfRequired() {
 		try? FileManager.default.createDirectory(at: downloadDirectory(), withIntermediateDirectories: true, attributes: nil)
 	}
@@ -97,7 +100,7 @@ public final class ArticleThemeDownloader: Sendable {
 	private func unzipFile(at location: URL) throws -> URL {
 		do {
 			let unzipDirectory = URL(fileURLWithPath: location.path.replacingOccurrences(of: ".zip", with: ""))
-			let themeURL = try unzipTheme(at: location, to: unzipDirectory) // Unzips to folder in Application Support/NetNewsWire/Downloads
+			let themeURL = try unzipTheme(at: location, to: unzipDirectory) // Unzips to folder in Application Support/DashNews/Downloads
 			try FileManager.default.removeItem(at: location) // Delete zip in Cache
 			return themeURL
 		} catch {
@@ -109,6 +112,10 @@ public final class ArticleThemeDownloader: Sendable {
 	/// Extracts a theme into `destination` and returns its `.nnwtheme`; throws if an entry escapes `destination` or no theme is present.
 	func unzipTheme(at zipLocation: URL, to destination: URL) throws -> URL {
 		try Zip.unzipFile(zipLocation, destination: destination, overwrite: true, password: nil, progress: nil, fileOutputHandler: nil)
+		// The Zip library is pinned post-1.1.0 (zip-slip fix), but verify
+		// anyway — a hostile archive must not write or link outside the
+		// downloads directory.
+		try validateExtractionStaysInside(destination)
 		guard let themeFilePath = findThemeFile(in: destination.path) else {
 			throw ArticleThemeDownloaderError.noThemeFile
 		}
@@ -134,13 +141,36 @@ public final class ArticleThemeDownloader: Sendable {
 		return nil
 	}
 
-	/// The download directory used by the theme downloader: `Application Support/NetNewsWire/Downloads`
-	/// - Returns: `URL`
-	private func downloadDirectory() -> URL {
-		FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("NetNewsWire/Downloads", isDirectory: true)
+	/// Throws `invalidArchive` if any extracted entry or symlink target
+	/// resolves outside `destination`.
+	private func validateExtractionStaysInside(_ destination: URL) throws {
+		guard let enumerator = FileManager.default.enumerator(atPath: destination.path) else {
+			return
+		}
+		let root = destination.standardizedFileURL.path
+		while let relativePath = enumerator.nextObject() as? String {
+			let fileURL = destination.appendingPathComponent(relativePath)
+			let standardized = fileURL.standardizedFileURL.path
+			guard standardized == root || standardized.hasPrefix(root + "/") else {
+				throw ArticleThemeDownloaderError.invalidArchive
+			}
+			// A symlink inside the archive may point outside root.
+			if let linkTarget = try? FileManager.default.destinationOfSymbolicLink(atPath: fileURL.path) {
+				let resolved = URL(fileURLWithPath: linkTarget, relativeTo: fileURL.deletingLastPathComponent()).standardizedFileURL.path
+				guard resolved == root || resolved.hasPrefix(root + "/") else {
+					throw ArticleThemeDownloaderError.invalidArchive
+				}
+			}
+		}
 	}
 
-	/// Removes downloaded themes, where themes == folders, from `Application Support/NetNewsWire/Downloads`.
+	/// The download directory used by the theme downloader: `Application Support/DashNews/Downloads`
+	/// - Returns: `URL`
+	private func downloadDirectory() -> URL {
+		FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("DashNews/Downloads", isDirectory: true)
+	}
+
+	/// Removes downloaded themes, where themes == folders, from `Application Support/DashNews/Downloads`.
 	public func cleanUp() {
 		guard let filenames = try? FileManager.default.contentsOfDirectory(atPath: downloadDirectory().path) else {
 			return

@@ -12,7 +12,7 @@ import Account
 struct CloudKitStatsView: View {
 
 	private static let model = CloudKitStatsViewModel()
-	private static let helpURL = URL(string: "https://netnewswire.com/help/optimize-icloud.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 	private let model = CloudKitStatsView.model
 
 	@State private var showCleanUpConfirmation = false
@@ -210,12 +210,12 @@ struct CloudKitStatsView: View {
 		if model.cleanUpStatus.isCompleted || model.cleanUpStatus.isCanceled {
 			Section {
 				Button(NSLocalizedString("Return to Previous Scan Results", comment: "Return to previous scan results button")) {
-					withAnimation(.easeInOut(duration: 0.25)) {
+					withAnimation(UIAccessibility.isReduceMotionEnabled ? nil : .easeInOut(duration: 0.25)) {
 						model.cleanUpStatus = .idle
 					}
 				}
 				Button(NSLocalizedString("Refresh Scan", comment: "Refresh scan button")) {
-					withAnimation(.easeInOut(duration: 0.25)) {
+					withAnimation(UIAccessibility.isReduceMotionEnabled ? nil : .easeInOut(duration: 0.25)) {
 						model.fetch()
 					}
 				}
@@ -250,6 +250,13 @@ struct CloudKitStatsView: View {
 			Text(label)
 				.fontWeight(isHeader ? .semibold : .regular)
 			Spacer()
+			if isWarning && count > 0 {
+				// Warning must not be conveyed by color alone — the glyph
+				// carries the meaning and is announced as its own element.
+				Image(systemName: "exclamationmark.triangle.fill")
+					.foregroundStyle(.orange)
+					.accessibilityLabel("May be cleaned up")
+			}
 			Text(formattedNumber(count))
 				.monospacedDigit()
 				.foregroundStyle(countColor(isWarning: isWarning, count: count))

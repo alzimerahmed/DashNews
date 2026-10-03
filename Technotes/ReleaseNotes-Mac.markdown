@@ -1,5 +1,24 @@
 # Mac Release Notes
 
+### 7.2.0 7220 3 Oct 2026 - branch: phase/10-quality-gate tag: mac-7.2.0
+
+First DashNews release — a privacy-first, local-first NetNewsWire fork with on-device intelligence.
+
+New since the 7.1.5 baseline:
+
+Added on-device article summaries (Foundation Models with deterministic extractive fallback)
+Added per-feed keyword rules — hide articles and highlight keywords in article bodies
+Added key-point highlighting inside articles
+Added saved searches that persist as smart feeds
+Added mark-as-read on scroll
+Added Send to Instapaper
+Added iCloud status sync for the On My Mac account (read/starred across devices)
+Added home-screen/lock-screen widgets
+Added full Spanish localization
+Reworked article rendering, navigation policy, and search for safety and speed
+
+Quality-gate pass: all untrusted feed metadata is now escaped in article HTML, article JavaScript defaults off, top-frame webview navigation locked down, iCloud status queueing no longer blocks the main thread, and search results are bounded
+
 ### 7.1.5 7216 29 Sep 2026 - branch: release/macos-7.1.5 tag: mac-7.1.5
 
 Fixed bug introduced in 7.1.4 where the app wouldn’t ask for notifications permission on launch, which meant no unread count in the Dock icon for new users

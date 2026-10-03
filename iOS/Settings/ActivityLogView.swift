@@ -12,7 +12,7 @@ import RSCore
 
 struct ActivityLogView: View {
 
-	private static let helpURL = URL(string: "https://netnewswire.com/help/activity-log.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 
 	@State private var isEmpty = true
 	@State private var attributedText = AttributedString()

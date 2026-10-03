@@ -11,7 +11,7 @@ import ActivityLog
 
 struct CurrentActivityView: View {
 
-	private static let helpURL = URL(string: "https://netnewswire.com/help/current-activity.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 
 	@State private var model = CurrentActivityViewModel()
 	@State private var activities = [Activity]()

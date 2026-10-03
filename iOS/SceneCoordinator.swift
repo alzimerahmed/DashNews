@@ -465,7 +465,7 @@ struct SidebarItemNode: Hashable, Sendable {
 			isRestoringState = false
 		}
 
-		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun, hasSavedSelection: false) != nil else {
+		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun) != nil else {
 			return
 		}
 		selectAllUnreadFeed()
@@ -1500,14 +1500,14 @@ struct SidebarItemNode: Hashable, Sendable {
 
 	func showStatusBar() {
 		prefersStatusBarHidden = false
-		UIView.animate(withDuration: 0.15) {
+		UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.15) {
 			self.rootSplitViewController.setNeedsStatusBarAppearanceUpdate()
 		}
 	}
 
 	func hideStatusBar() {
 		prefersStatusBarHidden = true
-		UIView.animate(withDuration: 0.15) {
+		UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.15) {
 			self.rootSplitViewController.setNeedsStatusBarAppearanceUpdate()
 		}
 	}

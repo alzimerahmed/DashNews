@@ -3,7 +3,7 @@
 //  Account
 //
 //  Created by DashNews on 2/14/26.
-//  Copyright © 2026 Alzimer Ahmed, LLC. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import Foundation

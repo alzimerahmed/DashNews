@@ -32,7 +32,7 @@ import Translation
 		.navigationTitle(Text("Translate"))
 		.toolbar {
 			ToolbarItem {
-				Button(String("Translate")) {
+				Button("Translate") {
 					isTranslationPresented = true
 				}
 			}

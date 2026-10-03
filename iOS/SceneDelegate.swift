@@ -201,7 +201,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 			// Handle theme URLs: dashnews://theme/add?url={url}
 			guard let comps = URLComponents(url: context.url, resolvingAgainstBaseURL: false),
-				  comps.scheme?.lowercased() == "netnewswire",
+				  comps.scheme?.lowercased() == "dashnews",
 				  "theme" == comps.host,
 				 let queryItems = comps.queryItems else {
 				return

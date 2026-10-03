@@ -1,9 +1,9 @@
 //
 //  SmartFeedLaunchSelectionTests.swift
-//  NetNewsWireTests
+//  DashNewsTests
 //
 //  Created by DashNews on 2/13/26.
-//  Copyright © 2026 Ranchero Software. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import XCTest
@@ -11,26 +11,14 @@ import XCTest
 
 final class SmartFeedLaunchSelectionTests: XCTestCase {
 
-	func testFirstRunWithoutSavedSelectionSelectsAllUnread() {
-		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: true, hasSavedSelection: false)
+	func testFirstRunSelectsAllUnread() {
+		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: true)
 
 		XCTAssertEqual(selection, .allUnread)
 	}
 
-	func testFirstRunWithSavedSelectionRestoresInstead() {
-		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: true, hasSavedSelection: true)
-
-		XCTAssertNil(selection)
-	}
-
-	func testLaterLaunchWithoutSavedSelectionDoesNotForceAllUnread() {
-		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: false, hasSavedSelection: false)
-
-		XCTAssertNil(selection)
-	}
-
-	func testLaterLaunchWithSavedSelectionRestores() {
-		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: false, hasSavedSelection: true)
+	func testLaterLaunchRestoresSavedSelection() {
+		let selection = SmartFeedLaunchSelection.defaultSelection(isFirstRun: false)
 
 		XCTAssertNil(selection)
 	}

@@ -158,8 +158,14 @@ struct CredentialsAccountView: View {
 
 		let endpoint: URL?
 		if accountType.needsAPIURL {
-			guard let apiURL = URL(string: apiURLString.trimmingWhitespace) else {
+			guard let apiURL = URL(string: apiURLString.trimmingWhitespace), let scheme = apiURL.scheme?.lowercased(), scheme == "http" || scheme == "https" else {
 				errorMessage = NSLocalizedString("Invalid API URL.", comment: "Invalid API URL")
+				return
+			}
+			// Credentials POST to this endpoint — plaintext http is only
+			// acceptable to a server on the local device or private network.
+			guard scheme == "https" || apiURL.isPrivateNetworkHost else {
+				errorMessage = NSLocalizedString("API URL must use https for non-local servers.", comment: "Insecure API URL")
 				return
 			}
 			endpoint = apiURL

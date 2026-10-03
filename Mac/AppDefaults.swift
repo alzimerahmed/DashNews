@@ -358,7 +358,7 @@ final class AppDefaults: Sendable {
 			Key.refreshInterval: RefreshInterval.every2Hours.rawValue,
 			Key.showDebugMenu: showDebugMenu,
 			Key.currentThemeName: Self.defaultThemeName,
-			Key.articleContentJavascriptEnabled: true,
+			Key.articleContentJavascriptEnabled: false,
 			Key.isMarkReadOnScrollEnabled: false
 		]
 

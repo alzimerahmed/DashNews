@@ -241,8 +241,19 @@ import RSParser
 
 			if isAllowed {
 				if forHTML {
+					// Emit only the tag name — never the raw tag slice.
+					// Attributes are dropped so event handlers like
+					// `<b onmouseover=…>` can't reach the web view.
 					out.append(lt)
-					out.append(contentsOf: utf8[tagStart..<tagEnd])
+					if tagStart < tagEnd && utf8[tagStart] == slash {
+						out.append(slash)
+					}
+					out.append(contentsOf: tagName)
+					// Preserve self-closing form — emitting `<b>` for
+					// `<b/>` would open an unclosed tag.
+					if tagWasClosed && tagEnd > tagStart && utf8[tagEnd - 1] == slash {
+						out.append(slash)
+					}
 					if tagWasClosed {
 						out.append(gt)
 					}

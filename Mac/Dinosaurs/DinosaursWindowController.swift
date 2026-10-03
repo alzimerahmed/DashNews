@@ -155,7 +155,7 @@ final class DinosaursWindowController: NSWindowController {
 	}
 
 	@IBAction func showDinosaursHelp(_ sender: Any?) {
-		if let url = URL(string: "https://netnewswire.com/help/dinosaurs.html") {
+		if let url = URL(string: "https://github.com/alzimerahmed/DashNews") {
 			MacWebBrowser.openURL(url)
 		}
 	}

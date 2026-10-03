@@ -80,9 +80,9 @@
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/alzimerahmed/DashNews/main/Appcasts/dashnews-release.xml</string>
 	<key>UserAgent</key>
-	<string>DashNews (RSS Reader; https://netnewswire.com/)</string>
+	<string>DashNews (RSS Reader; https://github.com/alzimerahmed/DashNews)</string>
 	<key>UserAgentExtended</key>
-	<string>DashNews (RSS Reader; https://netnewswire.com/; [platform]; [version] ([build]))</string>
+	<string>DashNews (RSS Reader; https://github.com/alzimerahmed/DashNews; [platform]; [version] ([build]))</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>

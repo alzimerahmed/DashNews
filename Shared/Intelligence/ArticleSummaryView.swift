@@ -64,6 +64,9 @@ import SwiftUI
 			let result = await SummarizationService.summarize(title: title, contentText: contentText)
 			if let result {
 				status = .summary(result)
+				// The loading element disappears when the summary lands —
+				// announce the state change for VoiceOver users.
+				AccessibilityNotification.Announcement(NSLocalizedString("Summary ready", comment: "Accessibility announcement that the article summary finished loading")).post()
 			} else {
 				status = .unavailable
 			}

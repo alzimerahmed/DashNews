@@ -157,7 +157,7 @@ extension Notification.Name {
 
 	/// On the very first launch, select the All Unread smart inbox.
 	func selectDefaultSmartFeedOnFirstLaunch() {
-		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun, hasSavedSelection: false) != nil else {
+		guard SmartFeedLaunchSelection.defaultSelection(isFirstRun: AppDefaults.shared.isFirstRun) != nil else {
 			return
 		}
 		selectFeed(SmartFeedsController.shared.unreadFeed)

@@ -100,7 +100,7 @@ final class ActivityLogWindowController: NSWindowController, NSWindowDelegate {
 	}
 
 	@IBAction func showActivityLogHelp(_ sender: Any?) {
-		if let url = URL(string: "https://netnewswire.com/help/activity-log.html") {
+		if let url = URL(string: "https://github.com/alzimerahmed/DashNews") {
 			MacWebBrowser.openURL(url)
 		}
 	}

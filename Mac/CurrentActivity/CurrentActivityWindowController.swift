@@ -96,7 +96,7 @@ import RSWeb
 	// MARK: - Actions
 
 	@IBAction func showHelp(_ sender: Any?) {
-		if let url = URL(string: "https://netnewswire.com/help/current-activity.html") {
+		if let url = URL(string: "https://github.com/alzimerahmed/DashNews") {
 			MacWebBrowser.openURL(url)
 		}
 	}

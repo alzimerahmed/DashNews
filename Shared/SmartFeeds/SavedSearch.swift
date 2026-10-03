@@ -1,6 +1,6 @@
 //
 //  SavedSearch.swift
-//  NetNewsWire
+//  DashNews
 //
 //  Created by DashNews on 10/2/26.
 //  Copyright © 2026 Alzimer Ahmed. All rights reserved.

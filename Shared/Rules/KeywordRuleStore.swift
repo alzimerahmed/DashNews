@@ -42,7 +42,7 @@ import RSCore
 		guard !trimmedKeyword.isEmpty else {
 			return nil
 		}
-		if let existing = rules.first(where: { $0.feedID == feedID && $0.keyword == trimmedKeyword && $0.action == action }) {
+		if let existing = rules.first(where: { $0.feedID == feedID && $0.keyword.caseInsensitiveCompare(trimmedKeyword) == .orderedSame && $0.action == action }) {
 			return existing
 		}
 		let rule = KeywordRule(feedID: feedID, keyword: trimmedKeyword, action: action)

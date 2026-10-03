@@ -736,22 +736,12 @@ nonisolated private extension ArticlesTable {
 		return articlesCount
 	}
 
-	func fetchArticlesMatching(_ searchString: String, _ database: FMDatabase) -> Set<Article> {
-		let sql = "select rowid from search where search match ?;"
-		let sqlSearchString = sqliteSearchString(with: searchString)
-		let searchStringParameters = [sqlSearchString]
-		guard let resultSet = database.executeQuery(sql, withArgumentsIn: searchStringParameters) else {
-			return Set<Article>()
-		}
-		let searchRowIDs = resultSet.mapToSet { $0.longLongInt(forColumnIndex: 0) }
-		if searchRowIDs.isEmpty {
-			return Set<Article>()
-		}
+	// A generous cap on FTS matches: search-as-you-type must not materialize
+	// an unbounded article set per keystroke on a large corpus.
+	static let maximumSearchMatches = 1000
 
-		let placeholders = NSString.rs_SQLValueList(withPlaceholders: UInt(searchRowIDs.count))
-		let whereClause = "searchRowID in \(placeholders)"
-		let parameters: [AnyObject] = Array(searchRowIDs) as [AnyObject]
-		return fetchArticlesWithWhereClause(database, whereClause: whereClause, parameters: parameters)
+	func fetchArticlesMatching(_ searchString: String, _ database: FMDatabase) -> Set<Article> {
+		fetchArticlesMatching(searchString, feedIDs: nil, articleIDs: nil, database)
 	}
 
 	func sqliteSearchString(with searchString: String) -> String {
@@ -904,15 +894,37 @@ nonisolated private extension ArticlesTable {
 	}
 
 	func fetchArticlesMatching(_ searchString: String, _ feedIDs: Set<String>, _ database: FMDatabase) -> Set<Article> {
-		let articles = fetchArticlesMatching(searchString, database)
-		// TODO: include the feedIDs in the SQL rather than filtering here.
-		return articles.filter { feedIDs.contains($0.feedID) }
+		fetchArticlesMatching(searchString, feedIDs: feedIDs, articleIDs: nil, database)
 	}
 
 	func fetchArticlesMatchingWithArticleIDs(_ searchString: String, _ articleIDs: Set<String>, _ database: FMDatabase) -> Set<Article> {
-		let articles = fetchArticlesMatching(searchString, database)
-		// TODO: include the articleIDs in the SQL rather than filtering here.
-		return articles.filter { articleIDs.contains($0.articleID) }
+		fetchArticlesMatching(searchString, feedIDs: nil, articleIDs: articleIDs, database)
+	}
+
+	private func fetchArticlesMatching(_ searchString: String, feedIDs: Set<String>?, articleIDs: Set<String>?, _ database: FMDatabase) -> Set<Article> {
+		// Best-ranked matches first so the cap keeps the most relevant hits.
+		let sql = "select rowid from search where search match ? order by rank limit ?;"
+		let sqlSearchString = sqliteSearchString(with: searchString)
+		let searchStringParameters: [AnyObject] = [sqlSearchString as AnyObject, Self.maximumSearchMatches as AnyObject]
+		guard let resultSet = database.executeQuery(sql, withArgumentsIn: searchStringParameters) else {
+			return Set<Article>()
+		}
+		let searchRowIDs = resultSet.mapToSet { $0.longLongInt(forColumnIndex: 0) }
+		if searchRowIDs.isEmpty {
+			return Set<Article>()
+		}
+
+		var whereClause = "searchRowID in \(NSString.rs_SQLValueList(withPlaceholders: UInt(searchRowIDs.count)))"
+		var parameters: [AnyObject] = Array(searchRowIDs) as [AnyObject]
+		if let feedIDs {
+			whereClause += " and feedID in \(NSString.rs_SQLValueList(withPlaceholders: UInt(feedIDs.count)))"
+			parameters.append(contentsOf: Array(feedIDs) as [AnyObject])
+		}
+		if let articleIDs {
+			whereClause += " and articleID in \(NSString.rs_SQLValueList(withPlaceholders: UInt(articleIDs.count)))"
+			parameters.append(contentsOf: Array(articleIDs) as [AnyObject])
+		}
+		return fetchArticlesWithWhereClause(database, whereClause: whereClause, parameters: parameters)
 	}
 
 	func fetchLastUpdateDates(_ database: FMDatabase) -> [String: Date] {

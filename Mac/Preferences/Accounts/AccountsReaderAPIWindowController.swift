@@ -111,8 +111,14 @@ final class AccountsReaderAPIWindowController: NSWindowController {
 		let apiURL: URL
 		switch accountType {
 		case .freshRSS:
-			guard let inputURL = URL(string: apiURLTextField.stringValue.trimmingWhitespace) else {
+			guard let inputURL = URL(string: apiURLTextField.stringValue.trimmingWhitespace), inputURL.isHTTPOrHTTPSURL() else {
 				self.errorMessageLabel.stringValue = NSLocalizedString("Invalid API URL.", comment: "Invalid API URL")
+				return
+			}
+			// Credentials POST to this endpoint — plaintext http is only
+			// acceptable to a server on the local device or private network.
+			guard inputURL.isHTTPSURL() || inputURL.isPrivateNetworkHost else {
+				self.errorMessageLabel.stringValue = NSLocalizedString("API URL must use https for non-local servers.", comment: "Insecure API URL")
 				return
 			}
 			apiURL = inputURL
