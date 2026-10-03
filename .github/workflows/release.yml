@@ -36,9 +36,10 @@ jobs:
       - name: Build DashNews (unsigned Release)
         run: |
           set -euo pipefail
-          # Unsigned release zip — the appcast already ships unsigned
-          # enclosures. A Release build + ditto is enough; `archive`
-          # requires signing for embedded-binary validation.
+          # Unsigned-style release zip — the appcast already ships unsigned
+          # enclosures. App extensions still need *a* signature for the
+          # embedded-binary validation step, so sign ad-hoc ("-"): the
+          # result verifies like an unsigned app under Gatekeeper.
           xcodebuild \
             -project DashNews.xcodeproj \
             -scheme DashNews \
@@ -46,6 +47,9 @@ jobs:
             -destination "platform=macOS,arch=arm64" \
             -derivedDataPath "$RUNNER_TEMP/derived" \
             -xcconfig .github/macos-ci-no-signing.xcconfig \
+            CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGNING_REQUIRED=YES \
+            CODE_SIGN_IDENTITY=- \
             build 2>&1 | xcbeautify --renderer github-actions
 
       - name: Package DashNews.app
