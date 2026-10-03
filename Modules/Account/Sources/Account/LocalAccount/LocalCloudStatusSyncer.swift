@@ -287,7 +287,7 @@ private final class LocalStatusZoneDelegate: CloudKitZoneDelegate {
 	// cloudKitDidModify runs off the main actor while appliedCount is read
 	// on @MainActor after the fetch — the counter needs synchronization.
 	private let appliedCountLock = OSAllocatedUnfairLock(initialState: 0)
-	private(set) var appliedCount: Int {
+	var appliedCount: Int {
 		appliedCountLock.withLock { $0 }
 	}
 
