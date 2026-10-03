@@ -50,7 +50,7 @@ jobs:
             -xcconfig .github/macos-ci-no-signing.xcconfig \
             CODE_SIGNING_ALLOWED=YES \
             CODE_SIGNING_REQUIRED=YES \
-            CODE_SIGN_IDENTITY=- \
+            'CODE_SIGN_IDENTITY[sdk=macosx*]=-' \
             build 2>&1 | tee "$build_log" | xcbeautify --renderer github-actions; then
             echo "::error::xcodebuild failed — last 100 lines of raw log:"
             tail -100 "$build_log"
