@@ -7,6 +7,21 @@
         <language>en</language>
 
 <item>
+	<title>DashNews 1.0.0</title>
+	<description><![CDATA[
+<p><b>Changes since 7.2.0:</b>
+<ul>
+<li>DashNews 1.0.0 — renumbered from the inherited 7.x series
+<li>New app icon everywhere
+<li>Final brand sweep — all remaining user-facing strings now say DashNews
+</ul>
+	]]></description>
+	<pubDate>Sat, 03 Oct 2026 10:50:00 -0700</pubDate>
+	<enclosure url="https://github.com/alzimerahmed/DashNews/releases/download/v1.0.0/DashNews1.0.0.zip" sparkle:version="7221" sparkle:shortVersionString="1.0.0" length="12541368" type="application/zip" />
+	<sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+</item>
+
+<item>
 	<title>DashNews 7.2.0</title>
 	<description><![CDATA[
 <p><b>Changes since 7.1.5:</b>
