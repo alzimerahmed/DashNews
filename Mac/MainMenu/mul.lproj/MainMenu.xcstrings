@@ -56,19 +56,19 @@
       }
     },
     "1Xt-HY-uBw.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"NetNewsWire\"; ObjectID = \"1Xt-HY-uBw\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"DashNews\"; ObjectID = \"1Xt-HY-uBw\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "NetNewsWire"
+            "value" : "DashNews"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NetNewsWire"
+            "value" : "DashNews"
           }
         }
       }
@@ -182,37 +182,37 @@
       }
     },
     "4sb-4s-VLi.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Quit NetNewsWire\"; ObjectID = \"4sb-4s-VLi\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Quit DashNews\"; ObjectID = \"4sb-4s-VLi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Quit NetNewsWire"
+            "value" : "Quit DashNews"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salir de NetNewsWire"
+            "value" : "Salir de DashNews"
           }
         }
       }
     },
     "5kV-Vb-QxS.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"About NetNewsWire\"; ObjectID = \"5kV-Vb-QxS\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"About DashNews\"; ObjectID = \"5kV-Vb-QxS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "About NetNewsWire"
+            "value" : "About DashNews"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acerca de NetNewsWire"
+            "value" : "Acerca de DashNews"
           }
         }
       }
@@ -595,24 +595,6 @@
         }
       }
     },
-    "cmP-uH-mS8.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Add NetNewsWire News Feed\"; ObjectID = \"cmP-uH-mS8\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Add NetNewsWire News Feed"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir fuente de noticias de NetNewsWire"
-          }
-        }
-      }
-    },
     "cwL-P1-jid.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Links\"; ObjectID = \"cwL-P1-jid\";",
       "extractionState" : "extracted_with_value",
@@ -884,19 +866,19 @@
       }
     },
     "FKE-Sm-Kum.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"NetNewsWire Help\"; ObjectID = \"FKE-Sm-Kum\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"DashNews Help\"; ObjectID = \"FKE-Sm-Kum\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "NetNewsWire Help"
+            "value" : "DashNews Help"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayuda de NetNewsWire"
+            "value" : "Ayuda de DashNews"
           }
         }
       }
@@ -1207,24 +1189,6 @@
         }
       }
     },
-    "kfC-NQ-g3E.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"How To Support NetNewsWire\"; ObjectID = \"kfC-NQ-g3E\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How To Support NetNewsWire"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cómo apoyar a NetNewsWire"
-          }
-        }
-      }
-    },
     "kIP-vf-haE.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Sidebar\"; ObjectID = \"kIP-vf-haE\";",
       "extractionState" : "extracted_with_value",
@@ -1441,24 +1405,6 @@
         }
       }
     },
-    "OKC-FV-V33.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Discourse Forum\"; ObjectID = \"OKC-FV-V33\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Discourse Forum"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Foro de Discourse"
-          }
-        }
-      }
-    },
     "OlJ-93-6OP.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"Sort Articles By\"; ObjectID = \"OlJ-93-6OP\";",
       "extractionState" : "extracted_with_value",
@@ -1478,19 +1424,19 @@
       }
     },
     "Olw-nP-bQN.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Hide NetNewsWire\"; ObjectID = \"Olw-nP-bQN\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Hide DashNews\"; ObjectID = \"Olw-nP-bQN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Hide NetNewsWire"
+            "value" : "Hide DashNews"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar NetNewsWire"
+            "value" : "Ocultar DashNews"
           }
         }
       }
@@ -2090,19 +2036,19 @@
       }
     },
     "uQy-DD-JDr.title" : {
-      "comment" : "Class = \"NSMenu\"; title = \"NetNewsWire\"; ObjectID = \"uQy-DD-JDr\";",
+      "comment" : "Class = \"NSMenu\"; title = \"DashNews\"; ObjectID = \"uQy-DD-JDr\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "NetNewsWire"
+            "value" : "DashNews"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NetNewsWire"
+            "value" : "DashNews"
           }
         }
       }

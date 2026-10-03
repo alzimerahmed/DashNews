@@ -506,10 +506,26 @@ extension WebViewController: WKNavigationDelegate {
 				}
 
 			} else {
-				decisionHandler(.allow, preferences)
+				// Unknown scheme — the web view must not try to load it.
+				decisionHandler(.cancel, preferences)
 			}
 		} else {
-			decisionHandler(.allow, preferences)
+			// Only app-initiated top-frame loads may proceed: the blank
+			// page (file://) and loadHTMLString (about:blank). JS redirects,
+			// meta refresh, and form submits are cancelled so a feed can't
+			// swap the article view for a phishing page. Subframe loads
+			// are unaffected.
+			if navigationAction.targetFrame?.isMainFrame == true, let url = navigationAction.request.url {
+				let scheme = url.scheme?.lowercased()
+				let isAppInitiatedLoad = navigationAction.navigationType == .other && (scheme == "about" || scheme == "file")
+				if isAppInitiatedLoad || navigationAction.navigationType == .reload {
+					decisionHandler(.allow, preferences)
+				} else {
+					decisionHandler(.cancel, preferences)
+				}
+			} else {
+				decisionHandler(.allow, preferences)
+			}
 		}
 	}
 
@@ -752,8 +768,12 @@ private extension WebViewController {
 		components.scheme = ArticleRenderer.imageIconScheme
 		components.path = article.articleID
 
-		if let imageSrc = components.string {
-			webView?.evaluateJavaScript("reloadArticleImage(\"\(imageSrc)\")")
+		// JSON-encode the argument — the articleID inside imageSrc is
+		// feed-controlled data, never safe to hand-quote into JS.
+		if let imageSrc = components.string,
+		   let encoded = try? JSONEncoder().encode(imageSrc),
+		   let jsArgument = String(data: encoded, encoding: .utf8) {
+			webView?.evaluateJavaScript("reloadArticleImage(\(jsArgument))")
 		}
 	}
 
@@ -765,20 +785,30 @@ private extension WebViewController {
 			return
 		}
 
-		guard let imageURL = URL(string: clickMessage.imageURL) else { return }
+		guard let imageURL = URL(string: clickMessage.imageURL), imageURL.isHTTPOrHTTPSURL() else { return }
 
-		imageDownloadTask?.cancel()
-		imageDownloadTask = Task { [weak self] in
-			guard let downloadResponse = try? await Downloader.shared.download(imageURL, userAgentStyle: .browser) else {
+		// A hostile page must not use this handler to make the app fetch
+		// arbitrary URLs (SSRF) — verify the URL actually belongs to an
+		// <img> in the loaded document before downloading it.
+		guard let encodedURL = try? JSONEncoder().encode(imageURL.absoluteString),
+			  let jsURL = String(data: encodedURL, encoding: .utf8) else { return }
+		webView.evaluateJavaScript("Array.from(document.images).some(function (img) { return img.src === \(jsURL); });") { [weak self] result, _ in
+			guard (result as? Bool) == true else {
 				return
 			}
-			// A late completion must not present the viewer over a different article
-			// or a returning app.
-			guard !Task.isCancelled, let self, let data = downloadResponse.data, !data.isEmpty,
-				  let image = UIImage(data: data) else {
-				return
+			self?.imageDownloadTask?.cancel()
+			self?.imageDownloadTask = Task { [weak self] in
+				guard let downloadResponse = try? await Downloader.shared.download(imageURL, userAgentStyle: .browser) else {
+					return
+				}
+				// A late completion must not present the viewer over a different article
+				// or a returning app.
+				guard !Task.isCancelled, let self, let data = downloadResponse.data, !data.isEmpty,
+					  let image = UIImage(data: data) else {
+					return
+				}
+				self.showFullScreenImage(image: image, clickMessage: clickMessage, webView: webView)
 			}
-			self.showFullScreenImage(image: image, clickMessage: clickMessage, webView: webView)
 		}
 	}
 
@@ -826,6 +856,9 @@ private extension WebViewController {
 			topShowBarsView.heightAnchor.constraint(equalToConstant: 44.0)
 		])
 		topShowBarsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBars(_:))))
+		topShowBarsView.isAccessibilityElement = true
+		topShowBarsView.accessibilityTraits = .button
+		topShowBarsView.accessibilityLabel = NSLocalizedString("Show Toolbars", comment: "Accessibility label for the top edge tap zone that shows the toolbars")
 	}
 
 	func configureBottomShowBarsView() {
@@ -845,6 +878,9 @@ private extension WebViewController {
 			bottomShowBarsView.heightAnchor.constraint(equalToConstant: 44.0)
 		])
 		bottomShowBarsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBars(_:))))
+		bottomShowBarsView.isAccessibilityElement = true
+		bottomShowBarsView.accessibilityTraits = .button
+		bottomShowBarsView.accessibilityLabel = NSLocalizedString("Show Toolbars", comment: "Accessibility label for the bottom edge tap zone that shows the toolbars")
 	}
 
 	func updateBottomSafeAreaForFullScreen() {

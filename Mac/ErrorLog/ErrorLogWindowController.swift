@@ -91,7 +91,7 @@ final class ErrorLogWindowController: NSWindowController, NSWindowDelegate {
 	}
 
 	@IBAction func showErrorLogHelp(_ sender: Any?) {
-		if let url = URL(string: "https://netnewswire.com/help/error-log.html") {
+		if let url = URL(string: "https://github.com/alzimerahmed/DashNews") {
 			MacWebBrowser.openURL(url)
 		}
 	}

@@ -6,9 +6,9 @@
 //  Copyright © 2018 Ranchero Software. All rights reserved.
 //
 
+import AppKit
 import Foundation
 import RSCore
-import RSWeb
 import CrashReporter
 
 // Displays a window that shows the crash log — gives the user the chance to add data.
@@ -45,22 +45,13 @@ import CrashReporter
 		crashReporter.purgePendingCrashReport()
 	}
 
+	/// There is no DashNews crash-report server — the upstream endpoint was
+	/// removed. "Send" copies the log to the clipboard and opens the issue
+	/// tracker so the user can paste it into a bug report themselves.
 	static func sendCrashLogText(_ crashLogText: String) {
-		var request = URLRequest(url: URL(string: "https://services.netnewswire.com/reportCrash.php")!)
-		request.httpMethod = HTTPMethod.post
-
-		let boundary = "0xKhTmLbOuNdArY"
-
-		let contentType = "multipart/form-data; boundary=\(boundary)"
-		request.setValue(contentType, forHTTPHeaderField: HTTPRequestHeader.contentType)
-
-		let formString = "--\(boundary)\r\nContent-Disposition: form-data; name=\"crashlog\"\r\n\r\n\(crashLogText)\r\n--\(boundary)--\r\n"
-		let formData = formString.data(using: .utf8, allowLossyConversion: true)
-		request.httpBody = formData
-
-		Task { @MainActor in
-			Downloader.shared.download(request) { _, _ in }
-		}
+		NSPasteboard.general.clearContents()
+		NSPasteboard.general.setString(crashLogText, forType: .string)
+		HelpURL.bugTracker.open()
 	}
 
 	static func runCrashReporterWindow(_ crashLogText: String) {

@@ -1,9 +1,9 @@
 //
 //  MarkReadOnScrollTests.swift
-//  NetNewsWireTests
+//  DashNewsTests
 //
 //  Created by DashNews on 2/13/26.
-//  Copyright © 2026 Ranchero Software. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import XCTest

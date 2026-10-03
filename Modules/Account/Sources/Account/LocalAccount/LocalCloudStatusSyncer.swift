@@ -3,7 +3,7 @@
 //  Account
 //
 //  Created by DashNews on 2/14/26.
-//  Copyright © 2026 Alzimer Ahmed, LLC. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import Foundation
@@ -63,7 +63,11 @@ import CloudKitSync
 		Task { @MainActor in
 			iCloudAccountIsUnavailable = false
 			Self.logger.info("LocalCloudStatusSyncer: iCloud account changed — retrying sync")
-			_ = try? await syncArticleStatus()
+			do {
+				_ = try await syncArticleStatus()
+			} catch {
+				Self.logger.error("LocalCloudStatusSyncer: sync retry after CKAccountChanged failed — \(error.localizedDescription, privacy: .public)")
+			}
 		}
 	}
 
@@ -80,19 +84,32 @@ import CloudKitSync
 		}
 
 		let now = Date()
-		// Prefer the article's true current status over the mirror: the mirror
-		// only knows about changes made while the feature was on, so a
-		// never-synced starred article marked read must not push starred=false.
-		var currentStatuses = [String: ArticleStatus]()
-		for article in account?.fetchArticles(.articleIDs(articleIDs)) ?? [] {
-			currentStatuses[article.articleID] = article.status
-		}
-		for articleID in articleIDs {
-			let existing = store.status(for: articleID)
-			let current = currentStatuses[articleID]
-			let read = current?.read ?? (statusKey == .read ? flag : (existing?.read ?? false))
-			let starred = current?.starred ?? (statusKey == .starred ? flag : (existing?.starred ?? false))
-			store.recordLocalChange(articleID: articleID, read: read, starred: starred, lastModified: now)
+		let account = self.account
+		let store = self.store
+		Task {
+			// Prefer the article's true current status over the mirror: the
+			// mirror only knows about changes made while the feature was on,
+			// so a never-synced starred article marked read must not push
+			// starred=false. The fetch is async — a mark-all-as-read batch on
+			// a large feed must not block the main thread on N full-row
+			// materializations plus 2N serial-queue store round-trips.
+			var currentStatuses = [String: ArticleStatus]()
+			if let account {
+				for article in await account.fetchArticlesAsync(.articleIDs(articleIDs)) {
+					currentStatuses[article.articleID] = article.status
+				}
+			}
+			let mirror = store.statuses(for: articleIDs)
+			var changes = [(articleID: String, read: Bool, starred: Bool)]()
+			changes.reserveCapacity(articleIDs.count)
+			for articleID in articleIDs {
+				let existing = mirror[articleID]
+				let current = currentStatuses[articleID]
+				let read = current?.read ?? (statusKey == .read ? flag : (existing?.read ?? false))
+				let starred = current?.starred ?? (statusKey == .starred ? flag : (existing?.starred ?? false))
+				changes.append((articleID, read, starred))
+			}
+			store.recordLocalChanges(changes, lastModified: now)
 		}
 	}
 
@@ -136,8 +153,8 @@ import CloudKitSync
 		_ = try await pullRemoteChanges()
 	}
 
-	/// Deletes the mirror store contents and stops observing notifications.
-	/// Called when the feature is turned off.
+	/// Deletes the mirror store contents. Called when the feature is turned
+	/// off; the CKAccountChanged observer is removed on dealloc.
 	func clearMirror() {
 		store.deleteAll()
 	}
@@ -266,7 +283,13 @@ private final class LocalStatusZoneDelegate: CloudKitZoneDelegate {
 	private weak var account: Account?
 	private let store: LocalStatusSyncStore
 	private let applyChange: @MainActor @Sendable (Set<String>, ArticleStatus.Key, Bool) async -> Void
-	private(set) var appliedCount = 0
+
+	// cloudKitDidModify runs off the main actor while appliedCount is read
+	// on @MainActor after the fetch — the counter needs synchronization.
+	private let appliedCountLock = OSAllocatedUnfairLock(initialState: 0)
+	private(set) var appliedCount: Int {
+		appliedCountLock.withLock { $0 }
+	}
 
 	init(account: Account?, store: LocalStatusSyncStore, applyChange: @escaping @MainActor @Sendable (Set<String>, ArticleStatus.Key, Bool) async -> Void) {
 		self.account = account
@@ -287,7 +310,7 @@ private final class LocalStatusZoneDelegate: CloudKitZoneDelegate {
 			guard store.applyRemote(remote) else {
 				continue
 			}
-			appliedCount += 1
+			appliedCountLock.withLock { $0 += 1 }
 			if remote.read {
 				readIDs.insert(remote.articleID)
 			} else {

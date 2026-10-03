@@ -67,7 +67,7 @@ class MainFeedCollectionViewFolderCell: UICollectionViewCell {
 		let animations = {
 			self.disclosureButton.transform = transform
 		}
-		if animate {
+		if animate && !UIAccessibility.isReduceMotionEnabled {
 			UIView.animate(withDuration: 0.3, animations: animations)
 		} else {
 			animations()
@@ -76,7 +76,7 @@ class MainFeedCollectionViewFolderCell: UICollectionViewCell {
 
 	func updateUnreadCountVisibility(animated: Bool = true) {
 		let alpha: CGFloat = (!disclosureExpanded && unreadCount > 0) ? 1 : 0
-		if animated {
+		if animated && !UIAccessibility.isReduceMotionEnabled {
 			UIView.animate {
 				self.unreadCountLabel.alpha = alpha
 			}

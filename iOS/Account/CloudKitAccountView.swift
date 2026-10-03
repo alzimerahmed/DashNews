@@ -29,7 +29,7 @@ struct CloudKitAccountView: View {
 				} header: {
 					AccountIconHeader(accountType: .cloudKit)
 				} footer: {
-					AccountSheetFooter(text: NSLocalizedString("NetNewsWire will use your iCloud account to sync your subscriptions across your Mac and iOS devices.", comment: "iCloud"), linkTitle: CloudKitWebDocumentation.limitationsAndSolutionsText) {
+					AccountSheetFooter(text: NSLocalizedString("DashNews will use your iCloud account to sync your subscriptions across your Mac and iOS devices.", comment: "iCloud"), linkTitle: CloudKitWebDocumentation.limitationsAndSolutionsText) {
 						isShowingHelp = true
 					}
 				}

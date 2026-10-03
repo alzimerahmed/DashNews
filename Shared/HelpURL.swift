@@ -10,15 +10,13 @@ import Foundation
 
 enum HelpURL: String {
 
-	case helpHome = "https://netnewswire.com/help/"
-	case website = "https://netnewswire.com/"
-	case releaseNotes = "https://github.com/Ranchero-Software/NetNewsWire/releases/"
-	case howToSupportNetNewsWire = "https://github.com/Ranchero-Software/NetNewsWire/blob/main/Technotes/HowToSupportNetNewsWire.markdown"
-	case githubRepo = "https://github.com/Ranchero-Software/NetNewsWire"
-	case bugTracker = "https://github.com/Ranchero-Software/NetNewsWire/issues"
-	case discourse = "https://discourse.netnewswire.com/"
-	case technotes = "https://github.com/Ranchero-Software/NetNewsWire/tree/main/Technotes"
-	case privacyPolicy = "https://netnewswire.com/privacypolicy.html"
+	case helpHome = "https://github.com/alzimerahmed/DashNews#readme"
+	case website = "https://github.com/alzimerahmed/DashNews"
+	case releaseNotes = "https://github.com/alzimerahmed/DashNews/releases"
+	case githubRepo = "https://github.com/alzimerahmed/DashNews"
+	case bugTracker = "https://github.com/alzimerahmed/DashNews/issues"
+	case technotes = "https://github.com/alzimerahmed/DashNews/tree/main/Technotes"
+	case privacyPolicy = "https://github.com/alzimerahmed/DashNews/blob/main/Technotes/PrivacyPolicy.markdown"
 
 #if os(macOS)
 	@MainActor func open() {

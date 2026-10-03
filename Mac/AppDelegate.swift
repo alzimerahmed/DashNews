@@ -484,9 +484,6 @@ let appName = "DashNews"
 			return AccountManager.shared.activeAccounts.contains(where: { !$0.behaviors.contains(where: { $0 == .disallowOPMLImports }) })
 		}
 
-		if item.action == #selector(addAppNews(_:)) {
-			return !isDisplayingSheet && !AccountManager.shared.anyAccountHasNetNewsWireNewsSubscription() && !AccountManager.shared.activeAccounts.isEmpty
-		}
 
 		if item.action == #selector(showAddFeedWindow(_:)) || item.action == #selector(showAddFolderWindow(_:)) {
 			return !isDisplayingSheet && !AccountManager.shared.activeAccounts.isEmpty
@@ -690,23 +687,12 @@ let appName = "DashNews"
 		exportOPMLController?.runSheetOnWindow(windowController.window!)
 	}
 
-	@IBAction func addAppNews(_ sender: Any?) {
-		if AccountManager.shared.anyAccountHasNetNewsWireNewsSubscription() {
-			return
-		}
-		addFeed(AccountManager.netNewsWireNewsURL, name: "NetNewsWire News")
-	}
-
 	@IBAction func openWebsite(_ sender: Any?) {
 		HelpURL.website.open()
 	}
 
 	@IBAction func openReleaseNotes(_ sender: Any?) {
 		HelpURL.releaseNotes.open()
-	}
-
-	@IBAction func openHowToSupport(_ sender: Any?) {
-		HelpURL.howToSupportNetNewsWire.open()
 	}
 
 	@IBAction func openTechnotes(_ sender: Any?) {
@@ -719,10 +705,6 @@ let appName = "DashNews"
 
 	@IBAction func openBugTracker(_ sender: Any?) {
 		HelpURL.bugTracker.open()
-	}
-
-	@IBAction func openDiscourse(_ sender: Any?) {
-		HelpURL.discourse.open()
 	}
 
 	@IBAction func showHelp(_ sender: Any?) {
@@ -771,6 +753,12 @@ extension AppDelegate {
 
 	@IBAction func debugSearch(_ sender: Any?) {
 		AccountManager.shared.defaultAccount.debugRunSearch()
+	}
+
+	@IBAction func debugRebuildSearchIndex(_ sender: Any?) {
+		Task {
+			await AccountManager.shared.defaultAccount.debugRebuildSearchIndex()
+		}
 	}
 
 	@IBAction func debugDropConditionalGetInfo(_ sender: Any?) {

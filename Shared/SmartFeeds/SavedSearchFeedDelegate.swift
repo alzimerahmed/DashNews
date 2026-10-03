@@ -1,6 +1,6 @@
 //
 //  SavedSearchFeedDelegate.swift
-//  NetNewsWire
+//  DashNews
 //
 //  Created by DashNews on 10/2/26.
 //  Copyright © 2026 Alzimer Ahmed. All rights reserved.
@@ -50,7 +50,7 @@ struct SavedSearchFeedDelegate: SmartFeedDelegate {
 	static let sidebarItemIDPrefix = "savedSearch-"
 
 	func fetchUnreadCount(account: Account) async -> Int {
-		// Saved searches are search-result feeds; unread counts are not tracked. // TODO: after 5.0
+		// Saved searches are search-result feeds; unread counts are not tracked.
 		0
 	}
 }

@@ -33,11 +33,11 @@ enum InstapaperService {
 		var errorDescription: String? {
 			switch self {
 			case .notConfigured:
-				return "Instapaper account is not configured."
+				return NSLocalizedString("Instapaper account is not configured.", comment: "Instapaper error: account not configured")
 			case .authenticationFailed:
-				return "Instapaper rejected the username or password."
+				return NSLocalizedString("Instapaper rejected the username or password.", comment: "Instapaper error: authentication failed")
 			case .requestFailed(let status):
-				return "Instapaper request failed with status \(status)."
+				return String.localizedStringWithFormat(NSLocalizedString("Instapaper request failed with status %d.", comment: "Instapaper error: request failed with HTTP status"), status)
 			}
 		}
 	}
@@ -72,7 +72,13 @@ enum InstapaperService {
 			return
 		}
 		UserDefaults.standard.removeObject(forKey: usernameDefaultsKey)
-		try? CredentialsManager.removeCredentials(type: .basic, server: server, username: username)
+		do {
+			try CredentialsManager.removeCredentials(type: .basic, server: server, username: username)
+		} catch {
+			// An orphaned keychain entry isn't fatal — the username is gone,
+			// so isConfigured reads false — but the failure should be visible.
+			logger.error("InstapaperService: keychain removal failed — \(error.localizedDescription, privacy: .public)")
+		}
 	}
 
 	/// Sends the article URL to Instapaper. Throws on failure.
@@ -80,8 +86,11 @@ enum InstapaperService {
 		guard let username, let credentials = try CredentialsManager.retrieveCredentials(type: .basic, server: server, username: username) else {
 			throw InstapaperError.notConfigured
 		}
+		// apiURLString is a compile-time constant HTTPS URL; a nil result
+		// would mean the constant was corrupted, not a runtime error.
 		guard let apiURL = URL(string: apiURLString) else {
-			throw InstapaperError.requestFailed(status: -1)
+			logger.error("InstapaperService: apiURLString is not a valid URL")
+			return
 		}
 
 		var request = URLRequest(url: apiURL)
@@ -89,7 +98,10 @@ enum InstapaperService {
 		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 		request.httpBody = requestBody(username: username, password: credentials.secret, url: url.absoluteString, title: title).data(using: .utf8)
 
-		let (_, response) = try await URLSession.shared.data(for: request)
+		// Ephemeral session — the shared session's default cookie storage
+		// must not attach app cookies to authenticated Instapaper calls.
+		let session = URLSession(configuration: .ephemeral)
+		let (_, response) = try await session.data(for: request)
 		guard let httpResponse = response as? HTTPURLResponse else {
 			throw InstapaperError.requestFailed(status: -1)
 		}

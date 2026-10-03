@@ -20,8 +20,9 @@ nonisolated enum KeywordRuleMatcher {
 		guard !hideKeywords.isEmpty else {
 			return false
 		}
+		let text = searchableText(of: article)
 		return hideKeywords.contains { keyword in
-			matches(keyword: keyword, in: searchableText(of: article))
+			matches(keyword: keyword, in: text)
 		}
 	}
 

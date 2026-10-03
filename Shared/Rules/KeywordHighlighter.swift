@@ -10,8 +10,11 @@ import Foundation
 
 /// Wraps keyword matches in article HTML with <mark> tags for highlighting.
 /// Feature #2 — highlight rules. Replacements happen only in text segments
-/// between HTML tags, so markup is never corrupted, and all keywords are
-/// wrapped in a single pass so inserted tags are never re-matched.
+/// between HTML tags, so markup is never corrupted. The tag scanner handles
+/// `>` characters inside quoted attribute values and HTML comments — the same
+/// strategy KeySentenceHighlighter uses — and text inside <script>/<style>
+/// regions and inside previously inserted marks is never touched. All
+/// keywords are matched with one combined regex compiled once per call.
 nonisolated enum KeywordHighlighter {
 
 	static let markOpenTag = "<mark class=\"nnwKeywordHighlight\">"
@@ -27,22 +30,31 @@ nonisolated enum KeywordHighlighter {
 			return html
 		}
 
-		guard let tagRegex = try? NSRegularExpression(pattern: "<[^>]*>", options: []) else {
+		let combinedPattern = "(?i)(" + effectiveKeywords.map { NSRegularExpression.escapedPattern(for: $0) }.joined(separator: "|") + ")"
+		guard let keywordRegex = try? NSRegularExpression(pattern: combinedPattern, options: []),
+			  let tagRegex = try? NSRegularExpression(pattern: tagPattern, options: []) else {
 			return html
 		}
 
-		let matches = tagRegex.matches(in: html, options: [], range: NSRange(html.startIndex..., in: html))
+		let tagMatches = tagRegex.matches(in: html, options: [], range: NSRange(html.startIndex..., in: html))
 		var result = ""
 		var previousEnd = html.startIndex
-		for match in matches {
+		var markDepth = 0
+		var suppressed = false
+		for match in tagMatches {
 			guard let tagRange = Range(match.range, in: html) else {
 				continue
 			}
-			result += markKeywords(in: String(html[previousEnd..<tagRange.lowerBound]), keywords: effectiveKeywords)
+			if markDepth == 0 && !suppressed {
+				result += markKeywords(in: String(html[previousEnd..<tagRange.lowerBound]), regex: keywordRegex)
+			}
 			result += html[tagRange]
+			updateState(for: html[tagRange], markDepth: &markDepth, suppressed: &suppressed)
 			previousEnd = tagRange.upperBound
 		}
-		result += markKeywords(in: String(html[previousEnd...]), keywords: effectiveKeywords)
+		if markDepth == 0 && !suppressed {
+			result += markKeywords(in: String(html[previousEnd...]), regex: keywordRegex)
+		}
 		return result
 	}
 }
@@ -51,13 +63,15 @@ nonisolated enum KeywordHighlighter {
 
 private extension KeywordHighlighter {
 
-	/// Wraps keyword matches in plain (non-tag) HTML text with <mark> tags.
-	static func markKeywords(in text: String, keywords: [String]) -> String {
-		let patterns = keywords.map { NSRegularExpression.escapedPattern(for: $0) }
-		let combinedPattern = "(?i)(" + patterns.joined(separator: "|") + ")"
-		guard let regex = try? NSRegularExpression(pattern: combinedPattern, options: []) else {
-			return text
-		}
+	/// Matches whole HTML tags, respecting > characters inside single- or
+	/// double-quoted attribute values, plus HTML comments. Same pattern as
+	/// KeySentenceHighlighter.tagPattern.
+	static let tagPattern = "(?:<!--[\\s\\S]*?-->|<(?:\"[^\"]*\"|'[^']*'|[^'\">]*)*>)"
+
+	/// Wraps all keyword matches in plain (non-tag) HTML text with <mark>
+	/// tags. The caller passes one pre-compiled combined regex so the
+	/// pattern is built once per highlightedHTML call, not per segment.
+	static func markKeywords(in text: String, regex: NSRegularExpression) -> String {
 		let matches = regex.matches(in: text, options: [], range: NSRange(text.startIndex..., in: text)).reversed()
 		var result = text
 		for match in matches {
@@ -68,5 +82,48 @@ private extension KeywordHighlighter {
 			result.replaceSubrange(matchRange, with: markOpenTag + matchedText + markCloseTag)
 		}
 		return result
+	}
+
+	/// Tracks whether following text segments are inside a <mark>,
+	/// <script>, or <style> region and therefore ineligible for marking.
+	/// Same strategy as KeySentenceHighlighter.updateState.
+	static func updateState(for tag: Substring, markDepth: inout Int, suppressed: inout Bool) {
+		let lowered = tag.lowercased()
+		if isMarkOpenTag(lowered) {
+			markDepth += 1
+			return
+		}
+		if isMarkCloseTag(lowered) {
+			markDepth = max(0, markDepth - 1)
+			return
+		}
+		if let name = tagName(of: tag), name == "script" || name == "style" {
+			suppressed = !isClosingTag(lowered)
+		}
+	}
+
+	static func isMarkOpenTag(_ loweredTag: String) -> Bool {
+		loweredTag.hasPrefix("<mark>") || loweredTag.hasPrefix("<mark ")
+	}
+
+	static func isMarkCloseTag(_ loweredTag: String) -> Bool {
+		loweredTag.hasPrefix("</mark")
+	}
+
+	static func isClosingTag(_ loweredTag: String) -> Bool {
+		loweredTag.dropFirst().first == "/"
+	}
+
+	static func tagName(of tag: Substring) -> String? {
+		var content = tag.dropFirst() // drop "<"
+		if content.first == "!" || content.first == "/" {
+			content = content.dropFirst()
+		}
+		content = content.drop(while: { $0 == " " })
+		let name = content.prefix(while: { $0.isLetter || $0.isNumber })
+		guard !name.isEmpty else {
+			return nil
+		}
+		return String(name).lowercased()
 	}
 }

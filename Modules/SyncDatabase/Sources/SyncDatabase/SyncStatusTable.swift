@@ -21,8 +21,11 @@ struct SyncStatusTable {
 		let operation = "Reading statuses to send"
 		database.beginTransaction()
 
+		// `selected = false` keeps already-in-flight rows out of the batch;
+		// rowid order makes the drain deterministic instead of a full scan
+		// in arbitrary order.
 		let selectSQL = {
-			var sql = "select * from \(name)"
+			var sql = "select * from \(name) where selected = false order by rowid"
 			if let limit {
 				sql = "\(sql) limit \(limit)"
 			}

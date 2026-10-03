@@ -35,6 +35,26 @@ final class ImageTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
 	private func animateTransitionPresenting(using transitionContext: UIViewControllerContextTransitioning) {
 
+		if UIAccessibility.isReduceMotionEnabled {
+			// Crossfade instead of the full-screen zoom — the zoom is a
+			// vestibular trigger under Reduce Motion.
+			transitionContext.view(forKey: .from)?.removeFromSuperview()
+			transitionContext.containerView.backgroundColor = Assets.Colors.fullScreenBackground
+			webViewController?.hideClickedImage()
+			guard let toView = transitionContext.view(forKey: .to) else {
+				transitionContext.completeTransition(false)
+				return
+			}
+			toView.alpha = 0
+			transitionContext.containerView.addSubview(toView)
+			UIView.animate(withDuration: 0.2, animations: {
+				toView.alpha = 1
+			}, completion: { _ in
+				transitionContext.completeTransition(true)
+			})
+			return
+		}
+
 		let imageView = UIImageView(image: originImage)
 		imageView.frame = originFrame
 
@@ -69,6 +89,14 @@ final class ImageTransition: NSObject, UIViewControllerAnimatedTransitioning {
 		// so it must be restored on every path out of here.
 		guard let toView = transitionContext.view(forKey: .to) else {
 			transitionContext.completeTransition(false)
+			return
+		}
+
+		if UIAccessibility.isReduceMotionEnabled {
+			// Crossfade instead of the zoom-back — see the presenting branch.
+			webViewController?.showClickedImage {
+				transitionContext.completeTransition(true)
+			}
 			return
 		}
 

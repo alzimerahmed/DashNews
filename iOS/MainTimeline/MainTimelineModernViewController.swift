@@ -246,7 +246,7 @@ final class MainTimelineModernViewController: UIViewController, UndoableCommandR
 		super.viewDidAppear(animated)
 		isTimelineViewControllerPending = false
 		if navigationController?.navigationBar.alpha == 0 {
-			UIView.animate(withDuration: 0.5) {
+			UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0 : 0.5) {
 				self.navigationController?.navigationBar.alpha = 1
 			}
 		}
@@ -1017,6 +1017,8 @@ private extension MainTimelineModernViewController {
 	}
 
 	func updateToolbar() {
+		// The storyboard accLabelText is hardcoded English — localize in code.
+		markAllAsReadButton?.accLabelText = NSLocalizedString("Mark All as Read", comment: "Mark All as Read")
 		markAllAsReadButton?.isEnabled = isTimelineUnreadAvailable
 		nextUnreadButton.isEnabled = coordinator?.isNextUnreadAvailable ?? false
 		if #unavailable(iOS 26) {

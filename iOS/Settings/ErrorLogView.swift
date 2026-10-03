@@ -17,7 +17,7 @@ struct ErrorLogView: View {
 	@State private var showHelp = false
 
 	private static let maxEntries = 200
-	private static let helpURL = URL(string: "https://netnewswire.com/help/error-log.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 
 	var body: some View {
 		VStack(spacing: 0) {

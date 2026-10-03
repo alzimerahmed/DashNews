@@ -272,7 +272,7 @@ figure {
 
 figcaption {
 	margin-top: 0.5em;
-	font-size: 14px;
+	font-size: 0.875em;
 	line-height: 1.3em;
 }
 
@@ -569,8 +569,24 @@ a.footnote:hover,
 }
 
 /* Keyword rule highlighting (Feature #2) */
+:root {
+	--keyword-highlight-background-color: rgba(255, 204, 0, 0.45);
+	/* Link color inside marks — must hold ≥4.5:1 against the blended
+	   highlight background (WCAG 1.4.3). */
+	--mark-link-color: #0645b0;
+}
+
+@media(prefers-color-scheme: dark) {
+	:root {
+		/* Lower alpha: a midtone blended background can't reach 4.5:1 with
+		   any link color, so the dark variant is dimmed. */
+		--keyword-highlight-background-color: rgba(255, 204, 0, 0.30);
+		--mark-link-color: #9fc5ff;
+	}
+}
+
 mark.nnwKeywordHighlight {
-	background-color: rgba(255, 204, 0, 0.45);
+	background-color: var(--keyword-highlight-background-color);
 	color: inherit;
 	padding: 0 1px;
 	border-radius: 2px;
@@ -593,4 +609,15 @@ mark.nnwKeyPoint {
 	color: inherit;
 	padding: 0 1px;
 	border-radius: 2px;
+}
+
+mark a {
+	color: var(--mark-link-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		transition-duration: 0.01s !important;
+		animation-duration: 0.01s !important;
+	}
 }

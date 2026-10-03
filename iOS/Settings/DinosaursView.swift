@@ -11,7 +11,7 @@ import RSCore
 
 struct DinosaursView: View {
 
-	private static let helpURL = URL(string: "https://netnewswire.com/help/dinosaurs.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 
 	// MARK: State
 	@State private var model = DinosaursViewModel()

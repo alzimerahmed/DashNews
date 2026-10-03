@@ -53,7 +53,7 @@ final class ShareAddFeedViewController: UITableViewController, ShareFolderPicker
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		title = "NetNewsWire"
+		title = "DashNews"
 		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
 		let addFeedButton = UIBarButtonItem(title: "Add Feed", style: .done, target: self, action: #selector(addFeed(_:)))
 		navigationItem.rightBarButtonItem = addFeedButton

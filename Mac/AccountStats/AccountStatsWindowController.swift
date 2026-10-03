@@ -85,7 +85,7 @@ final class AccountStatsWindowController: NSWindowController {
 	}
 
 	@objc func showHelp(_ sender: Any?) {
-		if let url = URL(string: "https://netnewswire.com/help/account-stats.html") {
+		if let url = URL(string: "https://github.com/alzimerahmed/DashNews") {
 			MacWebBrowser.openURL(url)
 		}
 	}

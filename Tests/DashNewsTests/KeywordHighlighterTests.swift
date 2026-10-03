@@ -61,4 +61,37 @@ final class KeywordHighlighterTests: XCTestCase {
 		XCTAssertTrue(result.contains("<mark class=\"nnwKeywordHighlight\">3.5</mark>"))
 		XCTAssertTrue(result.contains("<mark class=\"nnwKeywordHighlight\">C++</mark>"))
 	}
+
+	func testGreaterThanInsideQuotedAttributeDoesNotSplitTag() {
+		// `>` inside a quoted attribute must not end the tag — the keyword
+		// inside the attribute value must not be marked.
+		let html = "<a title=\"2 > 1 crypto\">link</a>"
+		let result = KeywordHighlighter.highlightedHTML(html, keywords: ["crypto"])
+		XCTAssertEqual(result, html)
+	}
+
+	func testDoesNotMarkInsideScript() {
+		let html = "<script>var crypto = 1;</script><p>crypto</p>"
+		let result = KeywordHighlighter.highlightedHTML(html, keywords: ["crypto"])
+		XCTAssertEqual(result, "<script>var crypto = 1;</script><p><mark class=\"nnwKeywordHighlight\">crypto</mark></p>")
+	}
+
+	func testDoesNotMarkInsideStyle() {
+		let html = "<style>.crypto { color: red; }</style>crypto"
+		let result = KeywordHighlighter.highlightedHTML(html, keywords: ["crypto"])
+		XCTAssertEqual(result, "<style>.crypto { color: red; }</style><mark class=\"nnwKeywordHighlight\">crypto</mark>")
+	}
+
+	func testDoesNotMarkInsideExistingMark() {
+		let html = "<mark class=\"other\">crypto</mark> crypto"
+		let result = KeywordHighlighter.highlightedHTML(html, keywords: ["crypto"])
+		XCTAssertEqual(result, "<mark class=\"other\">crypto</mark> <mark class=\"nnwKeywordHighlight\">crypto</mark>")
+	}
+
+	func testCommentDoesNotSplitSegments() {
+		// `>` inside a comment must not end the tag scan.
+		let html = "<!-- > crypto -->crypto"
+		let result = KeywordHighlighter.highlightedHTML(html, keywords: ["crypto"])
+		XCTAssertEqual(result, "<!-- > crypto --><mark class=\"nnwKeywordHighlight\">crypto</mark>")
+	}
 }

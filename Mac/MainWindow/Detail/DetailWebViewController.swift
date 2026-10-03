@@ -206,7 +206,13 @@ extension DetailWebViewController: WKScriptMessageHandler {
 			windowScrollY = message.body as? CGFloat
 			lastWindowDidScrollMessageDate = Date()
 		} else if message.name == MessageName.mouseDidEnter, let link = message.body as? String {
-			delegate?.mouseDidEnter(self, link: link)
+			// Page JS can post an arbitrary string — only display it in the
+			// status bar when it is a well-formed web URL.
+			if let url = URL(string: link), url.isHTTPOrHTTPSURL() {
+				delegate?.mouseDidEnter(self, link: link)
+			} else {
+				delegate?.mouseDidExit(self)
+			}
 		} else if message.name == MessageName.mouseDidExit {
 			delegate?.mouseDidExit(self)
 		}
@@ -241,6 +247,22 @@ extension DetailWebViewController: WKNavigationDelegate, WKUIDelegate {
 		}
 
 		preferences.allowsContentJavaScript = WebViewConfiguration.allowsContentJavaScript(for: article)
+
+		// Only app-initiated top-frame loads may proceed: the blank page
+		// (file://) and loadHTMLString (about:blank). JS redirects, meta
+		// refresh, and form submits are cancelled so a feed can't swap the
+		// article view for a phishing page. Subframe loads are unaffected.
+		if navigationAction.targetFrame?.isMainFrame == true, let url = navigationAction.request.url {
+			let scheme = url.scheme?.lowercased()
+			let isAppInitiatedLoad = navigationAction.navigationType == .other && (scheme == "about" || scheme == "file")
+			if isAppInitiatedLoad || navigationAction.navigationType == .reload {
+				decisionHandler(.allow, preferences)
+			} else {
+				decisionHandler(.cancel, preferences)
+			}
+			return
+		}
+
 		decisionHandler(.allow, preferences)
 	}
 
@@ -312,8 +334,12 @@ private extension DetailWebViewController {
 		components.scheme = ArticleRenderer.imageIconScheme
 		components.path = article.articleID
 
-		if let imageSrc = components.string {
-			webView?.evaluateJavaScript("reloadArticleImage(\"\(imageSrc)\")")
+		// JSON-encode the argument — the articleID inside imageSrc is
+		// feed-controlled data, never safe to hand-quote into JS.
+		if let imageSrc = components.string,
+		   let encoded = try? JSONEncoder().encode(imageSrc),
+		   let jsArgument = String(data: encoded, encoding: .utf8) {
+			webView?.evaluateJavaScript("reloadArticleImage(\(jsArgument))")
 		}
 	}
 

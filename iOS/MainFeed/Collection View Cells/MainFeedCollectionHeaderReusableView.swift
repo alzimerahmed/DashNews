@@ -136,7 +136,7 @@ final class MainFeedCollectionHeaderReusableView: UICollectionReusableView {
 		let animations = {
 			self.disclosureIndicator.transform = transform
 		}
-		if animate {
+		if animate && !UIAccessibility.isReduceMotionEnabled {
 			UIView.animate(withDuration: 0.3, animations: animations)
 		} else {
 			animations()
@@ -145,7 +145,7 @@ final class MainFeedCollectionHeaderReusableView: UICollectionReusableView {
 
 	func updateUnreadCount(animated: Bool = true) {
 		let alpha: CGFloat = (!disclosureExpanded && unreadCount > 0) ? 1 : 0
-		if animated {
+		if animated && !UIAccessibility.isReduceMotionEnabled {
 			UIView.animate(withDuration: 0.3) {
 				self.unreadCountLabel.alpha = alpha
 			}

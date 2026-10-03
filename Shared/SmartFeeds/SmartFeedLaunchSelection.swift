@@ -1,9 +1,9 @@
 //
 //  SmartFeedLaunchSelection.swift
-//  NetNewsWire
+//  DashNews
 //
 //  Created by DashNews on 2/13/26.
-//  Copyright © 2026 Ranchero Software. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import Foundation
@@ -19,10 +19,10 @@ enum SmartFeedLaunchSelection {
 		case starred
 	}
 
-	/// Returns the smart feed to select at launch, or `nil` when a saved
-	/// selection should be restored instead.
-	static func defaultSelection(isFirstRun: Bool, hasSavedSelection: Bool) -> DefaultSmartFeed? {
-		guard isFirstRun, !hasSavedSelection else {
+	/// Returns the smart feed to select at launch on the very first run,
+	/// or `nil` when a saved selection should be restored instead.
+	static func defaultSelection(isFirstRun: Bool) -> DefaultSmartFeed? {
+		guard isFirstRun else {
 			return nil
 		}
 		return .allUnread

@@ -21,25 +21,25 @@ enum WidgetDeepLink {
 	var url: URL {
 		switch self {
 		case .unread:
-			return URL(string: "nnw://showunread")!
+			return URL(string: "dashnews://showunread")!
 		case .unreadArticle(let articleID):
 			var url = URLComponents(url: WidgetDeepLink.unread.url, resolvingAgainstBaseURL: false)!
 			url.queryItems = [URLQueryItem(name: "id", value: articleID)]
 			return url.url!
 		case .today:
-			return URL(string: "nnw://showtoday")!
+			return URL(string: "dashnews://showtoday")!
 		case .todayArticle(let articleID):
 			var url = URLComponents(url: WidgetDeepLink.today.url, resolvingAgainstBaseURL: false)!
 			url.queryItems = [URLQueryItem(name: "id", value: articleID)]
 			return url.url!
 		case .starred:
-			return URL(string: "nnw://showstarred")!
+			return URL(string: "dashnews://showstarred")!
 		case .starredArticle(let articleID):
 			var url = URLComponents(url: WidgetDeepLink.starred.url, resolvingAgainstBaseURL: false)!
 			url.queryItems = [URLQueryItem(name: "id", value: articleID)]
 			return url.url!
 		case .icon:
-			return URL(string: "nnw://icon")!
+			return URL(string: "dashnews://icon")!
 		}
 	}
 

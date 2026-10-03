@@ -198,10 +198,12 @@ private extension OAuthAccountAuthorizationOperation {
 	}
 
 	func didEndAuthentication(url: URL?, error: Error?) {
+		// The callback URL carries the authorization code and state — log
+		// the host only so credentials never reach the logs.
 		if let error {
-			Self.logger.error("OAuthAccountAuthorizationOperation: didEndAuthentication url: \(url?.absoluteString ?? "") error: \(error.localizedDescription)")
+			Self.logger.error("OAuthAccountAuthorizationOperation: didEndAuthentication host: \(url?.host ?? "") error: \(error.localizedDescription)")
 		} else {
-			Self.logger.debug("OAuthAccountAuthorizationOperation: didEndAuthentication url: \(url?.absoluteString ?? "")")
+			Self.logger.debug("OAuthAccountAuthorizationOperation: didEndAuthentication host: \(url?.host ?? "")")
 		}
 
 		guard !isCanceled else {

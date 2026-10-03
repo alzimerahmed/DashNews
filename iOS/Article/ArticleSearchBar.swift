@@ -103,7 +103,9 @@ private extension ArticleSearchBar {
 		let doneButton = UIButton()
 		doneButton.setTitle(NSLocalizedString("Done", comment: "Done"), for: .normal)
 		doneButton.setTitleColor(UIColor.label, for: .normal)
-		doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+		// UIFontMetrics scales the fixed point size under Dynamic Type —
+		// adjustsFontForContentSizeCategory alone only works for text styles.
+		doneButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .boldSystemFont(ofSize: 14))
 		doneButton.titleLabel?.adjustsFontForContentSizeCategory = true
 		doneButton.isAccessibilityElement = true
 		doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)

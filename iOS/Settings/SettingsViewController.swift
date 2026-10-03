@@ -183,7 +183,7 @@ final class SettingsViewController: UITableViewController {
 			return AccountManager.shared.accounts.count + 1
 		case .feeds:
 			let defaultNumberOfRows = super.tableView(tableView, numberOfRowsInSection: section)
-			if AccountManager.shared.activeAccounts.isEmpty || AccountManager.shared.anyAccountHasNetNewsWireNewsSubscription() {
+			if AccountManager.shared.activeAccounts.isEmpty {
 				return defaultNumberOfRows - 1
 			}
 			return defaultNumberOfRows
@@ -319,7 +319,7 @@ final class SettingsViewController: UITableViewController {
 				openURL(HelpURL.helpHome.rawValue)
 				tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 			case .forum:
-				openURL(HelpURL.discourse.rawValue)
+				openURL(HelpURL.githubRepo.rawValue)
 				tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 			case .releaseNotes:
 				openURL(HelpURL.releaseNotes.rawValue)
@@ -486,7 +486,7 @@ private extension SettingsViewController {
 	func addFeed() {
 		self.dismiss(animated: true)
 
-		let addFeedView = AddFeedView(initialFeed: AccountManager.netNewsWireNewsURL, initialFeedName: NSLocalizedString("NetNewsWire News", comment: "NetNewsWire News"))
+		let addFeedView = AddFeedView(initialFeed: nil, initialFeedName: nil)
 		let hostingController = UIHostingController(rootView: addFeedView)
 		hostingController.modalPresentationStyle = .formSheet
 		hostingController.preferredContentSize = AddFeedView.preferredContentSizeForFormSheetDisplay

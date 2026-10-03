@@ -56,7 +56,10 @@ public enum ArticleExtractorState: Sendable {
 
         state = .processing
 
-		dataTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+		// Ephemeral session — the shared session carries the app's default
+		// cookie storage and must not leak cookies to extraction fetches.
+		let session = URLSession(configuration: .ephemeral)
+		dataTask = session.dataTask(with: url) { [weak self] data, _, error in
 			Task { @MainActor in
 				guard let self else {
 					return

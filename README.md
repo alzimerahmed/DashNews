@@ -5,8 +5,8 @@
 # DashNews
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20iOS-black.svg?logo=apple)](#)
-[![Language](https://img.shields.io/badge/language-Swift-orange.svg?logo=swift)](#)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20iOS-black.svg?logo=apple)](#building)
+[![Language](https://img.shields.io/badge/language-Swift-orange.svg?logo=swift)](https://github.com/alzimerahmed/DashNews)
 [![CI](https://img.shields.io/github/actions/workflow/status/alzimerahmed/DashNews/ci.yml?branch=main&label=CI)](https://github.com/alzimerahmed/DashNews/actions/workflows/ci.yml)
 
 *A free and open-source feed reader for macOS and iOS.*
@@ -40,7 +40,7 @@ cd DashNews
 ./setup.sh          # creates local code-signing settings
 ```
 
-Then open `NetNewsWire.xcodeproj` and build the `NetNewsWire` (macOS) or `NetNewsWire-iOS` scheme. You can build and test without a paid developer account.
+Then open `DashNews.xcodeproj` and build the `DashNews` (macOS) or `DashNews-iOS` scheme. You can build and test without a paid developer account.
 
 All builds and tests run in CI on every push and pull request (SwiftLint strict, macOS and iOS test plans).
 
@@ -50,8 +50,8 @@ Add a feed with **File → New Feed** (⌘N), paste a feed or site URL. Choose *
 
 ## FAQ / Troubleshooting
 
-**Why does the project still say "NetNewsWire" in Xcode?**
-The build-system rename (project, targets, bundle IDs) is a planned, CI-verified change — see the roadmap. The app identity, license, and ownership are already DashNews.
+**Why do parts of the code still mention NetNewsWire?**
+DashNews is a fork of NetNewsWire. The app identity, targets, and bundle IDs are DashNews; upstream attribution remains in file headers and credits, as required by the MIT license.
 
 **Can I use my existing NetNewsWire feeds?**
 Yes — export an OPML file from any reader and import it in DashNews.
@@ -62,12 +62,12 @@ Fork the repository, create a branch, and open a pull request. Keep changes focu
 
 ## Roadmap
 
-- [ ] Build-identity rebrand (project/targets/bundle IDs → DashNews)
-- [ ] Full-text article search (SQLite FTS5) and saved searches
-- [ ] Local keyword rules (hide/highlight per feed)
+- [x] Build-identity rebrand (project/targets/bundle IDs → DashNews)
+- [x] Full-text article search (SQLite FTS5) and saved searches
+- [x] Local keyword rules (hide/highlight per feed)
 - [ ] Read-later service integration
-- [ ] iCloud position sync for local accounts
-- [ ] On-device article summarization and per-feed highlighting
+- [x] iCloud read/starred status sync for local accounts
+- [x] On-device article summarization and key-point highlighting
 
 ## Changelog
 

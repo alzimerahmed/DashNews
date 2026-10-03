@@ -179,6 +179,13 @@ final class ArticleViewController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
 
+		// Storyboard accLabelText values are hardcoded English — set the
+		// localized labels in code instead.
+		nextUnreadBarButtonItem.accLabelText = NSLocalizedString("Next Unread", comment: "Next Unread")
+		actionBarButtonItem.accLabelText = NSLocalizedString("Share", comment: "Share")
+		nextArticleBarButtonItem.accLabelText = NSLocalizedString("Next Article", comment: "Next Article")
+		prevArticleBarButtonItem.accLabelText = NSLocalizedString("Previous Article", comment: "Previous Article")
+
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithDefaultBackground()
 		navigationItem.standardAppearance = appearance
@@ -191,6 +198,12 @@ final class ArticleViewController: UIViewController {
 			fullScreenTapZone.heightAnchor.constraint(equalToConstant: 44)
 		])
 		fullScreenTapZone.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapNavigationBar)))
+		// The fullscreen toggle is otherwise gesture-only — expose it to
+		// VoiceOver as a named button so the bars can be hidden/shown
+		// without discovering the invisible tap zones.
+		fullScreenTapZone.isAccessibilityElement = true
+		fullScreenTapZone.accessibilityTraits = .button
+		fullScreenTapZone.accessibilityLabel = NSLocalizedString("Hide Toolbars", comment: "Accessibility label for the navigation bar tap zone that hides the toolbars")
 		navigationItem.titleView = fullScreenTapZone
 
 		articleExtractorButton.addTarget(self, action: #selector(toggleArticleExtractor(_:)), for: .touchUpInside)
@@ -360,7 +373,7 @@ final class ArticleViewController: UIViewController {
 		} else {
 			readBarButtonItem.image = Assets.Images.circleClosed
 			readBarButtonItem.isEnabled = true
-			readBarButtonItem.accLabelText = NSLocalizedString("Selected - Mark Article Unread", comment: "Selected - Mark Article Unread")
+			readBarButtonItem.accLabelText = NSLocalizedString("Mark Article Read", comment: "Mark Article Read")
 		}
 
 		if article.status.starred {

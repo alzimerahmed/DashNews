@@ -12,7 +12,7 @@ import Account
 
 struct AccountStatsView: View {
 
-	private static let helpURL = URL(string: "https://netnewswire.com/help/account-stats.html")!
+	private static let helpURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 
 	private let model = AccountStatsViewModel()
 

@@ -547,12 +547,14 @@ public enum FetchType {
 		Task { @MainActor in
 			do {
 				try await delegate.importOPML(opmlFile: opmlFile)
+				// Capture and clear the count before the refresh so a failed
+				// refresh can't leak it into the next import's summary.
+				let duplicatesSkipped = lastOPMLImportDuplicatesSkipped
+				lastOPMLImportDuplicatesSkipped = 0
 				// Reset the last fetch date to get the article history for the added feeds.
 				lastArticleFetchStartTime = nil
 				try? await delegate.refreshAll()
-				let summary = OPMLImportSummary(duplicatesSkipped: lastOPMLImportDuplicatesSkipped)
-				lastOPMLImportDuplicatesSkipped = 0
-				completion(.success(summary))
+				completion(.success(OPMLImportSummary(duplicatesSkipped: duplicatesSkipped)))
 			} catch {
 				completion(.failure(error))
 			}
@@ -598,13 +600,17 @@ public enum FetchType {
 	func addOPMLItems(_ items: [OPMLItem], isManualImport: Bool) {
 		for item in items {
 			if let feedSpecifier = item.feedSpecifier {
+				guard Self.isFetchableFeedURL(feedSpecifier.feedURL) else {
+					continue
+				}
 				addFeedToTreeAtTopLevel(newFeed(with: feedSpecifier, isManualImport: isManualImport))
 			} else {
 				if let title = item.titleFromAttributes, let folder = ensureFolder(with: title) {
 					folder.externalID = item.attributes?["nnw_externalID"]
 					if let itemChildren = item.children {
 						for itemChild in itemChildren {
-							if let feedSpecifier = itemChild.feedSpecifier {
+							if let feedSpecifier = itemChild.feedSpecifier,
+							   Self.isFetchableFeedURL(feedSpecifier.feedURL) {
 								folder.addFeedToTreeAtTopLevel(newFeed(with: feedSpecifier, isManualImport: isManualImport))
 							}
 						}
@@ -612,6 +618,17 @@ public enum FetchType {
 				}
 			}
 		}
+	}
+
+	/// Only web feed URLs are fetchable — an imported OPML file can contain
+	/// `javascript:`, `file:`, or other exotic schemes that would produce
+	/// dead feeds and must not reach the network layer.
+	private static func isFetchableFeedURL(_ feedURLString: String) -> Bool {
+		guard let url = URL(string: feedURLString) else {
+			return false
+		}
+		let scheme = url.scheme?.lowercased()
+		return scheme == "http" || scheme == "https"
 	}
 
 	/// Pass `isManualImport: true` for a file the user chose to import, `false` when restoring our own file.
@@ -1175,6 +1192,12 @@ public enum FetchType {
 			feed.dropConditionalGetInfo()
 		}
 #endif
+	}
+
+	/// Rebuilds the FTS5 search index from the articles table. Wired to the
+	/// macOS Debug menu — the repair path for a corrupted or stale index.
+	public func debugRebuildSearchIndex() async {
+		await database.rebuildSearchIndexAsync()
 	}
 
 	public func debugRunSearch() {

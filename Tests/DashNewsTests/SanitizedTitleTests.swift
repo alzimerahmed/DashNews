@@ -104,11 +104,11 @@ import Testing
 	// The tag is matched by name (attributes ignored), so it's recognized
 	// as an allowed tag rather than shown as raw markup.
 
-	@Test("abbr with attribute is preserved under forHTML (real element in detail pane)")
+	@Test("abbr with attribute keeps tag but drops attribute under forHTML (real element in detail pane)")
 	func abbrWithAttributeForHTML() {
 		#expect(
 			ArticleStringFormatter.sanitizedTitle("[<abbr title=\"Not Safe For Work\">NSFW</abbr>]", forHTML: true)
-			== "[<abbr title=\"Not Safe For Work\">NSFW</abbr>]"
+			== "[<abbr>NSFW</abbr>]"
 		)
 	}
 
@@ -125,7 +125,15 @@ import Testing
 	// treated as disallowed).
 
 	@Test func allowedTagWithAttributeForHTML() {
-		#expect(ArticleStringFormatter.sanitizedTitle("<cite id=\"x\">Book</cite>", forHTML: true) == "<cite id=\"x\">Book</cite>")
+		#expect(ArticleStringFormatter.sanitizedTitle("<cite id=\"x\">Book</cite>", forHTML: true) == "<cite>Book</cite>")
+	}
+
+	// Attributes are dropped on allowed tags so event-handler injection
+	// via a feed-controlled title can't reach the article web view.
+
+	@Test func allowedTagWithEventHandlerAttributeForHTML() {
+		#expect(ArticleStringFormatter.sanitizedTitle("<b onclick=\"x()\">y</b>", forHTML: true) == "<b>y</b>")
+		#expect(ArticleStringFormatter.sanitizedTitle("<q onfocus=\"x()\" autofocus>y</q>", forHTML: true) == "<q>y</q>")
 	}
 
 	@Test func allowedTagWithAttributeNotForHTML() {

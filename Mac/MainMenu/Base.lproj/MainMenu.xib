@@ -21,11 +21,11 @@
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="NetNewsWire" id="1Xt-HY-uBw">
+                <menuItem title="DashNews" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="NetNewsWire" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="DashNews" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About NetNewsWire" id="5kV-Vb-QxS">
+                            <menuItem title="About DashNews" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showCustomAboutPanel:" target="Voe-Tx-rLC" id="ZQV-QH-KmS"/>
@@ -49,7 +49,7 @@
                                 <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                            <menuItem title="Hide NetNewsWire" keyEquivalent="h" id="Olw-nP-bQN">
+                            <menuItem title="Hide DashNews" keyEquivalent="h" id="Olw-nP-bQN">
                                 <connections>
                                     <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
                                 </connections>
@@ -67,7 +67,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit NetNewsWire" keyEquivalent="q" id="4sb-4s-VLi">
+                            <menuItem title="Quit DashNews" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
                                 </connections>
@@ -569,6 +569,12 @@
                                     <action selector="debugSearch:" target="-1" id="HvM-F7-u7s"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Rebuild Search Index" id="dNr-eb-X9x">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="debugRebuildSearchIndex:" target="-1" id="pR2-xY-kL4"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="OOI-Hk-eqi"/>
                             <menuItem title="Enable Web Inspector" id="EwI-z4-ZA3">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -673,7 +679,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                         <items>
-                            <menuItem title="NetNewsWire Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                            <menuItem title="DashNews Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
                                     <action selector="showHelp:" target="Voe-Tx-rLC" id="WJP-8V-s4K"/>
                                 </connections>
@@ -685,12 +691,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="iyN-Fr-QXC"/>
-                            <menuItem title="Add NetNewsWire News Feed" id="cmP-uH-mS8">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="addAppNews:" target="-1" id="xHC-9j-EpT"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Open Application Support Folder" id="QxZ-DC-21I">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -710,12 +710,6 @@
                                     <action selector="openReleaseNotes:" target="-1" id="7LS-uW-Yp0"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="How To Support NetNewsWire" id="kfC-NQ-g3E">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openHowToSupport:" target="-1" id="SIw-Ug-A4D"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="GitHub Repository" id="QfD-Xw-sdF">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -726,12 +720,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBugTracker:" target="-1" id="fZQ-ng-gIm"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Discourse Forum" id="OKC-FV-V33">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openDiscourse:" target="-1" id="pHL-0j-vVt"/>
                                 </connections>
                             </menuItem>
                         </items>

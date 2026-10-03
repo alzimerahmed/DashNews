@@ -450,7 +450,7 @@ final class AppDefaults: Sendable {
 										Key.articleFullscreenAvailable: false,
 										Key.articleFullscreenEnabled: false,
 										Key.confirmMarkAllAsRead: true,
-										Key.articleContentJavascriptEnabled: true,
+										Key.articleContentJavascriptEnabled: false,
 										Key.currentThemeName: Self.defaultThemeName,
 										Key.articleTextSize: ArticleTextSize.large.rawValue,
 										Key.isMarkReadOnScrollEnabled: false,

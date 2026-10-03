@@ -159,18 +159,18 @@ private extension ArticleRenderer {
 	}
 
 	private var multipleSelectionHTML: String {
-		let body = "<h3 class='systemMessage'>Multiple selection</h3>"
-		return body
+		let message = NSLocalizedString("Multiple selection", comment: "Shown in the article view when multiple articles are selected")
+		return "<p class='systemMessage'>\(message)</p>"
 	}
 
 	private var loadingHTML: String {
-		let body = "<h3 class='systemMessage'>Loading...</h3>"
-		return body
+		let message = NSLocalizedString("Loading…", comment: "Shown in the article view while an article loads")
+		return "<p class='systemMessage'>\(message)</p>"
 	}
 
 	private var noSelectionHTML: String {
-		let body = "<h3 class='systemMessage'>No selection</h3>"
-		return body
+		let message = NSLocalizedString("No selection", comment: "Shown in the article view when no article is selected")
+		return "<p class='systemMessage'>\(message)</p>"
 	}
 
 	private var noContentHTML: String {
@@ -193,8 +193,26 @@ private extension ArticleRenderer {
 		return s as String
 	}()
 
+	/// Highlight styles appended after a custom theme's CSS. Themes replace
+	/// the default stylesheet wholesale and don't define the keyword or
+	/// key-point marks, so without this the highlights render unstyled.
+	static let highlightMarkStyles = """
+
+mark.nnwKeywordHighlight { background-color: rgba(255, 204, 0, 0.45); color: inherit; padding: 0 1px; border-radius: 2px; }
+mark.nnwKeyPoint { background-color: rgba(94, 158, 244, 0.28); color: inherit; padding: 0 1px; border-radius: 2px; }
+mark a { color: #0645b0; }
+@media(prefers-color-scheme: dark) {
+	mark.nnwKeywordHighlight { background-color: rgba(255, 204, 0, 0.30); }
+	mark.nnwKeyPoint { background-color: rgba(94, 158, 244, 0.40); }
+	mark a { color: #9fc5ff; }
+}
+"""
+
 	func styleString() -> String {
-		return articleTheme.css ?? ArticleRenderer.defaultStyleSheet
+		guard let themeCSS = articleTheme.css else {
+			return ArticleRenderer.defaultStyleSheet
+		}
+		return themeCSS + ArticleRenderer.highlightMarkStyles
 	}
 
 	func template() -> String {
@@ -210,12 +228,12 @@ private extension ArticleRenderer {
 		}
 
 		d["title"] = title
-		d["preferred_link"] = article.preferredLink ?? ""
+		d["preferred_link"] = sanitizedLinkForAttribute(article.preferredURL)
 
-		if let externalLink = article.externalLink, externalLink != article.preferredLink {
+		if let externalURL = article.externalURL, externalURL != article.preferredURL {
 			d["external_link_label"] = NSLocalizedString("Link:", comment: "Link")
-			d["external_link_stripped"] = externalLink.strippingHTTPOrHTTPSScheme
-			d["external_link"] = externalLink
+			d["external_link_stripped"] = externalURL.absoluteString.strippingHTTPOrHTTPSScheme.escapingSpecialXMLCharacters
+			d["external_link"] = sanitizedLinkForAttribute(externalURL)
 		} else {
 			d["external_link_label"] = ""
 			d["external_link_stripped"] = ""
@@ -230,7 +248,7 @@ private extension ArticleRenderer {
 		components.scheme = Self.imageIconScheme
 		components.path = article.articleID
 		if let imageIconURLString = components.string {
-			d["avatar_src"] = imageIconURLString
+			d["avatar_src"] = imageIconURLString.escapingSpecialXMLCharacters
 		} else {
 			d["avatar_src"] = ""
 		}
@@ -241,8 +259,8 @@ private extension ArticleRenderer {
 			d["dateline_style"] = "articleDateline"
 		}
 
-		d["feed_link_title"] = article.feed?.nameForDisplay ?? ""
-		d["feed_link"] = article.feed?.homePageURL ?? ""
+		d["feed_link_title"] = (article.feed?.nameForDisplay ?? "").escapingSpecialXMLCharacters
+		d["feed_link"] = sanitizedLinkForAttribute(URL.encodeSpacesIfNeeded(article.feed?.homePageURL))
 
 		d["byline"] = byline()
 
@@ -312,21 +330,44 @@ private extension ArticleRenderer {
 			}
 
 			if let emailAddress = authorEmailAddress, emailAddress.contains(" ") {
-				byline += emailAddress // probably name plus email address
+				byline += emailAddress.escapingSpecialXMLCharacters // probably name plus email address
 			} else if let name = author.name, let url = author.url {
-				byline += name.htmlByAddingLink(url)
+				byline += linkedAuthor(name: name, url: url)
 			} else if let name = author.name, let emailAddress = authorEmailAddress {
-				byline += "\(name) &lt;\(emailAddress)&gt;"
+				byline += "\(name.escapingSpecialXMLCharacters) &lt;\(emailAddress.escapingSpecialXMLCharacters)&gt;"
 			} else if let name = author.name {
-				byline += name
+				byline += name.escapingSpecialXMLCharacters
 			} else if let emailAddress = authorEmailAddress {
-				byline += "&lt;\(emailAddress)&gt;" // TODO: mailto link
+				byline += "&lt;\(emailAddress.escapingSpecialXMLCharacters)&gt;" // TODO: mailto link
 			} else if let url = author.url {
-				byline += String.htmlWithLink(url)
+				byline += linkedAuthor(name: url, url: url)
 			}
 		}
 
 		return byline
+	}
+
+	/// Untrusted feed/author metadata must never reach the template raw:
+	/// MacroProcessor does no escaping, so a feed named `"><script>…`
+	/// would otherwise inject markup (and script, when content JS is on)
+	/// into the article web view.
+	private func linkedAuthor(name: String, url: String) -> String {
+		let escapedName = name.escapingSpecialXMLCharacters
+		let href = sanitizedLinkForAttribute(URL.encodeSpacesIfNeeded(url))
+		guard !href.isEmpty else {
+			return escapedName
+		}
+		return "<a href=\"\(href)\">\(escapedName)</a>"
+	}
+
+	/// Returns the URL escaped for an `href` attribute, or "" unless the
+	/// scheme is http/https — unparsable or non-web links are dropped
+	/// rather than injected into the template.
+	private func sanitizedLinkForAttribute(_ url: URL?) -> String {
+		guard let url, let scheme = url.scheme?.lowercased(), scheme == "http" || scheme == "https" else {
+			return ""
+		}
+		return url.absoluteString.escapingSpecialXMLCharacters
 	}
 
 	#if os(iOS)

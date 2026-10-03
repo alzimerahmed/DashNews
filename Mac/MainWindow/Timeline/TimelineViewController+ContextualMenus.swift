@@ -116,14 +116,14 @@ extension TimelineViewController {
 	}
 
 	@objc func sendToInstapaperFromContextualMenu(_ sender: Any?) {
-		guard let menuItem = sender as? NSMenuItem, let urlString = menuItem.representedObject as? String, let url = URL(string: urlString) else {
+		guard let menuItem = sender as? NSMenuItem, let article = menuItem.representedObject as? Article, let urlString = article.preferredLink, let url = URL(string: urlString) else {
 			return
 		}
 
 		let send: () -> Void = {
 			Task { @MainActor in
 				do {
-					try await InstapaperService.send(url: url, title: nil)
+					try await InstapaperService.send(url: url, title: article.title)
 				} catch {
 					NSApplication.shared.presentError(error)
 				}
@@ -273,7 +273,7 @@ private extension TimelineViewController {
 		if articles.count == 1, let link = articles.first!.preferredLink {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
-			menu.addItem(menuItem(NSLocalizedString("Send to Instapaper", comment: "Command"), #selector(sendToInstapaperFromContextualMenu(_:)), link))
+			menu.addItem(menuItem(NSLocalizedString("Send to Instapaper", comment: "Command"), #selector(sendToInstapaperFromContextualMenu(_:)), articles.first!))
 			menu.addSeparatorIfNeeded()
 			menu.addItem(copyArticleURLMenuItem(link))
 

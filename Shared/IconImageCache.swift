@@ -109,15 +109,6 @@ import Images
 
 private extension IconImageCache {
 
-	static func isNetNewsWireBrandedFeed(_ feed: Feed) -> Bool {
-		if let homePageURLString = feed.homePageURL, let homePageURL = URL(string: homePageURLString), let host = homePageURL.host {
-			if host == "nnw.ranchero.com" || host == "netnewswire.blog" || host.hasSuffix("netnewswire.com") {
-				return true
-			}
-		}
-		return feed.url.hasPrefix("https://ranchero.com/downloads/netnewswire")
-	}
-
 	func imageForSmartFeed(_ smartFeed: PseudoFeed, _ feedID: SidebarItemIdentifier) -> IconImage? {
 		if let iconImage = smartFeedIconImageCache[feedID] {
 			return iconImage
@@ -130,10 +121,6 @@ private extension IconImageCache {
 	}
 
 	func imageForFeed(_ feed: Feed, _ feedID: SidebarItemIdentifier) -> IconImage? {
-		if Self.isNetNewsWireBrandedFeed(feed) {
-			return IconImage.nnwFeedIcon
-		}
-
 		// The downloaders are the source of truth — consult them ahead of the local
 		// dictionaries so a newly arrived icon replaces a stale one. The dictionaries
 		// keep the last known icons across the downloaders’ low-memory and background flushes.

@@ -9,5 +9,5 @@ import Foundation
 
 public struct CloudKitWebDocumentation {
 	public static let limitationsAndSolutionsText = NSLocalizedString("How to Optimize iCloud Syncing", comment: "Help link")
-	public static let limitationsAndSolutionsURL = URL(string: "https://netnewswire.com/help/optimize-icloud.html")!
+	public static let limitationsAndSolutionsURL = URL(string: "https://github.com/alzimerahmed/DashNews")!
 }

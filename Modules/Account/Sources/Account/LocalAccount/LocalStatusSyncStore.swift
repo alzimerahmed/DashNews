@@ -3,7 +3,7 @@
 //  Account
 //
 //  Created by DashNews on 2/14/26.
-//  Copyright © 2026 Alzimer Ahmed, LLC. All rights reserved.
+//  Copyright © 2026 Alzimer Ahmed. All rights reserved.
 //
 
 import Foundation
@@ -51,10 +51,62 @@ final class LocalStatusSyncStore: Sendable {
 		}
 	}
 
+	/// Batch variant of `recordLocalChange` — one queue hop, one transaction.
+	/// A change is only written when it is at least as new as the stored row,
+	/// so async queueing can't let an earlier-queued write clobber a later one.
+	func recordLocalChanges(_ changes: [(articleID: String, read: Bool, starred: Bool)], lastModified: Date) {
+		guard !changes.isEmpty else {
+			return
+		}
+		let timestamp = lastModified.timeIntervalSince1970
+		serialDispatchQueue.sync { [database] in
+			database.beginTransaction()
+			for change in changes {
+				let recordName = LocalStatusRecord.recordName(for: change.articleID)
+				_ = database.executeUpdate("""
+					INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 1)
+					ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 1
+					WHERE excluded.lastModified >= localStatus.lastModified
+					""", withArgumentsIn: [change.articleID, recordName, change.read, change.starred, timestamp])
+			}
+			database.commit()
+		}
+	}
+
 	/// Returns the locally known status for articleID, or nil if none.
 	func status(for articleID: String) -> LocalStatusRecord? {
 		serialDispatchQueue.sync { [database] in
 			Self.status(for: articleID, database: database)
+		}
+	}
+
+	/// Batch variant of `status(for:)` — one SELECT with an IN clause per
+	/// 500-ID chunk (SQLite host-variable limits) instead of N queries.
+	func statuses(for articleIDs: Set<String>) -> [String: LocalStatusRecord] {
+		guard !articleIDs.isEmpty else {
+			return [:]
+		}
+		return serialDispatchQueue.sync { [database] in
+			var result = [String: LocalStatusRecord]()
+			let ids = Array(articleIDs)
+			for start in stride(from: 0, to: ids.count, by: 500) {
+				let chunk = Array(ids[start..<min(start + 500, ids.count)])
+				let placeholders = chunk.map { _ in "?" }.joined(separator: ", ")
+				guard let resultSet = database.executeQuery("SELECT articleID, read, starred, lastModified FROM localStatus WHERE articleID IN (\(placeholders))", withArgumentsIn: chunk) else {
+					Self.logDatabaseError("select statuses", database)
+					continue
+				}
+				defer {
+					resultSet.close()
+				}
+				while resultSet.next() {
+					guard let articleID = resultSet.object(forColumnIndex: 0) as? String else {
+						continue
+					}
+					result[articleID] = LocalStatusRecord(articleID: articleID, read: resultSet.bool(forColumnIndex: 1), starred: resultSet.bool(forColumnIndex: 2), lastModified: Date(timeIntervalSince1970: resultSet.double(forColumnIndex: 3)))
+				}
+			}
+			return result
 		}
 	}
 
@@ -69,12 +121,21 @@ final class LocalStatusSyncStore: Sendable {
 	/// A row that changed again while the push was in flight keeps its dirty
 	/// flag, because its timestamp moved past `lastModified`.
 	func markClean(articleIDs: Set<String>, pushedBefore lastModified: Date) {
+		guard !articleIDs.isEmpty else {
+			return
+		}
+		let timestamp = lastModified.timeIntervalSince1970
 		serialDispatchQueue.sync { [database] in
-			for articleID in articleIDs {
-				_ = database.executeUpdate("""
-					UPDATE localStatus SET dirty = 0 WHERE articleID = ? AND lastModified <= ?
-					""", withArgumentsIn: [articleID, lastModified.timeIntervalSince1970])
+			database.beginTransaction()
+			let ids = Array(articleIDs)
+			for start in stride(from: 0, to: ids.count, by: 500) {
+				let chunk = Array(ids[start..<min(start + 500, ids.count)])
+				let placeholders = chunk.map { _ in "?" }.joined(separator: ", ")
+				var arguments: [Any] = [timestamp]
+				arguments.append(contentsOf: chunk)
+				_ = database.executeUpdate("UPDATE localStatus SET dirty = 0 WHERE lastModified <= ? AND articleID IN (\(placeholders))", withArgumentsIn: arguments)
 			}
+			database.commit()
 		}
 	}
 
@@ -92,8 +153,7 @@ final class LocalStatusSyncStore: Sendable {
 					""", withArgumentsIn: [remote.articleID, recordName, remote.read, remote.starred, remote.lastModified.timeIntervalSince1970])
 				return true
 			}
-			let winner = LocalStatusRecord.resolve(local: local, remote: remote)
-			guard winner != local else {
+			guard local.remoteShouldBeApplied(remote: remote) else {
 				return false
 			}
 			// The winning row is not dirty: it came from upstream, so it must not
@@ -103,8 +163,8 @@ final class LocalStatusSyncStore: Sendable {
 			_ = database.executeUpdate("""
 				INSERT INTO localStatus (articleID, recordName, read, starred, lastModified, dirty) VALUES (?, ?, ?, ?, ?, 0)
 				ON CONFLICT(articleID) DO UPDATE SET recordName = excluded.recordName, read = excluded.read, starred = excluded.starred, lastModified = excluded.lastModified, dirty = 0
-				""", withArgumentsIn: [winner.articleID, recordName, winner.read, winner.starred, winner.lastModified.timeIntervalSince1970])
-			return winner == remote
+				""", withArgumentsIn: [remote.articleID, recordName, remote.read, remote.starred, remote.lastModified.timeIntervalSince1970])
+			return true
 		}
 	}
 
