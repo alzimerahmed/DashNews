@@ -11,12 +11,15 @@ import Foundation
 enum HelpURL: String {
 
 	case helpHome = "https://github.com/alzimerahmed/DashNews#readme"
-	case website = "https://github.com/alzimerahmed/DashNews"
 	case releaseNotes = "https://github.com/alzimerahmed/DashNews/releases"
 	case githubRepo = "https://github.com/alzimerahmed/DashNews"
 	case bugTracker = "https://github.com/alzimerahmed/DashNews/issues"
 	case technotes = "https://github.com/alzimerahmed/DashNews/tree/main/Technotes"
 	case privacyPolicy = "https://github.com/alzimerahmed/DashNews/blob/main/Technotes/PrivacyPolicy.markdown"
+
+	/// Repo root — alias kept separate from githubRepo so the raw-value
+	/// enum stays unique.
+	static let website = HelpURL.githubRepo
 
 #if os(macOS)
 	@MainActor func open() {
